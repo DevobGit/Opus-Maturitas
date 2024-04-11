@@ -3,6 +3,9 @@ https://pybit.es/articles/python-subclasses/
 https://stackoverflow.com/questions/576169/understanding-python-super-with-init-methods
 https://note.nkmk.me/en/python-issubclass-mro-bases-subclasses/#:~:text=In%20Python%2C%20you%20can%20use,the%20__subclasses__()%20method.
 https://stackoverflow.com/questions/2225038/determine-the-type-of-an-object
+Sources donnant les stratégies du premier tournoi d'Axelrod, le manque de détail pose un problème encore à résoudre :
+https://axelrod.readthedocs.io/en/dev/tutorials/running_axelrods_first_tournament/index.html
+https://axelrod.readthedocs.io/en/dev/reference/strategy_index.html
 """
 
 
@@ -11,29 +14,32 @@ import random
 random.seed(6436)
 
 def prisoner_dilemma(player1, player2, round):
-    outcomes = {
+    outcomes = { # Créer un dictionnaire assignant chaque doublet d'action à son doublet de gains pour l'acteur
         (0, 0): (3, 3),
         (0, 1): (0, 5),
         (1, 0): (5, 0),
         (1, 1): (1, 1)
     }
 
-    outcome_player1, outcome_player2 = outcomes[(player1.play(round), player2.play(round))]
-    return(outcome_player1, outcome_player2)
+    return(outcomes[(player1.play(round), player2.play(round))])
+""" 
+Retourne les résultat/gains du tour en utilisant le prècèdent dictionnaire pour assigner des gains
+en fonction de l'action du joueur obtenur par sa méthode play, auquelle l'on indique le tour du tournoi
+"""
 
 def match(player1, player2, rounds):
-    score1, score2 = 0, 0
-    print("MATCH : Player", player1.name, "VERSUS Player", player2.name)
-    for round in range(rounds) :
-        outcome_player1, outcome_player2 = prisoner_dilemma(player1, player2, round)
+    score1, score2 = 0, 0 # Met les scores à 0
+    print("MATCH : Player", player1.name, "VERSUS Player", player2.name) # Print les infos du match
+    for round in range(rounds) : # Répète pendant le nombre de tours souhaité
+        outcome_player1, outcome_player2 = prisoner_dilemma(player1, player2, round) # Sauvegarde les résultats du tour en variable
         
-        # Sauvegarder les coups de l'adversaire pour chaque joueur
+        # Sauvegarde les coups de l'adversaire pour chaque joueur
         player1.memorize(player2.action)
         player2.memorize(player1.action)
         
         # Print les infos du tour
         print("Round :", round + 1)
-        for player in ([player1, player2]):
+        for player in ([player1, player2]): # Donne les actions pour les deux joueurs
             print(player.name, "uses", player.chosenstrat.name)
             if  player.action == 0 :
                 print(player.name, "cooperates !")
@@ -46,19 +52,20 @@ def match(player1, player2, rounds):
         score1 += outcome_player1
         score2 += outcome_player2
         
-        print("Present scores :", score1, score2)
-        
+        print("Present scores :", score1, score2) # Print les résultats totaux après le tour
+    
+    # Print les résultats finaux    
     print("MATCH : Player", player1.name, "VERSUS Player", player2.name)   
     print("FINAL RESULTS :", score1, score2)
 
 # Définition de la classe des joueurs
 
 class Player():
-    def __init__(self, name, strategies):
+    def __init__(self, name, strategies): # Le joueur a un nom et une liste de stratégies
         
         self.name = name
         self.strategies = strategies
-        self.memory = []
+        self.memory = [] # Le joueur initie une liste vide comme mémoire des coups adverses passés
             
     def play(self, round):
         
@@ -67,11 +74,11 @@ class Player():
             implémenter, mais n'est pas prioritaire puisque néscessaire uniquement à partir de la quatrième
             étape de travail.
         """
-        if isinstance(self.chosenstrat, Stratlist):
+        if isinstance(self.chosenstrat, Stratlist): # Vérifie que la strat suit une liste, et lui indique le n. de tour
             self.action = self.chosenstrat.action(round)
-        elif isinstance(self.chosenstrat, Stratmemory):
+        elif isinstance(self.chosenstrat, Stratmemory): # Vérifie que la strat utilise la mémoire, et la lui donne
             self.action = self.chosenstrat.action(self.memory)
-        else :
+        else : # Sinon n'a pas besoin de lui donner plus d'infos
             self.action = self.chosenstrat.action()
         
         return self.action
@@ -79,35 +86,35 @@ class Player():
     def memorize(self, move):
         self.memory.append(move)
     
+# Définition des classes stratégies, le nom des classes sera sûrement changé à l'avenir pour correspondre aux noms originaux
 
-# Définition des classes stratégies
-class Strat():
+class Strat(): # Classe des stratégie, elle... porte un nom !
     def __init__(self, name):
         
         self.name = name 
 
-class Stratcooperation(Strat):
+class Stratcooperation(Strat): # Coopère
     def __init__(self, name):
         super().__init__(name)
     
     def action(self):
         return 0
         
-class Stratbetrayal(Strat):
+class Stratbetrayal(Strat): # Trahi
     def __init__(self, name):
         super().__init__(name)
     
     def action(self): 
         return 1
    
-class Stratrandom(Strat):
+class Stratrandom(Strat): # Agit aléatoirement à 50% de coopération
     def __init__(self, name):
         super().__init__(name)
     
     def action(self): 
         return random.choice([0, 1])
 
-class Stratlist(Strat):     
+class Stratlist(Strat): # Suit la liste de coups donné, revient au début lorsque la fin est atteinte    
     def __init__(self, name, list):
         super().__init__(name)
         
@@ -116,14 +123,14 @@ class Stratlist(Strat):
     def action(self, round):
         return self.list[round % len(self.list)]
 
-class Stratmemory(Strat):
+class Stratmemory(Strat): # Classe demandant une information "memory" pour sa méthode action
     def __init__(self, name):
         super().__init__(name)
     
     def action(self, memory): 
         pass
     
-class Stratitat(Stratmemory):
+class Stratitat(Stratmemory): # Coopère puis repète l'action prècèdente de l'adversaire
     def __init__(self, name):
         super().__init__(name)
     
@@ -133,7 +140,7 @@ class Stratitat(Stratmemory):
         else:
             return 1
 
-class Stratotitat(Stratmemory):
+class Stratotitat(Stratmemory): # Trahi uniquement si l'adversaire à trahi deux ou plus fois de suite
     def __init__(self, name):
         super().__init__(name)
     
@@ -143,7 +150,7 @@ class Stratotitat(Stratmemory):
         else:
             return 0
         
-class Stratnoredemption(Stratmemory):
+class Stratnoredemption(Stratmemory): # Coopère jusqu'à ce que l'adversaire trahi, ne fait alors plus que trahir
     def __init__(self, name):
         super().__init__(name)
     
@@ -151,6 +158,19 @@ class Stratnoredemption(Stratmemory):
         if 1 in memory:
             return 1
         else:
+            return 0
+        
+class Stratdavis(Stratmemory): # Coopère les 10 premiers tours puis joue noredemption
+    def __init__(self, name):
+        super().__init__(name)
+    
+    def action(self, memory): 
+        if len(memory) >= 10 :
+            if 1 in memory:
+                return 1
+            else:
+                return 0
+        else :
             return 0
         
 # Créer objets strat
@@ -163,13 +183,14 @@ always_betray = Stratbetrayal("Always Betray")
 tit_for_tat = Stratitat("Tit For Tat")
 tit_for_two_tat = Stratotitat("Tit For Two Tat")
 no_redemption = Stratnoredemption("No Redemption")
+davis = Stratdavis("Davis")
 
 # Créer objets joueurs
 
 Hoenn = Player("Hoenn", [tit_for_tat, tit_for_two_tat, roll_the_dice])
-Hisui = Player("Hisui", [no_redemption])      
+Hisui = Player("Hisui", [no_redemption, tit_for_tat])
+DavisLover = Player("Davis Lover", [davis])       
 
 # Faire un match
 
-match(Hoenn, Hisui, 10)
-
+match(Hoenn, DavisLover, 20)
