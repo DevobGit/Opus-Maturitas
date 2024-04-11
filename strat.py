@@ -165,11 +165,8 @@ class Stratdavis(Stratmemory): # Coopère les 10 premiers tours puis joue norede
         super().__init__(name)
     
     def action(self, memory): 
-        if len(memory) >= 10 :
-            if 1 in memory:
-                return 1
-            else:
-                return 0
+        if len(memory) >= 10 and 1 in memory :
+            return 1
         else :
             return 0
         
