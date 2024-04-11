@@ -1,4 +1,6 @@
 """
+https://pybit.es/articles/python-subclasses/
+https://stackoverflow.com/questions/576169/understanding-python-super-with-init-methods
 https://note.nkmk.me/en/python-issubclass-mro-bases-subclasses/#:~:text=In%20Python%2C%20you%20can%20use,the%20__subclasses__()%20method.
 https://stackoverflow.com/questions/2225038/determine-the-type-of-an-object
 """
@@ -123,6 +125,16 @@ class Stratmemory(Strat):
     
     def action(self, memory): 
         pass
+    
+class Stratitat(Stratmemory):
+    def __init__(self, name):
+        super().__init__(name)
+    
+    def action(self, memory): 
+        if not memory or memory[-1] == 0:
+            return 0
+        else:
+            return 1
         
 
 
@@ -133,10 +145,11 @@ mean_change = Stratlist("Mean Change", [1, 0])
 roll_the_dice = Stratrandom("Roll The Dice")
 always_cooperate = Stratcooperation("Always Cooperate")
 always_betray = Stratbetrayal("Always Betray")
+tit_for_tat = Stratitat("Tit For Tat")
 
 
-Hoenn = Player("Hoenn", [nice_double_change, roll_the_dice])
-Hisui = Player("Hisui", [nice_double_change, mean_change])      
+Hoenn = Player("Hoenn", [tit_for_tat, roll_the_dice])
+Hisui = Player("Hisui", [tit_for_tat, always_cooperate])      
 
 match(Hoenn, Hisui, 10)
 
