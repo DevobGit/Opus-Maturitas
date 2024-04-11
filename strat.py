@@ -1,3 +1,9 @@
+"""
+https://note.nkmk.me/en/python-issubclass-mro-bases-subclasses/#:~:text=In%20Python%2C%20you%20can%20use,the%20__subclasses__()%20method.
+https://stackoverflow.com/questions/2225038/determine-the-type-of-an-object
+"""
+
+
 import random
 # Fixer la graine aléatoire pour des résultats reproductibles
 random.seed(6436)
@@ -18,6 +24,10 @@ def match(player1, player2, rounds):
     print("MATCH : Player", player1.name, "VERSUS Player", player2.name)
     for round in range(rounds) :
         outcome_player1, outcome_player2 = prisoner_dilemma(player1, player2, round)
+        
+        # Sauvegarder les coups de l'adversaire pour chaque joueur
+        player1.memorize(player2.action)
+        player2.memorize(player1.action)
         
         # Print les infos du tour
         print("Round :", round + 1)
@@ -46,8 +56,8 @@ class Player():
         
         self.name = name
         self.strategies = strategies
-        
-        
+        self.memory = []
+            
     def play(self, round):
         
         self.chosenstrat = random.choice(self.strategies)
@@ -55,25 +65,48 @@ class Player():
             implémenter, mais n'est pas prioritaire puisque néscessaire uniquement à partir de la quatrième
             étape de travail.
         """
-        self.action = self.chosenstrat.action(round)
+        if isinstance(self.chosenstrat, Stratlist):
+            self.action = self.chosenstrat.action(round)
+        elif isinstance(self.chosenstrat, Stratmemory):
+            self.action = self.chosenstrat.action(self.memory)
+        else :
+            self.action = self.chosenstrat.action()
+        
         return self.action
+    
+    def memorize(self, move):
+        self.memory.append(move)
+    
 
 # Définition des classes stratégies
 class Strat():
     def __init__(self, name):
         
         self.name = name 
+
+class Stratcooperation(Strat):
+    def __init__(self, name):
+        super().__init__(name)
     
+    def action(self):
+        """
+        round est complétement inutile mais je ne sais comment gérer l'argument en trop donné par la classe player
+        """ 
+        return 0
+        
+class Stratbetrayal(Strat):
+    def __init__(self, name):
+        super().__init__(name)
+    
+    def action(self): 
+        return 1
+   
 class Stratrandom(Strat):
     def __init__(self, name):
         super().__init__(name)
     
-    def action(self, round): 
-        """
-        round est complétement inutile mais je ne sais comment gérer l'argument en trop donné par la classe player
-        """
+    def action(self): 
         return random.choice([0, 1])
-        
 
 class Stratlist(Strat):     
     def __init__(self, name, list):
@@ -83,6 +116,13 @@ class Stratlist(Strat):
     
     def action(self, round):
         return self.list[round % len(self.list)]
+
+class Stratmemory(Strat):
+    def __init__(self, name):
+        super().__init__(name)
+    
+    def action(self, memory): 
+        pass
         
 
 
@@ -91,6 +131,8 @@ class Stratlist(Strat):
 nice_double_change = Stratlist("Nice Double Change", [0, 0, 1, 1])
 mean_change = Stratlist("Mean Change", [1, 0])
 roll_the_dice = Stratrandom("Roll The Dice")
+always_cooperate = Stratcooperation("Always Cooperate")
+always_betray = Stratbetrayal("Always Betray")
 
 
 Hoenn = Player("Hoenn", [nice_double_change, roll_the_dice])
