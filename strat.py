@@ -146,6 +146,16 @@ class Stratotitat(Stratmemory):
         else:
             return 0
         
+class Stratnoredemption(Stratmemory):
+    def __init__(self, name):
+        super().__init__(name)
+    
+    def action(self, memory): 
+        if 1 in memory:
+            return 1
+        else:
+            return 0
+        
 # Créer objets strat
 
 nice_double_change = Stratlist("Nice Double Change", [0, 0, 1, 1])
@@ -155,11 +165,12 @@ always_cooperate = Stratcooperation("Always Cooperate")
 always_betray = Stratbetrayal("Always Betray")
 tit_for_tat = Stratitat("Tit For Tat")
 tit_for_two_tat = Stratotitat("Tit For Two Tat")
+no_redemption = Stratnoredemption("No Redemption")
 
 # Créer objets joueurs
 
-Hoenn = Player("Hoenn", [tit_for_two_tat, roll_the_dice])
-Hisui = Player("Hisui", [tit_for_tat, always_cooperate])      
+Hoenn = Player("Hoenn", [tit_for_tat, tit_for_two_tat, roll_the_dice])
+Hisui = Player("Hisui", [no_redemption])      
 
 # Faire un match
 
