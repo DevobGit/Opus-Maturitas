@@ -91,9 +91,6 @@ class Stratcooperation(Strat):
         super().__init__(name)
     
     def action(self):
-        """
-        round est complétement inutile mais je ne sais comment gérer l'argument en trop donné par la classe player
-        """ 
         return 0
         
 class Stratbetrayal(Strat):
