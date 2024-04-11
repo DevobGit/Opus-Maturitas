@@ -48,8 +48,8 @@ def match(player1, player2, rounds):
         
         print("Present scores :", score1, score2)
         
-        
-    print("This is their final scores !")
+    print("MATCH : Player", player1.name, "VERSUS Player", player2.name)   
+    print("FINAL RESULTS :", score1, score2)
 
 # Définition de la classe des joueurs
 
@@ -135,10 +135,18 @@ class Stratitat(Stratmemory):
             return 0
         else:
             return 1
+
+class Stratotitat(Stratmemory):
+    def __init__(self, name):
+        super().__init__(name)
+    
+    def action(self, memory): 
+        if len(memory) >= 2 and memory[-1] == 1 and memory[-2] == 1:
+            return 1
+        else:
+            return 0
         
-
-
-
+# Créer objets strat
 
 nice_double_change = Stratlist("Nice Double Change", [0, 0, 1, 1])
 mean_change = Stratlist("Mean Change", [1, 0])
@@ -146,10 +154,14 @@ roll_the_dice = Stratrandom("Roll The Dice")
 always_cooperate = Stratcooperation("Always Cooperate")
 always_betray = Stratbetrayal("Always Betray")
 tit_for_tat = Stratitat("Tit For Tat")
+tit_for_two_tat = Stratotitat("Tit For Two Tat")
 
+# Créer objets joueurs
 
-Hoenn = Player("Hoenn", [tit_for_tat, roll_the_dice])
+Hoenn = Player("Hoenn", [tit_for_two_tat, roll_the_dice])
 Hisui = Player("Hisui", [tit_for_tat, always_cooperate])      
+
+# Faire un match
 
 match(Hoenn, Hisui, 10)
 
