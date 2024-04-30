@@ -42,7 +42,8 @@ def match(player1 : Player, player2 : Player, rounds : int, comments : bool):
             print("Gains :", outcome_player1, outcome_player2)
         
         # Effectuer réelement les changements des scores
-        player1.score += outcome_player1
+        if not player1 == player2 :
+            player1.score += outcome_player1
         player2.score += outcome_player2
         if comments : # Vérifie si l'on souhaite les commentaires des matchs
             print("Present scores :", player1.score, player2.score) # Print les résultats totaux après le tour
