@@ -6,7 +6,7 @@ def prisoner_dilemma(player1 : Player, player2 : Player, tour : int):
 
     choice1 = player1.play(tour)
     choice2 = player2.play(tour)
-    
+
     if choice1 == 0:
         if choice2 == 0:
             return (3, 3)
@@ -17,7 +17,6 @@ def prisoner_dilemma(player1 : Player, player2 : Player, tour : int):
 
 # Retourne les résultat/gains du tour en utilisant le prècèdent dictionnaire pour assigner des gains
 # en fonction de l'action du joueur obtenue par sa méthode play, auquelle l'on indique le tour du tournoi
-
 
 # Définition des matchs
 
@@ -58,16 +57,21 @@ def tournament(players : list, rounds : int, comments : bool):
     allplayers = players.copy() # Crée une liste de chaque joueurs, qu'ils aient joués ou non
     while players : # Répéter tant qu'il reste des joueurs à ne pas avoir joués tout leurs matchs
         for player2 in players : # Répéter pour chaque adversaire dans la liste des joueurs
-            match(players[0], player2, rounds, False)
-            # Fait un match entre le premier joueur et son adversaire
-            if comments : # Vérifie si l'on souhaite les commentaires du tournoi
-                print("match entre", players[0].name, "et", player2.name)
-            # Ajoute les scores du matchs aux totaux
-            players[0].totalscore += players[0].score
-            player2.totalscore += player2.score
+            # Efface la mémoire
+            players[0].erasememory()
+            player2.erasememory()
             # Réinitialise les scores
             players[0].nullifyscore()
             player2.nullifyscore()
+            match(players[0], player2, rounds, False)
+            # Fait un match entre le premier joueur et son adversaire
+            if not players[0] == player2 :
+                player2.totalscore += player2.score
+            players[0].totalscore += players[0].score # Ajoute les scores du matchs aux totaux
+            if comments : # Vérifie si l'on souhaite les commentaires du tournoi
+                print("match entre", players[0].name, "et", player2.name)
+                print(players[0].score, player2.score)
+                print(players[0].totalscore, player2.totalscore)
         players.remove(players[0])# Supprime de la liste le joueur ayant fini tout ses matchs
     allplayers = sorted(allplayers, key=lambda player: player.totalscore, reverse = True)
     # trie les joueurs par ordre décroissant des scores
