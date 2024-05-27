@@ -75,8 +75,10 @@ def tournament(players : list, rounds : int, comments : bool):
                 print(players[0].totalscore, player2.totalscore)
         players.remove(players[0])# Supprime de la liste le joueur ayant fini tout ses matchs
     allplayers = sorted(allplayers, key=lambda player: player.totalscore, reverse = True)
+    playernames = [o.name for o in allplayers]
     # trie les joueurs par ordre décroissant des scores
     if comments : # Vérifie si l'on souhaite les commentaires du tournoi
         print("Classement par scores :")
         for player in allplayers : # Donne le score de chaque joueur dans l'ordre de la liste triée
             print(player.totalscore, player.name)
+    return playernames

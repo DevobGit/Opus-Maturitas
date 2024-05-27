@@ -1,4 +1,5 @@
 import random
+from tkinter import TRUE
 from dilemma_definition import match, tournament
 from player_and_strat import Allrandom, Betrayer, Cooperator, DavisLover, Hisui, Hoenn, Juliette, Ruben, TitForTatLover, Zahibra
 # Fixer la graine aléatoire pour des résultats reproductibles
@@ -28,4 +29,4 @@ tournament(
 )
 
 #match(TitForTatLover, TitForTatLover, 20, True)
-tournament([Cooperator, Betrayer], 20, True)
+print(tournament([Cooperator, Betrayer, TitForTatLover], 20, True))
