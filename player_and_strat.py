@@ -1,6 +1,5 @@
 import random
 import string
-
 # Fixer la graine aléatoire pour des résultats reproductibles
 random.seed(6436)
 
@@ -10,6 +9,7 @@ class Player():
         self.name = name
         self.strategies = strategies
         self.memory = [] # Le joueur initie une liste vide comme mémoire des coups adverses passés
+        self.automemory = [] # Le joueur initie une liste vide comme mémoire de ses propres coups passés
         self.score = 0 # Le joueur démarre avec un score de 0
         self.totalscore = 0 # Le joueur démarre avec un score total de 0
         self.action = 0 # Cette variable correspond au dernier coup joué par le joueur
@@ -23,14 +23,22 @@ class Player():
 
         if isinstance(self.chosenstrat, Stratlist): # Vérifie que la strat suit une liste, et lui indique le n. de tour
             self.action = self.chosenstrat.action(tour)
-        elif isinstance(self.chosenstrat , Stratmemory): # Vérifie que la strat utilise la mémoire, et la lui donne
+            return self.action
+        if isinstance(self.chosenstrat , Stratmemory): # Vérifie que la strat utilise la mémoire, et la lui donne
+            if isinstance(self.chosenstrat, Stratautomemory): # Vérifie que la strat utilise l' automémoire, et la lui donne
+                self.action = self.chosenstrat.action(self.memory, self.automemory)
+                return self.action
             self.action = self.chosenstrat.action(self.memory)
-        else : # Sinon n'a pas besoin de lui donner plus d'infos
-            self.action = self.chosenstrat.action()
+            return self.action
+        # Sinon n'a pas besoin de lui donner plus d'infos
+        self.action = self.chosenstrat.action()
         return self.action
             
     def memorize(self, move : int): # Ajoute un move à sa mémoire
         self.memory.append(move)
+        
+    def automemorize(self, move :int): # Ajoute un move à son automémoire
+        self.automemory.append(move)
         
     def nullifyscore(self): # Reset son score à zéro
         self.score = 0
@@ -40,6 +48,9 @@ class Player():
     
     def erasememory(self): # Reset sa mémoire
         self.memory.clear()
+        
+    def eraseautomemory(self): # Reset son automémoire
+        self.automemory.clear()
     
 # Définition des classes stratégies, le nom des classes sera sûrement changé à l'avenir pour correspondre aux noms originaux
 
@@ -77,8 +88,10 @@ class Stratmemory(Strat): # Classe demandant une information "memory" pour sa m�
     def action(self, memory : list): 
         pass
 
-class Stratcontrol(Stratlist, Stratmemory): # Classe suivant une liste et avec mémoire utilisée pour les contrôles
-    pass
+class Stratautomemory(Strat): # Classe demandant une information "automemory" correspondant à ses anciens coups pour sa méthode action
+    
+    def action(self, automemory : list): 
+        pass
 
 class Stratitat(Stratmemory): # Coopère puis repète l'action prècèdente de l'adversaire
     
@@ -94,41 +107,49 @@ class Stratotitat(Stratmemory): # Trahi uniquement si l'adversaire à trahi deux
             return 1
         return 0
         
-class Stratnoredemption(Stratmemory): # Coopère jusqu'à ce que l'adversaire trahi, ne fait alors plus que trahir
+class Stratgrudger(Stratmemory): # Coopère jusqu'à ce que l'adversaire trahi, ne fait alors plus que trahir
     
     def action(self, memory : list): 
         if 1 in memory:
             return 1
         return 0
         
-class Stratdavis(Stratmemory): # Coopère les 10 premiers tours puis joue noredemption
+class Stratdavis(Stratmemory): # Coopère les 10 premiers tours puis joue grudger
     
     def action(self, memory : list): 
         if len(memory) >= 10 and 1 in memory :
             return 1
         return 0
-       
-# Créer objets strat
 
-nice_double_change = Stratlist("Nice Double Change", [0, 0, 1, 1])
-mean_change = Stratlist("Mean Change", [1, 0])
-roll_the_dice = Stratrandom("Roll The Dice")
-always_cooperate = Stratcooperation("Always Cooperate")
-always_betray = Stratbetrayal("Always Betray")
-tit_for_tat = Stratitat("Tit For Tat")
-tit_for_two_tat = Stratotitat("Tit For Two Tat")
-no_redemption = Stratnoredemption("No Redemption")
-davis = Stratdavis("Davis")
+class Stratgrofman(Stratmemory, Stratautomemory):
+    
+    def action(self, memory : list, automemory : list):
+        if len(memory) == 0 or memory[-1] == automemory[-1]:
+            return 0
+        return random.choices([0, 1], [2, 5])
 
-# Créer objets joueurs
+class Stratjoss(Stratmemory): # Coopère puis repète l'action prècèdente de l'adversaire
+    
+    def action(self, memory : list): 
+        if (not memory or memory[-1] == 0) and random.uniform(0, 1) <= 0.9:
+            return 0
+        return 1
 
-Hoenn = Player("Hoenn", [tit_for_tat, tit_for_two_tat, roll_the_dice])
-Hisui = Player("Hisui", [no_redemption, tit_for_tat])
-DavisLover = Player("Davis Lover", [davis])
-Allrandom = Player("All Random", [roll_the_dice])
-Ruben = Player("Ruben", [mean_change])
-Zahibra = Player("Zahibra", [no_redemption, roll_the_dice])
-Juliette = Player("Juliette", [davis, tit_for_tat])
-Cooperator = Player("Cooperator", [always_cooperate])
-Betrayer = Player("Betrayer", [always_betray])
-TitForTatLover = Player("Tit For Tat", [tit_for_tat])
+"""
+class Stratgraaskamp(Stratmemory):
+    
+    def __init__(self, name : string, alpha: float = 0.05) -> None:
+        super().__init__(name)
+
+        self.alpha = alpha
+        self.opponent_is_random = False
+        self.next_random_defection_turn = None
+    
+    def action(self, memory : list):
+        if len(memory) < 56  : # Joue tit for tat les 55 premier tours sauf le 50 où il trahi
+            if (not memory or memory[-1] == 0) and not len(memory) == 50:
+                return 0
+            return 1     
+        return 0
+"""
+    

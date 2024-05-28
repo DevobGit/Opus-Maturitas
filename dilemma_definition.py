@@ -28,7 +28,9 @@ def match(player1 : Player, player2 : Player, rounds : int, comments : bool):
         # Sauvegarde les résultats du tour en variable
         # Sauvegarde les coups de l'adversaire pour chaque joueur
         player1.memorize(player2.action)
+        player1.automemorize(player1.action)
         player2.memorize(player1.action)
+        player2.automemorize(player2.action)
         if comments : # Vérifie si l'on souhaite les commentaires du match
             # Print les infos du tour
             print("Round :", tour + 1)
@@ -61,6 +63,8 @@ def tournament(players : list, rounds : int, comments : bool):
             # Efface la mémoire
             players[0].erasememory()
             player2.erasememory()
+            players[0].eraseautomemory()
+            player2.eraseautomemory()
             # Réinitialise les scores
             players[0].nullifyscore()
             player2.nullifyscore()
