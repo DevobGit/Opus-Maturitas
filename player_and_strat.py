@@ -1,5 +1,7 @@
 import random
 import string
+from scipy.stats import chisquare
+
 # Fixer la graine aléatoire pour des résultats reproductibles
 random.seed(6436)
 
@@ -145,7 +147,6 @@ class Strattullock(Stratmemory): # Coopère les 11 premiers tours puis coopère 
             return 1
         return 0
 
-"""
 class Stratgraaskamp(Stratmemory):
     
     def __init__(self, name : string, alpha: float = 0.05) -> None:
@@ -155,11 +156,42 @@ class Stratgraaskamp(Stratmemory):
         self.opponent_is_random = False
         self.next_random_defection_turn = None
     
-    def action(self, memory : list):
+    def action(self, memory : list, automemory : list):
         if len(memory) < 56  : # Joue tit for tat les 55 premier tours sauf le 50 où il trahi
             if (not memory or memory[-1] == 0) and not len(memory) == 50:
                 return 0
             return 1     
+        # Vérifie si l'adversaire est aléatoire avec un Chi-squared test, auquel cas trahi toujours
+        p_value = chisquare([memory.count(0), memory.count(1)]).pvalue
+        self.opponent_is_random = (
+            p_value >= self.alpha
+        ) or self.opponent_is_random # Ne fait pas le test si l'adversaire a déjà été considéré comme random
+
+        if self.opponent_is_random:
+            return 1
+        # Vérifie si l'adversaire est un "clone" de lui même ou s'il est tit for tat, auquel cas, joue tit for tat
+        if (
+            all(
+                memory[i] == automemory[i - 1]
+                for i in range(1, len(automemory))
+            )
+            or memory == automemory
+        ):
+            if memory[-1] == 1:
+                return 1
+            return 0
+        
+        if self.next_random_defection_turn is None: # Vérifie si le prochain tour aléatoir de trahison a déjà été choisi
+            # Place la prochaine trahison à entre 5 et 15 tours plus loins que le nombre de tours actuel
+            self.next_random_defection_turn = random.randint(5, 15) + len(
+                automemory
+                )
+        
+        if len(automemory) == self.next_random_defection_turn: # Vérifie s'il est le tour de trahison
+            # Choisi le prochain tour de trahison
+            self.next_random_defection_turn = random.randint(5, 15) + len(
+                automemory
+            )
+            return 1
         return 0
-"""
     
