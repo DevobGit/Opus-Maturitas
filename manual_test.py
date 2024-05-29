@@ -1,5 +1,5 @@
 import random
-from dilemma_definition import match, tournament
+from dilemma_definition import tournament
 from player_and_strat import Player, Stratgrofman, Stratgrudger, Stratjoss, Stratlist, Stratrandom, Stratcooperation, Stratbetrayal, Stratitat, Stratotitat, Stratdavis, Strattullock
 
 nice_double_change = Stratlist("Nice Double Change", [0, 0, 1, 1])
