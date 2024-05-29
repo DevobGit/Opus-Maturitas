@@ -147,7 +147,7 @@ class Strattullock(Stratmemory): # Coopère les 11 premiers tours puis coopère 
             return 1
         return 0
 
-class Stratgraaskamp(Stratmemory):
+class Stratgraaskamp(Stratmemory, Stratautomemory):
     
     def __init__(self, name : string, alpha: float = 0.05) -> None:
         super().__init__(name)
