@@ -121,19 +121,29 @@ class Stratdavis(Stratmemory): # Coopère les 10 premiers tours puis joue grudge
             return 1
         return 0
 
-class Stratgrofman(Stratmemory, Stratautomemory):
+class Stratgrofman(Stratmemory, Stratautomemory): # Si les joueurs ont agit différemment au dernier tour coopére avec 2/7 de probabilité, sinon coopère
     
     def action(self, memory : list, automemory : list):
         if len(memory) == 0 or memory[-1] == automemory[-1]:
             return 0
         return random.choices([0, 1], [2, 5])
 
-class Stratjoss(Stratmemory): # Coopère puis repète l'action prècèdente de l'adversaire
+class Stratjoss(Stratmemory): # joue tit for tat avec 90% de coopération au lieu de 100%
     
     def action(self, memory : list): 
         if (not memory or memory[-1] == 0) and random.uniform(0, 1) <= 0.9:
             return 0
         return 1
+
+class Strattullock(Stratmemory): # Coopère les 11 premiers tours puis coopère 10% de moins que l'adversaire les 10 derniers tours
+    
+    def action(self, memory : list):
+        if not len(memory) >= 11 :
+            x = random.randint(0, 10)
+            if x <= (memory[-10:].count(1) / 10) - (memory[-10:].count(1) / 100):
+                return 0
+            return 1
+        return 0
 
 """
 class Stratgraaskamp(Stratmemory):

@@ -8,9 +8,7 @@ from player_and_strat import (
     Stratlist,
 )
 
-
 from unittest import TestCase, main
-
 
 class TestStrat(TestCase):
     @classmethod
@@ -44,7 +42,6 @@ class TestStrat(TestCase):
             [0, 0, 0, 1, 1, 0, 1, 0, 1, 1], "[0, 0, 0, 1, 1, 0, 1, 0, 1, 1] est la liste attendue des coups joués par tit for tat contre [0, 0, 1, 1, 0, 1, 0, 1, 1, 1]."
         )
         # Vérifie que les coups de tit for tat correspondent aux résultats attendus
-    
 
 if __name__ == '__main__':
     main()

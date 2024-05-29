@@ -20,12 +20,16 @@ class TestGame(TestCase):
 
     def test_dilemma(self):
         self.assertEqual(
-            prisoner_dilemma(self.cooperator, self.betrayer, 0),
+            prisoner_dilemma(self.cooperator,
+                             self.betrayer,
+                             0),
             (0, 5), "L'une face à l'autre, la coopération ne gagne rien et la trahison 5 points."
         )
 
         self.assertEqual(
-            prisoner_dilemma(self.betrayer, self.cooperator, 0),
+            prisoner_dilemma(self.betrayer,
+                             self.cooperator,
+                             0),
             (5, 0), "L'une face à l'autre, la coopération ne gagne rien et la trahison 5 points."
         )
 
@@ -43,13 +47,18 @@ class TestGame(TestCase):
 
     # Vérifie les résultats d'un match de vingt tours
     def test_match(self):
-        match(self.cooperator, self.betrayer, 20, False)
+        match(self.cooperator,
+              self.betrayer,
+              20,
+              False)
         self.assertEqual(self.cooperator.score, 0, "coop. vs trahi. sur 20 tours a pour résultat 100-0 pour trahi.")
         self.assertEqual(self.betrayer.score, 100, "coop. vs trahi. sur 20 tours a pour résultat 100-0 pour trahi.")
 
     def test_tournament(self):
         expected_ranking = ['Betrayer', 'Tit For Tat', 'Cooperator']
-        ranking = tournament([self.cooperator, self.betrayer, self.tit_for_tat_lover], 5, False)
+        ranking = tournament([self.cooperator, self.betrayer, self.tit_for_tat_lover],
+                             5,
+                             False)
         self.assertEqual(
             ranking,
             expected_ranking

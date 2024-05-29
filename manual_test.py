@@ -1,6 +1,6 @@
 import random
 from dilemma_definition import match, tournament
-from player_and_strat import Player, Stratgrofman, Stratgrudger, Stratjoss, Stratlist, Stratrandom, Stratcooperation, Stratbetrayal, Stratitat, Stratotitat, Stratdavis
+from player_and_strat import Player, Stratgrofman, Stratgrudger, Stratjoss, Stratlist, Stratrandom, Stratcooperation, Stratbetrayal, Stratitat, Stratotitat, Stratdavis, Strattullock
 
 nice_double_change = Stratlist("Nice Double Change", [0, 0, 1, 1])
 mean_change = Stratlist("Mean Change", [1, 0])
@@ -14,6 +14,7 @@ grudger = Stratgrudger("Grudger")
 davis = Stratdavis("Davis")
 grofman = Stratgrofman("Grofman")
 joss = Stratjoss("Joss")
+tullock = Strattullock("Tullock")
 
 # Créer objets joueurs
 
@@ -31,6 +32,7 @@ alternator = Player("Alternator", [nice_change])
 grudger_lover = Player("Grudger", [grudger])
 grofman_lover = Player("Grofman", [grofman])
 joss_lover = Player("Joss", [joss])
+tullock_lover = Player("Tullock", [tullock])
 # Fixer la graine aléatoire pour des résultats reproductibles
 random.seed(6436)
 
@@ -74,10 +76,10 @@ tournament(
         davis_lover,
         #graaskamp_lover,
         #downing_lover,
-        #feld_lover,
+        ###feld_lover,
         joss_lover,
-        #tullock_lover,
-        #anonymous_lover,
+        tullock_lover,
+        ###anonymous_lover,
         all_random,
         
     ], 
