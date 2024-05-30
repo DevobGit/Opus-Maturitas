@@ -382,3 +382,36 @@ class Stratshubik(Stratmemory, Stratautomemory):
             self.decrease_remaining_betrays()
             return 1
         return 0
+    
+class Stratfeld(Stratmemory):
+    
+    def __init__(
+        self,
+        name,
+        start_coop_prob: float = 1.0,
+        end_coop_prob: float = 0.5,
+        rounds_of_decay: int = 200,
+    ) -> None:
+        super().__init__(name)
+        
+        self.start_coop_prob = start_coop_prob
+        self.end_coop_prob = end_coop_prob
+        self.rounds_of_decay = rounds_of_decay
+        self.coop_prob = start_coop_prob
+    """
+    Réduction de probabilité de coopération à chaque tour pour respecter le taux de dépard, de fin,
+    et le nombre de tours sur lequel le taux baisse
+    """
+    def reduce_prob(self):
+        self.coop_prob -= ((self.start_coop_prob - self.end_coop_prob) / (self.rounds_of_decay - 1))
+    
+    def action(self, memory: list):
+        if not memory:
+            self.reduce_prob()
+            return 0
+        if memory[-1] == 1:
+            self.reduce_prob()
+            return 1
+        choice = random.choices([0,1], weights= [self.coop_prob, 1 - self.coop_prob])
+        self.reduce_prob()
+        return choice
