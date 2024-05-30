@@ -23,6 +23,11 @@ def prisoner_dilemma(player1 : Player, player2 : Player, tour : int):
 def match(player1 : Player, player2 : Player, rounds : int, comments : bool):
     if comments : # Vérifie si l'on souhaite les commentaires des matchs
         print("MATCH : Player", player1.name, "VERSUS Player", player2.name) # Print les infos du match
+    
+    # Informe les joueurs de leur adversaires
+    player1.getopponent(player2)
+    player2.getopponent(player1)
+    
     for tour in range(rounds) : # Répète pendant le nombre de tours souhaité
         outcome_player1, outcome_player2 = prisoner_dilemma(player1, player2, tour)
         # Sauvegarde les résultats du tour en variable

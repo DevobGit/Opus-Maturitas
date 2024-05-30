@@ -7,7 +7,7 @@ random.seed(6436)
 
 class Player():
     # Définition de la classe des joueurs
-    def __init__(self, name, strategies): # Le joueur a un nom et une liste de stratégies
+    def __init__(self, name, strategies) -> None : # Le joueur a un nom et une liste de stratégies
         self.name = name
         self.strategies = strategies
         self.memory = [] # Le joueur initie une liste vide comme mémoire des coups adverses passés
@@ -16,7 +16,11 @@ class Player():
         self.totalscore = 0 # Le joueur démarre avec un score total de 0
         self.action = 0 # Cette variable correspond au dernier coup joué par le joueur
         self.chosenstrat = self.strategies[0] # Cette variable correspond à la dernière stratégie choisie
-               
+        self.opponent = None
+    
+    def getopponent(self, opponent):
+        self.opponent = opponent
+    
     def play(self, tour : int): 
         self.chosenstrat = random.choice(self.strategies)
         #Choix aléatoire de la stratégie, le choix des pourcentages de chance de séléction reste à
@@ -28,8 +32,14 @@ class Player():
             return self.action
         if isinstance(self.chosenstrat , Stratmemory): # Vérifie que la strat utilise la mémoire, et la lui donne
             if isinstance(self.chosenstrat, Stratautomemory): # Vérifie que la strat utilise l' automémoire, et la lui donne
+                if isinstance(self.chosenstrat, Stratplayers):
+                    self.action = self.chosenstrat.action(self.memory, self.automemory, self, self.opponent)
+                    return self.action
                 self.action = self.chosenstrat.action(self.memory, self.automemory)
                 return self.action
+            if isinstance(self.chosenstrat, Stratplayers):
+                    self.action = self.chosenstrat.action(self.memory, self, self.opponent)
+                    return self.action
             self.action = self.chosenstrat.action(self.memory)
             return self.action
         # Sinon n'a pas besoin de lui donner plus d'infos
@@ -57,9 +67,9 @@ class Player():
 # Définition des classes stratégies, le nom des classes sera sûrement changé à l'avenir pour correspondre aux noms originaux
 
 class Strat(): # Classe des stratégie, elle... porte un nom !
-    def __init__(self, name : string):
+    def __init__(self, name : string) -> None :
         
-        self.name = name 
+        self.name = name
 
 class Stratcooperation(Strat): # Coopère
     
@@ -68,16 +78,16 @@ class Stratcooperation(Strat): # Coopère
         
 class Stratbetrayal(Strat): # Trahi
     
-    def action(self): 
+    def action(self):
         return 1
    
 class Stratrandom(Strat): # Agit aléatoirement à 50% de coopération
     
-    def action(self): 
+    def action(self):
         return random.choice([0, 1])
 
 class Stratlist(Strat): # Suit la liste de coups donné, revient au début lorsque la fin est atteinte    
-    def __init__(self, name : string, liste : list):
+    def __init__(self, name : string, liste : list) -> None :
         super().__init__(name)
         
         self.list = liste
@@ -87,17 +97,22 @@ class Stratlist(Strat): # Suit la liste de coups donné, revient au début lorsq
 
 class Stratmemory(Strat): # Classe demandant une information "memory" pour sa méthode action
     
-    def action(self, memory : list): 
+    def action(self, memory : list):
         pass
 
 class Stratautomemory(Strat): # Classe demandant une information "automemory" correspondant à ses anciens coups pour sa méthode action
     
-    def action(self, automemory : list): 
+    def action(self, automemory : list):
+        pass
+
+class Stratplayers(Strat): # Classe utilisant les informations de l'adversaire
+    
+    def action(self, opponent : Player):
         pass
 
 class Stratitat(Stratmemory): # Coopère puis repète l'action prècèdente de l'adversaire
     
-    def action(self, memory : list): 
+    def action(self, memory : list):
         if not memory or memory[-1] == 0:
             return 0
         return 1
@@ -160,7 +175,10 @@ class Stratgraaskamp(Stratmemory, Stratautomemory):
             if (not memory or memory[-1] == 0) and not len(memory) == 50:
                 return 0
             return 1     
-        # Vérifie si l'adversaire est aléatoire avec un Chi-squared test, auquel cas trahi toujours
+        """Vérifie si l'adversaire est aléatoire avec un Chi-squared test, facilement réalisable
+        avec le module scipy (tant mieux car même avec wikipedia j'ai du mal à vraiment comprendre),
+        auquel cas trahi toujours
+        """
         p_value = chisquare([memory.count(0), memory.count(1)]).pvalue
         self.opponent_is_random = (
             p_value >= self.alpha
@@ -224,3 +242,105 @@ class Stratsteinandrapoport(Stratmemory):
             return 1
 
         return memory[-1]
+    
+class Strattidemanandchieruzzi(Stratmemory, Stratplayers):
+
+    def __init__(self, name : string) -> None:
+        super().__init__(name)
+
+        self.betraying = False
+        self.betraying_turns = 0
+        self.remaining_betrayals = 0
+        # Alzheimer fait oublier les précédentes trahisons et recommencer comme au début du match
+        self.last_alzheimer = 0
+        self.alzheimer = False
+        self.remembered_betrayals = 0
+        
+    def decrease_remaining_betrays(self): # Réduit le compteur de trahisons, cesse de trahir s'il est nul
+
+        if self.betraying:
+            self.remaining_betrayals -= 1
+            if self.remaining_betrayals == 0:
+                self.betraying = False
+
+    def forget(self): # Oublie tout pour redémarrer, partir loin et commencer une nouvelle vie
+
+        self.betraying = False
+        self.betraying_turns= 0
+        self.remaining_betrayals = 0
+        self.remembered_betrayals = 0
+    
+    def action(self, memory : list, current_player : Player, opponent : Player): 
+        if not memory :
+            return 0
+        
+        if memory[-1] == 1:
+            self.remembered_betrayals += 1
+
+        # Vérifie s'il y a eu alzheimer le tour précédent, pour offrir un second tour de coopération
+        if self.alzheimer:
+            self.alzheimer = False
+            return 0 
+
+        # Vérifie s'il faut tout oublier
+        current_round = len(memory) + 1
+        # Peut alzheimer s'il n'y en a pas encore eu
+        if self.last_alzheimer == 0:
+            valid_alzheimer = True
+        # Il faut s'être passé au moins 20 tour depuis le dernier alzheimer
+        else:
+            valid_alzheimer = (current_round - self.last_alzheimer >= 20)
+
+        # Il faut avoir au moins 10 points de plus que l'adversaire pour alzheimer 
+        if valid_alzheimer:
+            valid_points = current_player.score - opponent.score >= 10
+            valid_rounds = (current_round % 200 <= -10)
+            """
+            Dans un match de 200 tours, ne lance pas alzheimer s'il reste moins de 10 tours.
+            (Comportement en cas de matchs plus longs personnelement interprété, pourra
+            changer plus tard, pour l'instant sans importance.
+            """
+            opponent_is_cooperating = (memory[-1] == 0)
+            if valid_points and valid_rounds and opponent_is_cooperating:
+                """
+                La dernière condition pour donner une nouvelle chance à l'adversaire est :
+                
+                " if the number of defections differs from a 50-50 random generator by at
+                least 3.0 standard deviations. "
+                
+                Je ne sais pas comment calculer cela. Je me suis servi d'une source gardée
+                dans le fichier notes en attendant de vraiment comprendre les calculs.
+                """
+                # 50-50 split is based off the binomial distribution.
+                N = len(memory)
+                # std_dev = sqrt(N*p*(1-p)) where p is 1 / 2.
+                std_deviation = (N ** (1 / 2)) / 2
+                lower = N / 2 - 3 * std_deviation
+                upper = N / 2 + 3 * std_deviation
+                if (
+                    self.remembered_betrayals <= lower
+                    or self.remembered_betrayals >= upper
+                ):
+                    # L'adversaire mérite que l'on oublie ses trahisons
+                    self.last_alzheimer = current_round
+                    self.forget()
+                    self.alzheimer = True
+                    return 0  # Première coopération après le redémmarage
+
+        # Vérifie si la stratégie est dans une chaîne de trahison
+        
+        if self.betraying:
+            self.decrease_remaining_betrays()
+            return 1
+        """
+        Si l'adversaire vient de trahir, commence une chaîne de trahisons
+        (dont le nombre augmente à chaque trahison adverse).
+        """
+        if memory[-1] == 1:
+            self.betraying = True
+            self.betraying_turns += 1
+            self.remaining_betrayals = self.betraying_turns
+            self.decrease_remaining_betrays()
+            return 1
+
+        return 0

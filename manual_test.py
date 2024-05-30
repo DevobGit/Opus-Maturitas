@@ -1,6 +1,6 @@
 import random
 from dilemma_definition import tournament
-from player_and_strat import Player, Stratgraaskamp, Stratgrofman, Stratgrudger, Stratjoss, Stratlist, Stratrandom, Stratcooperation, Stratbetrayal, Stratitat, Stratotitat, Stratdavis, Stratsteinandrapoport, Strattullock
+from player_and_strat import Player, Stratgraaskamp, Stratgrofman, Stratgrudger, Stratjoss, Stratlist, Stratrandom, Stratcooperation, Stratbetrayal, Stratitat, Stratotitat, Stratdavis, Stratsteinandrapoport, Strattidemanandchieruzzi, Strattullock
 
 nice_double_change = Stratlist("Nice Double Change", [0, 0, 1, 1])
 mean_change = Stratlist("Mean Change", [1, 0])
@@ -17,6 +17,7 @@ joss = Stratjoss("Joss")
 tullock = Strattullock("Tullock")
 graaskamp = Stratgraaskamp("Graaskamp")
 stein_and_rapoport = Stratsteinandrapoport("Stein and Rapoport")
+tideman_and_chieruzzi = Strattidemanandchieruzzi("Tideman and Chieruzzi")
 
 # Créer objets joueurs
 
@@ -37,6 +38,7 @@ joss_lover = Player("Joss", [joss])
 tullock_lover = Player("Tullock", [tullock])
 graaskamp_lover = Player("Graaskamp", [graaskamp])
 stein_and_rapoport_lover = Player("Stein and Rapoprt", [stein_and_rapoport])
+tideman_and_chieruzzi_lover = Player("Tideman and Chieruzzi", [tideman_and_chieruzzi])
 
 # Fixer la graine aléatoire pour des résultats reproductibles
 random.seed(6436)
@@ -72,7 +74,7 @@ tournament(
 tournament(
     [
         tit_for_tat_lover,
-        #tideman_and_chieruzzi_lover,
+        tideman_and_chieruzzi_lover, #!
         #nydegger_lover,
         grofman_lover,
         ###shubik_lover
