@@ -1,6 +1,6 @@
 import random
 from dilemma_definition import tournament
-from player_and_strat import Player, Stratgraaskamp, Stratgrofman, Stratgrudger, Stratjoss, Stratlist, Stratrandom, Stratcooperation, Stratbetrayal, Stratitat, Stratotitat, Stratdavis, Stratsteinandrapoport, Strattidemanandchieruzzi, Strattullock
+from player_and_strat import Player, Stratgraaskamp, Stratgrofman, Stratgrudger, Stratjoss, Stratlist, Stratrandom, Stratcooperation, Stratbetrayal, Stratitat, Stratotitat, Stratdavis, Stratshubik, Stratsteinandrapoport, Strattidemanandchieruzzi, Strattullock
 
 nice_double_change = Stratlist("Nice Double Change", [0, 0, 1, 1])
 mean_change = Stratlist("Mean Change", [1, 0])
@@ -18,6 +18,7 @@ tullock = Strattullock("Tullock")
 graaskamp = Stratgraaskamp("Graaskamp")
 stein_and_rapoport = Stratsteinandrapoport("Stein and Rapoport")
 tideman_and_chieruzzi = Strattidemanandchieruzzi("Tideman and Chieruzzi")
+shubik = Stratshubik("Shubik")
 
 # Créer objets joueurs
 
@@ -39,10 +40,11 @@ tullock_lover = Player("Tullock", [tullock])
 graaskamp_lover = Player("Graaskamp", [graaskamp])
 stein_and_rapoport_lover = Player("Stein and Rapoprt", [stein_and_rapoport])
 tideman_and_chieruzzi_lover = Player("Tideman and Chieruzzi", [tideman_and_chieruzzi])
+shubik_lover = Player("Shubik", [shubik])
 
 # Fixer la graine aléatoire pour des résultats reproductibles
-random.seed(6436)
-
+#random.seed(6436)
+random.seed(3523)
 # Faire un match
 """
 match(hoenn,
@@ -67,29 +69,33 @@ tournament(
     True
 )
 """
-#match(TitForTatLover, TitForTatLover, 20, True)
-#print(tournament([Cooperator, Betrayer, TitForTatLover], 20, True))
 
-#tournoi avec les joueur d'Axelrod
-tournament(
-    [
-        tit_for_tat_lover,
-        tideman_and_chieruzzi_lover, #!
-        #nydegger_lover,
-        grofman_lover,
-        ###shubik_lover
-        stein_and_rapoport_lover,
-        grudger_lover,
-        davis_lover,
-        graaskamp_lover,
-        #downing_lover,
-        ###feld_lover,
-        joss_lover,
-        tullock_lover,
-        ###anonymous_lover,
-        all_random,
-        
-    ], 
-    200, 
-    True
-)
+"""
+Tournoi avec les participants du premier tournoi d'Axelrod, ceux suivis d'un #! sont soumis à de
+possibles erreurs dans l'interprétation du fonctionnement de leur stratégie.
+Fait 5 répétitions du tournoi pour lisser les effets aléatoires, tel que dans
+le premier tournoi d'Axelrod.
+"""
+for _ in range(5) :
+    tournament(
+        [
+            tit_for_tat_lover,
+            tideman_and_chieruzzi_lover, #!
+            #nydegger_lover,
+            grofman_lover,
+            shubik_lover, #!
+            stein_and_rapoport_lover,
+            grudger_lover,
+            davis_lover,
+            graaskamp_lover,
+            #downing_lover,
+            ###feld_lover,
+            joss_lover,
+            tullock_lover,
+            ###anonymous_lover,
+            all_random,
+            
+        ], 
+        200, 
+        True
+    )

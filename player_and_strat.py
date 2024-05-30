@@ -344,3 +344,41 @@ class Strattidemanandchieruzzi(Stratmemory, Stratplayers):
             return 1
 
         return 0
+    
+class Stratshubik(Stratmemory, Stratautomemory):
+    
+    def __init__(self, name : string) -> None:
+        super().__init__(name)
+
+        self.betraying = False
+        self.betraying_turns = 0
+        self.remaining_betrayals = 0
+        
+    def decrease_remaining_betrays(self): # Réduit le compteur de trahisons, cesse de trahir s'il est nul
+
+        if self.betraying:
+            self.remaining_betrayals -= 1
+            if self.remaining_betrayals == 0:
+                self.betraying = False
+    
+    def action(self, memory: list, automemory: list):
+        
+        if not memory:
+            return 0
+
+        if self.betraying_turns:
+            # Vérifie si la stratégie est dans une chaîne de trahison
+            self.decrease_remaining_betrays()
+            return 1
+
+        if memory[-1] == 1 and automemory[-1] == 0:
+            """
+            Si l'adversaire a trahi au dernier tour alors que le joueur avait coopéré, commence une
+            nouvelle chaîne de trahisons, plus longue que la dernière de une trahison
+            """
+            self.betraying = True
+            self.betraying_turns += 1
+            self.remaining_betrayals = self.betraying_turns
+            self.decrease_remaining_betrays()
+            return 1
+        return 0
