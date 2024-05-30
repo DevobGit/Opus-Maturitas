@@ -141,8 +141,7 @@ class Strattullock(Stratmemory): # Coopère les 11 premiers tours puis coopère 
     
     def action(self, memory : list):
         if not len(memory) >= 11 :
-            x = random.randint(0, 10)
-            if x <= (memory[-10:].count(1) / 10) - (memory[-10:].count(1) / 100):
+            if random.randint(0, 10) <= (memory[-10:].count(1) / 10) - (memory[-10:].count(1) / 100):
                 return 0
             return 1
         return 0
@@ -194,4 +193,34 @@ class Stratgraaskamp(Stratmemory, Stratautomemory):
             )
             return 1
         return 0
+
+class Stratsteinandrapoport(Stratmemory):
     
+    def __init__(self, name : string, alpha: float = 0.05) -> None:
+        super().__init__(name)
+
+        self.alpha = alpha
+        self.opponent_is_random = False
+    
+    def action(self, memory : list):
+        if not len(memory) >= 3 :
+            return 0
+        
+        """
+        Dans un match de 200 tours, trahi les deux derniers tours. (Comportement en cas
+        de matchs plus longs personnelement interprété, pourra changer plus tard, pour
+        l'instant sans importance.
+        """
+        if len(memory) % 199 == 0 or len(memory) % 199 == -1 :
+            return 1
+        
+        if len(memory) % 15 == -1 :
+            p_value = chisquare(
+                [memory.count(0), memory.count(1)]
+            ).pvalue
+            self.opponent_is_random = (p_value >= self.alpha)
+        
+        if self.opponent_is_random:
+            return 1
+
+        return memory[-1]
