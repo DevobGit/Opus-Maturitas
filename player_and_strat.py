@@ -415,3 +415,13 @@ class Stratfeld(Stratmemory):
         choice = random.choices([0,1], weights= [self.coop_prob, 1 - self.coop_prob])
         self.reduce_prob()
         return choice
+    
+class Stratanonymous(Strat):
+    """
+    Informations sur la stratégie quasi non-existantes, effet connu : la probabilité de coopération
+    tombait fréquemment entre 30% et 70%.
+    """
+    def action(self):
+        
+        r = random.uniform(3, 7)
+        return random.choices([0,1], weights= [r, 10 - r])

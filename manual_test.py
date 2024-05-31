@@ -1,6 +1,6 @@
 import random
-from dilemma_definition import tournament
-from player_and_strat import Player, Stratfeld, Stratgraaskamp, Stratgrofman, Stratgrudger, Stratjoss, Stratlist, Stratrandom, Stratcooperation, Stratbetrayal, Stratitat, Stratotitat, Stratdavis, Stratshubik, Stratsteinandrapoport, Strattidemanandchieruzzi, Strattullock
+from dilemma_definition import tournament, match
+from player_and_strat import Player, Stratanonymous, Stratfeld, Stratgraaskamp, Stratgrofman, Stratgrudger, Stratjoss, Stratlist, Stratrandom, Stratcooperation, Stratbetrayal, Stratitat, Stratotitat, Stratdavis, Stratshubik, Stratsteinandrapoport, Strattidemanandchieruzzi, Strattullock
 
 nice_double_change = Stratlist("Nice Double Change", [0, 0, 1, 1])
 mean_change = Stratlist("Mean Change", [1, 0])
@@ -20,6 +20,7 @@ stein_and_rapoport = Stratsteinandrapoport("Stein and Rapoport")
 tideman_and_chieruzzi = Strattidemanandchieruzzi("Tideman and Chieruzzi")
 shubik = Stratshubik("Shubik")
 feld = Stratfeld("Feld")
+anonymous = Stratanonymous("Anonymous")
 
 # Créer objets joueurs
 
@@ -43,10 +44,11 @@ stein_and_rapoport_lover = Player("Stein and Rapoprt", [stein_and_rapoport])
 tideman_and_chieruzzi_lover = Player("Tideman and Chieruzzi", [tideman_and_chieruzzi])
 shubik_lover = Player("Shubik", [shubik])
 feld_lover = Player("Feld", [feld])
+anonymous_lover = Player("Anonymous", [anonymous])
 
 # Fixer la graine aléatoire pour des résultats reproductibles
 #random.seed(6436)
-random.seed(3523)
+random.seed(6436)
 # Faire un match
 """
 match(hoenn,
@@ -94,10 +96,18 @@ for _ in range(5) :
             feld_lover, #+
             joss_lover,
             tullock_lover,
-            ###anonymous_lover,
+            anonymous_lover, #!
             all_random,
             
         ], 
         200, 
         True
     )
+"""
+anonymous_lover.nullifyscore()
+anonymous_lover.nullifytotalscore()
+tideman_and_chieruzzi_lover.nullifytotalscore()
+tideman_and_chieruzzi_lover.nullifyscore()
+tideman_and_chieruzzi_lover.erasememory()
+match(anonymous_lover, tideman_and_chieruzzi_lover, 10, True)
+"""
