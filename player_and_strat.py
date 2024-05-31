@@ -424,4 +424,4 @@ class Stratanonymous(Strat):
     def action(self):
         
         r = random.uniform(3, 7)
-        return random.choices([0,1], weights= [r, 10 - r])
+        return random.choices([0,1], cum_weights= [r, r + (10 - r)])[0]

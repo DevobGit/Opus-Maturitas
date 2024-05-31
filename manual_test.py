@@ -80,6 +80,7 @@ possibles erreurs dans l'interprétation du fonctionnement de leur stratégie.
 Fait 5 répétitions du tournoi pour lisser les effets aléatoires, tel que dans
 le premier tournoi d'Axelrod.
 """
+
 for _ in range(5) :
     tournament(
         [
@@ -109,5 +110,5 @@ anonymous_lover.nullifytotalscore()
 tideman_and_chieruzzi_lover.nullifytotalscore()
 tideman_and_chieruzzi_lover.nullifyscore()
 tideman_and_chieruzzi_lover.erasememory()
-match(anonymous_lover, tideman_and_chieruzzi_lover, 10, True)
+match(anonymous_lover, tit_for_tat_lover, 200, True)
 """
