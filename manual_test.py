@@ -40,7 +40,7 @@ grofman_lover = Player("Grofman", [grofman])
 joss_lover = Player("Joss", [joss])
 tullock_lover = Player("Tullock", [tullock])
 graaskamp_lover = Player("Graaskamp", [graaskamp])
-stein_and_rapoport_lover = Player("Stein and Rapoprt", [stein_and_rapoport])
+stein_and_rapoport_lover = Player("Stein and Rapoport", [stein_and_rapoport])
 tideman_and_chieruzzi_lover = Player("Tideman and Chieruzzi", [tideman_and_chieruzzi])
 shubik_lover = Player("Shubik", [shubik])
 feld_lover = Player("Feld", [feld])
@@ -94,7 +94,7 @@ for _ in range(5) :
             davis_lover,
             graaskamp_lover,
             #downing_lover,
-            feld_lover, #+
+            feld_lover, #!
             joss_lover,
             tullock_lover,
             anonymous_lover, #!
