@@ -18,10 +18,10 @@ class Player():
         self.action = 0 # Cette variable correspond au dernier coup joué par le joueur
         self.chosenstrat = self.strategies[0] # Cette variable correspond à la dernière stratégie choisie
         self.opponent = None
-    
+
     def getopponent(self, opponent):
         self.opponent = opponent
-    
+
     def play(self, tour : int): 
         self.chosenstrat = random.choice(self.strategies)
         #Choix aléatoire de la stratégie, le choix des pourcentages de chance de séléction reste à
@@ -32,7 +32,7 @@ class Player():
             return self.action
         self.action = self.chosenstrat.action(self)
         return self.action
-            
+
     def memorize(self, move : int): # Ajoute un move à sa mémoire
         self.memory.append(move)
         
@@ -70,7 +70,6 @@ class Stratbetrayal(Strat): # Trahi
 class Stratrandom(Strat): # Agit aléatoirement à 50% de coopération
     def action(self, player : Player):
         return random.choice([0, 1])
-    
 
 class Stratlist(Strat): # Suit la liste de coups donné, revient au début lorsque la fin est atteinte    
     def __init__(self, name : string, liste : list) -> None :
@@ -81,50 +80,43 @@ class Stratlist(Strat): # Suit la liste de coups donné, revient au début lorsq
     def action(self, tour: int):
         return self.list[tour % len(self.list)]
 
-class Stratitat(Strat): # Coopère puis repète l'action prècèdente de l'adversaire
-    
+class Stratitat(Strat): # Coopère puis repète l'action prècèdente de l'adversaire   
     def action(self, player : Player):
         if not player.memory or player.memory[-1] == 0:
             return 0
         return 1
 
-class Stratotitat(Strat): # Trahi uniquement si l'adversaire à trahi deux ou plus fois de suite
-    
+class Stratotitat(Strat): # Trahi uniquement si l'adversaire à trahi deux ou plus fois de suite 
     def action(self, player : Player): 
         if len(player.memory) >= 2 and player.memory[-1] == 1 and player.memory[-2] == 1:
             return 1
         return 0
         
 class Stratgrudger(Strat): # Coopère jusqu'à ce que l'adversaire trahi, ne fait alors plus que trahir
-    
     def action(self, player : Player): 
         if 1 in player.memory:
             return 1
         return 0
         
 class Stratdavis(Strat): # Coopère les 10 premiers tours puis joue grudger
-    
     def action(self, player : Player): 
         if len(player.memory) >= 10 and 1 in player.memory :
             return 1
         return 0
 
 class Stratgrofman(Strat): # Si les joueurs ont agit différemment au dernier tour coopére avec 2/7 de probabilité, sinon coopère
-    
     def action(self, player : Player):
         if len(player.memory) == 0 or player.memory[-1] == player.automemory[-1]:
             return 0
         return random.choices([0, 1], [2, 5])
 
 class Stratjoss(Strat): # joue tit for tat avec 90% de coopération au lieu de 100%
-    
     def action(self, player : Player): 
         if (not player.memory or player.memory[-1] == 0) and random.uniform(0, 1) <= 0.9:
             return 0
         return 1
 
 class Strattullock(Strat): # Coopère les 11 premiers tours puis coopère 10% de moins que l'adversaire les 10 derniers tours
-    
     def action(self, player : Player):
         if not len(player.memory) >= 11 :
             if random.randint(0, 10) <= (player.memory[-10:].count(1) / 10) - (player.memory[-10:].count(1) / 100):
@@ -133,7 +125,6 @@ class Strattullock(Strat): # Coopère les 11 premiers tours puis coopère 10% de
         return 0
 
 class Stratgraaskamp(Strat):
-    
     def __init__(self, name : string, alpha: float = 0.05) -> None:
         super().__init__(name)
 
@@ -143,9 +134,9 @@ class Stratgraaskamp(Strat):
     
     def action(self, player : Player):
         if len(player.memory) < 56  : # Joue tit for tat les 55 premier tours sauf le 50 où il trahi
-            if (not player.memory or player.memory[-1] == 0) and not len(player.memory) == 50:
+            if ((not player.memory) or player.memory[-1] == 0) and not len(player.memory) == 50:
                 return 0
-            return 1     
+            return 1
         """Vérifie si l'adversaire est aléatoire avec un Chi-squared test, facilement réalisable
         avec le module scipy, auquel cas trahi toujours
         """
@@ -183,7 +174,6 @@ class Stratgraaskamp(Strat):
         return 0
 
 class Stratsteinandrapoport(Strat):
-    
     def __init__(self, name : string, alpha: float = 0.05) -> None:
         super().__init__(name)
 
@@ -214,7 +204,6 @@ class Stratsteinandrapoport(Strat):
         return player.memory[-1]
     
 class Strattidemanandchieruzzi(Strat):
-
     def __init__(self, name : string) -> None:
         super().__init__(name)
 
@@ -314,7 +303,6 @@ class Strattidemanandchieruzzi(Strat):
         return 0
     
 class Stratshubik(Strat):
-    
     def __init__(self, name : string) -> None:
         super().__init__(name)
 
@@ -352,7 +340,6 @@ class Stratshubik(Strat):
         return 0
     
 class Stratfeld(Strat):
-    
     def __init__(
         self,
         name,
@@ -380,7 +367,7 @@ class Stratfeld(Strat):
         if player.memory[-1] == 1:
             self.reduce_prob()
             return 1
-        choice = random.choices([0,1], weights= [self.coop_prob, 1 - self.coop_prob])
+        choice = random.choices([0,1], weights= [self.coop_prob, 1 - self.coop_prob])[0]
         self.reduce_prob()
         return choice
     
@@ -393,3 +380,50 @@ class Stratanonymous(Strat):
         
         r = random.uniform(3, 7)
         return random.choices([0,1], cum_weights= [r, r + (10 - r)])[0]
+
+class Stratnydegger(Strat):
+    def __init__(self, name) -> None:
+        self.abetray = [
+            1,
+            6,
+            7,
+            17,
+            22,
+            23,
+            26,
+            29,
+            30,
+            31,
+            33,
+            38,
+            39,
+            45,
+            49,
+            54,
+            55,
+            58,
+            61,
+        ]
+        self.score_map = {(0, 0): 0, (0, 1): 2, (1, 0): 1, (1, 1): 3}
+        super().__init__(name)
+
+    
+    def atotal(self, player : Player):
+        first = 16*(player.automemory[-1] + 2 * player.memory[-1])
+        second = 4*(player.automemory[-2] + 2 * player.memory[-2])
+        third = player.automemory[-1] + 2 * player.memory[-1]
+        return first + second + third
+
+    def action(self, player: Player):
+        if len(player.memory) == 0:
+            return 0
+        if len(player.memory) == 1:
+            return player.memory[-1]
+        if len(player.memory) == 2:
+            if player.memory[0:2] == [1, 0]:
+                return 1
+            else:
+                return player.memory[-1]
+        if self.atotal(player) in self.abetray:
+            return 1
+        return 0
