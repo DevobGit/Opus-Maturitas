@@ -1,6 +1,6 @@
 import random
-from dilemma_definition import tournament, match
-from player_and_strat import Player, Stratanonymous, Stratfeld, Stratgraaskamp, Stratgrofman, Stratgrudger, Stratjoss, Stratlist, Stratnydegger, Stratrandom, Stratcooperation, Stratbetrayal, Stratitat, Stratotitat, Stratdavis, Stratshubik, Stratsteinandrapoport, Strattidemanandchieruzzi, Strattullock
+from dilemma_definition import tournament
+from player_and_strat import Player, Stratanonymous, Stratdowning, Stratfeld, Stratgraaskamp, Stratgrofman, Stratgrudger, Stratjoss, Stratlist, Stratnydegger, Stratrandom, Stratcooperation, Stratbetrayal, Stratitat, Stratotitat, Stratdavis, Stratshubik, Stratsteinandrapoport, Strattidemanandchieruzzi, Strattullock
 
 nice_double_change = Stratlist("Nice Double Change", [0, 0, 1, 1])
 mean_change = Stratlist("Mean Change", [1, 0])
@@ -22,12 +22,13 @@ shubik = Stratshubik("Shubik")
 feld = Stratfeld("Feld")
 anonymous = Stratanonymous("Anonymous")
 nydegger = Stratnydegger("Nydegger")
+downing = Stratdowning("Downing")
 
 # Créer objets joueurs
 
 hoenn = Player("Hoenn", [tit_for_tat, tit_for_two_tat, roll_the_dice])
 hisui = Player("Hisui", [grudger, tit_for_tat])
-davis_lover = Player("Davis Lover", [davis])
+davis_lover = Player("Davis", [davis])
 all_random = Player("All Random", [roll_the_dice])
 ruben = Player("Ruben", [mean_change])
 zahibra = Player("Zahibra", [grudger, roll_the_dice])
@@ -47,6 +48,7 @@ shubik_lover = Player("Shubik", [shubik])
 feld_lover = Player("Feld", [feld])
 anonymous_lover = Player("Anonymous", [anonymous])
 nydegger_lover = Player("Nydegger", [nydegger])
+downing_lover = Player("Downing", [downing])
 
 # Fixer la graine aléatoire pour des résultats reproductibles
 #random.seed(6436)
@@ -83,7 +85,7 @@ Fait 5 répétitions du tournoi pour lisser les effets aléatoires, tel que dans
 le premier tournoi d'Axelrod.
 """
 
-for _ in range(5) :
+for _ in range(100) :
     tournament(
         [
             tit_for_tat_lover,
@@ -95,7 +97,7 @@ for _ in range(5) :
             grudger_lover,
             davis_lover,
             graaskamp_lover,
-            #downing_lover,
+            downing_lover,
             feld_lover, #!
             joss_lover,
             tullock_lover,

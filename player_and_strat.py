@@ -427,3 +427,47 @@ class Stratnydegger(Strat):
         if self.atotal(player) in self.abetray:
             return 1
         return 0
+
+class Stratdowning(Strat):
+    def __init__(self, name) -> None:
+        super().__init__(name)
+        self.number_opponent_cooperations_in_response_to_c = 0
+        self.number_opponent_cooperations_in_response_to_d = 0
+
+
+    def action(self, player: Player):
+        round_number = len(player.opponent.memory) + 1
+
+        if round_number == 1:
+            return 1
+        if round_number == 2:
+            if player.memory[-1] == 0:
+                self.number_opponent_cooperations_in_response_to_c += 1
+            return 1
+
+        if player.opponent.memory[-2] == 0 and player.memory[-1] == 1:
+            self.number_opponent_cooperations_in_response_to_c += 1
+        if player.opponent.memory[-2] == 0 and player.memory[-1] == 1:
+            self.number_opponent_cooperations_in_response_to_d += 1
+
+        # Adding 1 to cooperations for assumption that first opponent move
+        # being a response to a cooperation. See docstring for more
+        # information.
+        alpha = self.number_opponent_cooperations_in_response_to_c / (
+            player.automemory.count(0) + 1
+        )
+        # Adding 2 to defections on the assumption that the first two
+        # moves are defections, which may not be true in a noisy match
+        beta = self.number_opponent_cooperations_in_response_to_d / max(
+            player.automemory.count(1), 2
+        )
+
+        R, P, S, T = 3, 1, 0, 5
+        expected_value_of_cooperating = alpha * R + (1 - alpha) * S
+        expected_value_of_defecting = beta * T + (1 - beta) * P
+
+        if expected_value_of_cooperating > expected_value_of_defecting:
+            return 0
+        if expected_value_of_cooperating < expected_value_of_defecting:
+            return 1
+        return ((player.opponent.memory[-1] + 1) % 2)
