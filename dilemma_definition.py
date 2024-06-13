@@ -18,9 +18,9 @@ def match(player1: Player, player2: Player, rounds: int):
     for tour in range(rounds):
         choice1 = player1.play(tour)
         choice2 = player2.play(tour)
-        player1.memorize(choice2)
-        player2.memorize(choice1)
         outcome1, outcome2 = prisoner_dilemma(choice1, choice2)
+        player1.memory.append(choice2)
+        player2.memory.append(choice1)
         player1.score += outcome1
         player2.score += outcome2
 

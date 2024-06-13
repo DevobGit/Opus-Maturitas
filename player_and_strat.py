@@ -35,9 +35,6 @@ class Player():
         self.memory.clear()
         self.automemory.clear()
 
-    def memorize(self, move: int):  # Ajoute un move à sa mémoire
-        self.memory.append(move)
-
 
 # Définition des classes stratégies, le nom des classes sera sûrement changé à l'avenir pour correspondre aux noms originaux
 class Strat():  # Classe des stratégie, elle... porte un nom !
@@ -103,7 +100,7 @@ class Stratgrofman(Strat):  # Si les joueurs ont agit différemment au dernier t
     def action(self, player: Player):
         if len(player.memory) == 0 or player.memory[-1] == player.automemory[-1]:
             return 0
-        return random.choices([0, 1], [2, 5])
+        return random.choices([0, 1], [2, 5])[0]
 
 
 class Stratjoss(Strat):  # joue tit for tat avec 90% de coopération au lieu de 100%
@@ -135,8 +132,9 @@ class Stratgraaskamp(Strat):
             if ((not player.memory) or player.memory[-1] == 0) and not len(player.memory) == 50:
                 return 0
             return 1
-        """Vérifie si l'adversaire est aléatoire avec un Chi-squared test, facilement réalisable
-        avec le module scipy, auquel cas trahi toujours
+        """
+        Vérifie si l'adversaire est aléatoire avec un Chi-squared test,
+        facilement réalisable avec le module scipy, auquel cas trahi toujours
         """
         p_value = chisquare([player.memory.count(0), player.memory.count(1)]).pvalue
         self.opponent_is_random = (
@@ -191,7 +189,10 @@ class Stratsteinandrapoport(Strat):
 
         if len(player.memory) % 15 == -1:
             p_value = chisquare(
-                [player.memory.count(0), player.memory.count(1)]
+                [
+                    player.memory.count(0),
+                    player.memory.count(1)
+                ]
             ).pvalue
             self.opponent_is_random = (p_value >= self.alpha)
 
@@ -214,14 +215,12 @@ class Strattidemanandchieruzzi(Strat):
         self.remembered_betrayals = 0
 
     def decrease_remaining_betrays(self):  # Réduit le compteur de trahisons, cesse de trahir s'il est nul
-
         if self.betraying:
             self.remaining_betrayals -= 1
             if self.remaining_betrayals == 0:
                 self.betraying = False
 
     def forget(self):  # Oublie tout pour redémarrer, partir loin et commencer une nouvelle vie
-
         self.betraying = False
         self.betraying_turns = 0
         self.remaining_betrayals = 0
@@ -280,7 +279,7 @@ class Strattidemanandchieruzzi(Strat):
                     self.last_alzheimer = current_round
                     self.forget()
                     self.alzheimer = True
-                    return 0   # Première coopération après le redémmarage
+                    return 0  # Première coopération après le redémmarage
 
         # Vérifie si la stratégie est dans une chaîne de trahison
 
@@ -352,8 +351,8 @@ class Stratfeld(Strat):
         self.rounds_of_decay = rounds_of_decay
         self.coop_prob = start_coop_prob
     """
-    Réduction de probabilité de coopération à chaque tour pour respecter le taux de dépard, de fin,
-    et le nombre de tours sur lequel le taux baisse
+    Réduction de probabilité de coopération à chaque tour pour respecter le
+    taux de dépard, de fin, et le nombre de tours sur lequel le taux baisse
     """
     def reduce_prob(self):
         self.coop_prob -= ((self.start_coop_prob - self.end_coop_prob) / (self.rounds_of_decay - 1))
@@ -372,8 +371,8 @@ class Stratfeld(Strat):
 
 class Stratanonymous(Strat):
     """
-    Informations sur la stratégie quasi non-existantes, effet connu: la probabilité de coopération
-    tombait fréquemment entre 30% et 70%.
+    Informations sur la stratégie quasi non-existantes, effet connu: la
+    probabilité de coopération tombait fréquemment entre 30% et 70%.
     """
     def action(self, player: Player):
         r = random.uniform(3, 7)
@@ -383,27 +382,15 @@ class Stratanonymous(Strat):
 class Stratnydegger(Strat):
     def __init__(self, name) -> None:
         self.abetray = [
-            1,
-            6,
-            7,
-            17,
-            22,
-            23,
-            26,
-            29,
-            30,
-            31,
-            33,
-            38,
-            39,
-            45,
-            49,
-            54,
-            55,
-            58,
-            61,
+            1, 6, 7, 17, 22, 23, 26, 29, 30, 31, 33, 38, 39, 45, 49, 54, 55,
+            58, 61,
         ]
-        self.score_map = {(0, 0): 0, (0, 1): 2, (1, 0): 1, (1, 1): 3}
+        self.score_map = {
+            (0, 0): 0,
+            (0, 1): 2,
+            (1, 0): 1,
+            (1, 1): 3
+        }
         super().__init__(name)
 
     def atotal(self, player: Player):
