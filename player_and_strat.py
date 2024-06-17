@@ -18,6 +18,9 @@ class Player():
         self.opponent = None
 
     def play(self, tour: int):
+        print()
+        print("----")
+        print("tour: ", tour)
         self.chosenstrat = random.choice(self.strategies)
         # Choix aléatoire de la stratégie, le choix des pourcentages de chance
         # de séléction reste à implémenter, mais n'est pas prioritaire puisque
@@ -27,7 +30,7 @@ class Player():
             self.action = self.chosenstrat.action(tour)
             return self.action
         self.action = self.chosenstrat.action(self)
-        return self.action
+        return int(self.action)
 
     def handle(self, outcome: int, choice: int):
         self.automemory.append(self.action)
@@ -319,15 +322,23 @@ class Stratshubik(Strat):
                 self.betraying = False
 
     def action(self, player: Player):
+        print('betraying', self.betraying)
+        print('opponent', player.memory)
+        print('auto', player.automemory)
+        print('betraing turns', self.betraying_turns)
+        print('remaining', self.remaining_betrayals)
         if not player.memory:
+            print("A")
             return 0
 
         if self.betraying_turns:
+            print("B")
             # Vérifie si la stratégie est dans une chaîne de trahison
             self.decrease_remaining_betrays()
             return 1
 
         if player.memory[-1] == 1 and player.automemory[-1] == 0:
+            print("C")
             """
             Si l'adversaire a trahi au dernier tour alors que le joueur avait coopéré, commence une
             nouvelle chaîne de trahisons, plus longue que la dernière de une trahison
@@ -337,6 +348,8 @@ class Stratshubik(Strat):
             self.remaining_betrayals = self.betraying_turns
             self.decrease_remaining_betrays()
             return 1
+
+        print("D")
         return 0
 
 

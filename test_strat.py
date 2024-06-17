@@ -5,7 +5,8 @@ from player_and_strat import (
     Stratbetrayal,
     Stratitat,
     Stratlist,
-    Stratgrofman
+    Stratgrofman,
+    Stratshubik
 )
 
 from unittest import TestCase
@@ -45,9 +46,24 @@ class TestStrat(TestCase):
         n = 10000
         m = 0
         for _ in range(n):
-            if grofman_lover.play(1) == 0:
+            choice = grofman_lover.play(0)
+            grofman_lover.handle(0, 1)
+            if choice == 0:
                 m += 1
 
-        self.assertTrue(m/n < 0.6)
-        self.assertTrue(m/n > 0.55)
+        self.assertTrue(m/n < 0.59)
+        self.assertTrue(m/n > 0.58)
 
+    def test_shubik(self):
+        shubik = Stratshubik("Shubik")
+        shubik_lover = Player("Shubik", [shubik])
+        print("choice", shubik_lover.play(0))
+        shubik_lover.handle(1, 1)
+        print("choice", shubik_lover.play(1))
+        shubik_lover.handle(1, 1)
+        print("choice", shubik_lover.play(2))
+        shubik_lover.handle(1, 1)
+        print("choice", shubik_lover.play(3))
+        shubik_lover.handle(1, 1)
+        print("choice", shubik_lover.play(4))
+        shubik_lover.handle(1, 1)
