@@ -1,6 +1,26 @@
-import random
 from dilemma_definition import tournament
-from player_and_strat import Player, Stratanonymous, Stratdowning, Stratfeld, Stratgraaskamp, Stratgrofman, Stratgrudger, Stratjoss, Stratlist, Stratnydegger, Stratrandom, Stratcooperation, Stratbetrayal, Stratitat, Stratotitat, Stratdavis, Stratshubik, Stratsteinandrapoport, Strattidemanandchieruzzi, Strattullock
+from player_and_strat import (
+    Player,
+    Stratanonymous,
+    Stratdowning,
+    Stratfeld,
+    Stratgraaskamp,
+    Stratgrofman,
+    Stratgrudger,
+    Stratjoss,
+    Stratlist,
+    Stratnydegger,
+    Stratrandom,
+    Stratcooperation,
+    Stratbetrayal,
+    Stratitat,
+    Stratotitat,
+    Stratdavis,
+    Stratshubik,
+    Stratsteinandrapoport,
+    Strattidemanandchieruzzi,
+    Strattullock
+)
 
 nice_double_change = Stratlist("Nice Double Change", [0, 0, 1, 1])
 mean_change = Stratlist("Mean Change", [1, 0])
@@ -50,45 +70,32 @@ anonymous_lover = Player("Anonymous", [anonymous])
 nydegger_lover = Player("Nydegger", [nydegger])
 downing_lover = Player("Downing", [downing])
 
-# Fixer la graine aléatoire pour des résultats reproductibles
-#random.seed(6436)
-#
-# 778960 Grofman
-"""742540 Grudger
-736473 Davis
-671161 Tit For Tat"""
-# Faire un match
-"""
-match(hoenn,
-      davis_lover,
-      20,
-      True)
-match(hoenn, davis_lover, 20, True)
-"""
-# Faire un tournoi
-"""
-tournament(
-    [
-        davis_lover,
-        hisui,
-        hoenn, 
-        all_random,
-        ruben,
-        zahibra,
-        juliette
-    ], 
-    20, 
-    True
-)
-"""
 
 """
-Tournoi avec les participants du premier tournoi d'Axelrod, ceux suivis d'un #! sont soumis à de
-possibles erreurs dans l'interprétation du fonctionnement de leur stratégie.
-Fait 5 répétitions du tournoi pour lisser les effets aléatoires, tel que dans
-le premier tournoi d'Axelrod.
+Tournoi avec les participants du premier tournoi d'Axelrod, ceux suivis d'un #!
+sont soumis à de possibles erreurs dans l'interprétation du fonctionnement de
+leur stratégie.  Fait 5 répétitions du tournoi pour lisser les effets
+aléatoires, tel que dans le premier tournoi d'Axelrod.
 """
+players = [
+    tit_for_tat_lover,
+    tideman_and_chieruzzi_lover,  # !
+    nydegger_lover,
+    grofman_lover,
+    shubik_lover,  # !
+    stein_and_rapoport_lover,
+    grudger_lover,
+    davis_lover,
+    graaskamp_lover,
+    downing_lover,
+    feld_lover,  # !
+    joss_lover,
+    tullock_lover,
+    anonymous_lover,  # !
+    all_random,
+]
 
+<<<<<<< HEAD
 for _ in range(5) :
     tournament(
         [
@@ -120,3 +127,17 @@ tideman_and_chieruzzi_lover.nullifyscore()
 tideman_and_chieruzzi_lover.erasememory()
 match(anonymous_lover, tit_for_tat_lover, 200, True)
 """
+=======
+
+n_players = len(players)
+n_tournaments = 1
+n_rounds = 200
+for _ in range(n_tournaments):
+    tournament(players, n_rounds)
+
+
+# trie les joueurs par ordre décroissant des scores
+players = sorted(players, key=lambda player: player.totalscore, reverse=True)
+print("Classement par scores:")
+for player in players:  # Donne le score de chaque joueur dans l'ordre de la liste triée
+    print(player.totalscore, int(player.totalscore/n_players/n_tournaments), player.name, player.automemory)
