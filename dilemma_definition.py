@@ -1,4 +1,5 @@
 from player_and_strat import Player
+from copy import deepcopy
 
 # Définition des manches
 
@@ -23,6 +24,9 @@ def prisoner_dilemma(player1 : Player, player2 : Player, tour : int):
 def match(player1 : Player, player2 : Player, rounds : int, comments : bool):
     if comments : # Vérifie si l'on souhaite les commentaires des matchs
         print("MATCH : Player", player1.name, "VERSUS Player", player2.name) # Print les infos du match
+    
+    if player1 == player2 :
+        player2 = deepcopy(player1)
     
     # Informe les joueurs de leur adversaires
     player1.getopponent(player2)
@@ -49,8 +53,7 @@ def match(player1 : Player, player2 : Player, rounds : int, comments : bool):
             print("Gains :", outcome_player1, outcome_player2)
         
         # Effectuer réelement les changements des scores
-        if not player1 == player2 :
-            player1.score += outcome_player1
+        player1.score += outcome_player1
         player2.score += outcome_player2
         if comments : # Vérifie si l'on souhaite les commentaires des matchs
             print("Present scores :", player1.score, player2.score) # Print les résultats totaux après le tour

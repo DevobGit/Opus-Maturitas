@@ -4,7 +4,7 @@ from scipy.stats import chisquare
 from math import sqrt
 
 # Fixer la graine aléatoire pour des résultats reproductibles
-random.seed(6436)
+#ßrandom.seed(6436)
 
 class Player():
     # Définition de la classe des joueurs
@@ -108,7 +108,7 @@ class Stratgrofman(Strat): # Si les joueurs ont agit différemment au dernier to
     def action(self, player : Player):
         if len(player.memory) == 0 or player.memory[-1] == player.automemory[-1]:
             return 0
-        return random.choices([0, 1], [2, 5])
+        return random.choices([0, 1], [2, 5])[0]
 
 class Stratjoss(Strat): # joue tit for tat avec 90% de coopération au lieu de 100%
     def action(self, player : Player): 
@@ -133,8 +133,8 @@ class Stratgraaskamp(Strat):
         self.next_random_defection_turn = None
     
     def action(self, player : Player):
-        if len(player.memory) < 56  : # Joue tit for tat les 55 premier tours sauf le 50 où il trahi
-            if ((not player.memory) or player.memory[-1] == 0) and not len(player.memory) == 50:
+        if len(player.memory) < 55  : # Joue tit for tat les 55 premier tours sauf le 50 où il trahi
+            if ((not player.memory) or player.memory[-1] == 0) and not len(player.memory) == 49:
                 return 0
             return 1
         """Vérifie si l'adversaire est aléatoire avec un Chi-squared test, facilement réalisable

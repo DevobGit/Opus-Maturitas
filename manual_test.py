@@ -52,7 +52,11 @@ downing_lover = Player("Downing", [downing])
 
 # Fixer la graine aléatoire pour des résultats reproductibles
 #random.seed(6436)
-random.seed(6436)
+#
+# 778960 Grofman
+"""742540 Grudger
+736473 Davis
+671161 Tit For Tat"""
 # Faire un match
 """
 match(hoenn,
@@ -85,7 +89,7 @@ Fait 5 répétitions du tournoi pour lisser les effets aléatoires, tel que dans
 le premier tournoi d'Axelrod.
 """
 
-for _ in range(100) :
+for _ in range(5) :
     tournament(
         [
             tit_for_tat_lover,
