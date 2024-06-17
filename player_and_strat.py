@@ -132,17 +132,10 @@ class Stratgraaskamp(Strat):
         self.alpha = alpha
         self.opponent_is_random = False
         self.next_random_defection_turn = None
-<<<<<<< HEAD
     
-    def action(self, player : Player):
-        if len(player.memory) < 55  : # Joue tit for tat les 55 premier tours sauf le 50 où il trahi
-            if ((not player.memory) or player.memory[-1] == 0) and not len(player.memory) == 49:
-=======
-
     def action(self, player: Player):
         if len(player.memory) < 56:  # Joue tit for tat les 55 premier tours sauf le 50 où il trahi
             if ((not player.memory) or player.memory[-1] == 0) and not len(player.memory) == 50:
->>>>>>> db4aeea6a4f0bc88d7b0eb19774219a9ca41a215
                 return 0
             return 1
         """
