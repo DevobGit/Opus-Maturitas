@@ -95,40 +95,6 @@ players = [
     all_random,
 ]
 
-<<<<<<< HEAD
-for _ in range(5) :
-    tournament(
-        [
-            tit_for_tat_lover,
-            tideman_and_chieruzzi_lover, #!
-            nydegger_lover,
-            grofman_lover,
-            shubik_lover, #!
-            stein_and_rapoport_lover,
-            grudger_lover,
-            davis_lover,
-            graaskamp_lover,
-            downing_lover,
-            feld_lover, #!
-            joss_lover,
-            tullock_lover,
-            anonymous_lover, #!
-            all_random,
-            
-        ], 
-        200, 
-        True
-    )
-"""
-anonymous_lover.nullifyscore()
-anonymous_lover.nullifytotalscore()
-tideman_and_chieruzzi_lover.nullifytotalscore()
-tideman_and_chieruzzi_lover.nullifyscore()
-tideman_and_chieruzzi_lover.erasememory()
-match(anonymous_lover, tit_for_tat_lover, 200, True)
-"""
-=======
-
 n_players = len(players)
 n_tournaments = 1
 n_rounds = 200
