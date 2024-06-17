@@ -27,8 +27,12 @@ class Player():
             self.action = self.chosenstrat.action(tour)
             return self.action
         self.action = self.chosenstrat.action(self)
-        self.automemory.append(self.action)
         return self.action
+
+    def handle(self, outcome: int, choice: int):
+        self.automemory.append(self.action)
+        self.memory.append(choice)
+        self.score += outcome
 
     def reset_for_new_game(self):
         self.score = 0

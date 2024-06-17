@@ -19,10 +19,11 @@ def match(player1: Player, player2: Player, rounds: int):
         choice1 = player1.play(tour)
         choice2 = player2.play(tour)
         outcome1, outcome2 = prisoner_dilemma(choice1, choice2)
-        player1.memory.append(choice2)
-        player2.memory.append(choice1)
-        player1.score += outcome1
-        player2.score += outcome2
+        player1.handle(outcome1, choice2)
+        player2.handle(outcome2, choice1)
+
+    player1.totalscore += player1.score
+    player2.totalscore += player2.score
 
 
 # Définition des tournois
@@ -31,14 +32,8 @@ def tournament(players: list, rounds: int):
         player1.reset_for_new_game()
         player2 = deepcopy(player1)
         player2.reset_for_new_game()
-
         match(player1, player2, rounds)
-        player1.totalscore += player1.score
-
         for player2 in players[i+1:]:
             player1.reset_for_new_game()
             player2.reset_for_new_game()
             match(player1, player2, rounds)
-
-            player1.totalscore += player1.score
-            player2.totalscore += player2.score

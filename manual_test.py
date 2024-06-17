@@ -96,7 +96,8 @@ players = [
 ]
 
 
-n_tournaments = 20
+n_players = len(players)
+n_tournaments = 1
 n_rounds = 200
 for _ in range(n_tournaments):
     tournament(players, n_rounds)
@@ -106,4 +107,4 @@ for _ in range(n_tournaments):
 players = sorted(players, key=lambda player: player.totalscore, reverse=True)
 print("Classement par scores:")
 for player in players:  # Donne le score de chaque joueur dans l'ordre de la liste triée
-    print(player.totalscore, int(player.totalscore/15/n_tournaments), player.name)
+    print(player.totalscore, int(player.totalscore/n_players/n_tournaments), player.name, player.automemory)
