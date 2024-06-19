@@ -123,6 +123,7 @@ class Strattullock(Strat):  # Coopère les 11 premiers tours puis coopère 10% d
 
 
 class Stratgraaskamp(Strat):
+    # de https://axelrod.readthedocs.io/en/dev/_modules/axelrod/strategies/axelrod_first.html#FirstByGraaskamp
     def __init__(self, name: string, alpha: float = 0.05) -> None:
         super().__init__(name)
 
@@ -172,6 +173,7 @@ class Stratgraaskamp(Strat):
 
 
 class Stratsteinandrapoport(Strat):
+    # de https://axelrod.readthedocs.io/en/dev/_modules/axelrod/strategies/axelrod_first.html#FirstBySteinAndRapoport
     def __init__(self, name: string, alpha: float = 0.05) -> None:
         super().__init__(name)
 
@@ -206,6 +208,7 @@ class Stratsteinandrapoport(Strat):
 
 
 class Strattidemanandchieruzzi(Strat):
+    # de https://axelrod.readthedocs.io/en/dev/_modules/axelrod/strategies/axelrod_first.html#FirstByTidemanAndChieruzzi
     def __init__(self, name: string) -> None:
         super().__init__(name)
 
@@ -252,7 +255,7 @@ class Strattidemanandchieruzzi(Strat):
 
         # Il faut avoir au moins 10 points de plus que l'adversaire pour alzheimer
         if valid_alzheimer:
-            valid_points = player.score - player.opponent.score >= 10
+            valid_points = (player.score - player.opponent.score >= 10)
             valid_rounds = (current_round % 200 <= -10)
             """
             Dans un match de 200 tours, ne lance pas alzheimer s'il reste moins de 10 tours.
@@ -318,23 +321,15 @@ class Stratshubik(Strat):
                 self.betraying = False
 
     def action(self, player: Player):
-        """print('betraying', self.betraying)
-        print('opponent plays', player.memory)
-        print('auto plays', player.opponent.memory)
-        print('betraing turns', self.betraying_turns)
-        print('remaining', self.remaining_betrayals)"""
         if not player.memory:
-            print("A")
             return 0
 
-        if self.betraying_turns:
-            print("B")
+        if self.betraying:
             # Vérifie si la stratégie est dans une chaîne de trahison
             self.decrease_remaining_betrays()
             return 1
 
         if player.memory[-1] == 1 and player.opponent.memory[-1] == 0:
-            print("C")
             """
             Si l'adversaire a trahi au dernier tour alors que le joueur avait coopéré, commence une
             nouvelle chaîne de trahisons, plus longue que la dernière de une trahison
@@ -345,7 +340,6 @@ class Stratshubik(Strat):
             self.decrease_remaining_betrays()
             return 1
 
-        print("D")
         return 0
 
 
@@ -398,12 +392,6 @@ class Stratnydegger(Strat):
             1, 6, 7, 17, 22, 23, 26, 29, 30, 31, 33, 38, 39, 45, 49, 54, 55,
             58, 61,
         ]
-        self.score_map = {
-            (0, 0): 0,
-            (0, 1): 2,
-            (1, 0): 1,
-            (1, 1): 3
-        }
         super().__init__(name)
 
     def atotal(self, player: Player):
@@ -428,6 +416,7 @@ class Stratnydegger(Strat):
 
 
 class Stratdowning(Strat):
+    # de https://axelrod.readthedocs.io/en/dev/_modules/axelrod/strategies/axelrod_first.html#FirstByDowning
     def __init__(self, name) -> None:
         super().__init__(name)
         self.number_opponent_cooperations_in_response_to_c = 0
@@ -448,14 +437,9 @@ class Stratdowning(Strat):
         if player.opponent.memory[-2] == 0 and player.memory[-1] == 1:
             self.number_opponent_cooperations_in_response_to_d += 1
 
-        # Adding 1 to cooperations for assumption that first opponent move
-        # being a response to a cooperation. See docstring for more
-        # information.
         alpha = self.number_opponent_cooperations_in_response_to_c / (
             player.opponent.memory.count(0) + 1
         )
-        # Adding 2 to defections on the assumption that the first two
-        # moves are defections, which may not be true in a noisy match
         beta = self.number_opponent_cooperations_in_response_to_d / max(
             player.opponent.memory.count(1), 2
         )

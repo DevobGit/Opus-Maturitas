@@ -1,4 +1,4 @@
-from dilemma_definition import tournament
+from dilemma_definition import tournament, match
 from player_and_strat import (
     Player,
     Stratanonymous,
@@ -96,7 +96,7 @@ players = [
 ]
 
 n_players = len(players)
-n_tournaments = 1
+n_tournaments = 5
 n_rounds = 200
 for _ in range(n_tournaments):
     tournament(players, n_rounds)
@@ -106,4 +106,4 @@ for _ in range(n_tournaments):
 players = sorted(players, key=lambda player: player.totalscore, reverse=True)
 print("Classement par scores:")
 for player in players:  # Donne le score de chaque joueur dans l'ordre de la liste triée
-    print(player.totalscore, int(player.totalscore/n_players/n_tournaments), player.name, player.automemory)
+    print(player.totalscore, int(player.totalscore/n_players/n_tournaments), player.name)

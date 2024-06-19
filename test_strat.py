@@ -55,17 +55,13 @@ class TestStrat(TestCase):
         self.assertTrue(m/n < 0.29)
         self.assertTrue(m/n > 0.27)
 
-    """def test_shubik(self):
+    def test_shubik(self):
         shubik = Stratshubik("Shubik")
         shubik_lover = Player("Shubik", [shubik])
-        shubik_lover.opponent = Player("Opponent", [Stratcooperation("Coop")])
-        print("choice", shubik_lover.play(0))
-        shubik_lover.handle(1, 1)
-        print("choice", shubik_lover.play(1))
-        shubik_lover.handle(1, 1)
-        print("choice", shubik_lover.play(2))
-        shubik_lover.handle(1, 1)
-        print("choice", shubik_lover.play(3))
-        shubik_lover.handle(1, 1)
-        print("choice", shubik_lover.play(4))
-        shubik_lover.handle(1, 1)"""
+        opponent = Player("Opponent", [Stratlist("TestShubik", [0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0])])
+        shubik_lover.opponent = opponent
+        match(shubik_lover, opponent, 20)
+        self.assertEqual(
+            opponent.memory,
+            [0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0],
+        )
