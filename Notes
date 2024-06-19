@@ -7,3 +7,4 @@ https://en.wikipedia.org/wiki/Standard_deviation
 Sources donnant les stratégies du premier tournoi d'Axelrod, le manque de détail pose un problème encore à résoudre :
 https://axelrod.readthedocs.io/en/dev/tutorials/running_axelrods_first_tournament/index.html
 https://axelrod.readthedocs.io/en/dev/reference/strategy_index.html
+python3 -m unittest

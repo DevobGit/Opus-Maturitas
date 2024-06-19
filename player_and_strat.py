@@ -9,7 +9,6 @@ class Player():
         self.name = name
         self.strategies = strategies
         self.memory = []  # Le joueur initie une liste vide comme mémoire des coups adverses passés
-        self.automemory = []  # Le joueur initie une liste vide comme mémoire de ses propres coups passés
         self.score = 0  # Le joueur démarre avec un score de 0
         self.totalscore = 0  # Le joueur démarre avec un score total de 0
         self.action = 0  # Cette variable correspond au dernier coup joué par le joueur
@@ -17,9 +16,9 @@ class Player():
         self.opponent = None
 
     def play(self, tour: int):
-        print()
+        """print()
         print("----")
-        print("tour: ", tour)
+        print("tour: ", tour)"""
         self.chosenstrat = random.choice(self.strategies)
         # Choix aléatoire de la stratégie, le choix des pourcentages de chance
         # de séléction reste à implémenter, mais n'est pas prioritaire puisque
@@ -32,14 +31,12 @@ class Player():
         return int(self.action)
 
     def handle(self, outcome: int, choice: int):
-        self.automemory.append(self.action)
         self.memory.append(choice)
         self.score += outcome
 
     def reset_for_new_game(self):
         self.score = 0
         self.memory.clear()
-        self.automemory.clear()
 
 
 # Définition des classes stratégies, le nom des classes sera sûrement changé à l'avenir pour correspondre aux noms originaux
@@ -104,7 +101,7 @@ class Stratdavis(Strat):  # Coopère les 10 premiers tours puis joue grudger
 
 class Stratgrofman(Strat):  # Si les joueurs ont agit différemment au dernier tour coopére avec 2/7 de probabilité, sinon coopère
     def action(self, player: Player):
-        if len(player.memory) == 0 or player.memory[-1] == player.automemory[-1]:
+        if len(player.memory) == 0 or player.memory[-1] == player.opponent.memory[-1]:
             return 0
         return random.choices([0, 1], [2, 5])[0]
 
@@ -152,10 +149,10 @@ class Stratgraaskamp(Strat):
         # Vérifie si l'adversaire est un "clone" de lui même ou s'il est tit for tat, auquel cas, joue tit for tat
         if (
             all(
-                player.memory[i] == player.automemory[i - 1]
-                for i in range(1, len(player.automemory))
+                player.memory[i] == player.opponent.memory[i - 1]
+                for i in range(1, len(player.opponent.memory))
             )
-            or player.memory == player.automemory
+            or player.memory == player.opponent.memory
         ):
             if player.memory[-1] == 1:
                 return 1
@@ -163,12 +160,12 @@ class Stratgraaskamp(Strat):
 
         if self.next_random_defection_turn is None:  # Vérifie si le prochain tour aléatoir de trahison a déjà été choisi
             # Place la prochaine trahison à entre 5 et 15 tours plus loins que le nombre de tours actuel
-            self.next_random_defection_turn = random.randint(5, 15) + len(player.automemory)
+            self.next_random_defection_turn = random.randint(5, 15) + len(player.opponent.memory)
 
-        if len(player.automemory) == self.next_random_defection_turn:  # Vérifie s'il est le tour de trahison
+        if len(player.opponent.memory) == self.next_random_defection_turn:  # Vérifie s'il est le tour de trahison
             # Choisi le prochain tour de trahison
             self.next_random_defection_turn = random.randint(5, 15) + len(
-                player.automemory
+                player.opponent.memory
             )
             return 1
         return 0
@@ -321,11 +318,11 @@ class Stratshubik(Strat):
                 self.betraying = False
 
     def action(self, player: Player):
-        print('betraying', self.betraying)
-        print('opponent', player.memory)
-        print('auto', player.automemory)
+        """print('betraying', self.betraying)
+        print('opponent plays', player.memory)
+        print('auto plays', player.opponent.memory)
         print('betraing turns', self.betraying_turns)
-        print('remaining', self.remaining_betrayals)
+        print('remaining', self.remaining_betrayals)"""
         if not player.memory:
             print("A")
             return 0
@@ -336,7 +333,7 @@ class Stratshubik(Strat):
             self.decrease_remaining_betrays()
             return 1
 
-        if player.memory[-1] == 1 and player.automemory[-1] == 0:
+        if player.memory[-1] == 1 and player.opponent.memory[-1] == 0:
             print("C")
             """
             Si l'adversaire a trahi au dernier tour alors que le joueur avait coopéré, commence une
@@ -410,9 +407,9 @@ class Stratnydegger(Strat):
         super().__init__(name)
 
     def atotal(self, player: Player):
-        first = 16*(player.automemory[-1] + 2 * player.memory[-1])
-        second = 4*(player.automemory[-2] + 2 * player.memory[-2])
-        third = player.automemory[-1] + 2 * player.memory[-1]
+        first = 16*(player.opponent.memory[-1] + 2 * player.memory[-1])
+        second = 4*(player.opponent.memory[-2] + 2 * player.memory[-2])
+        third = player.opponent.memory[-1] + 2 * player.memory[-1]
         return first + second + third
 
     def action(self, player: Player):
@@ -437,7 +434,7 @@ class Stratdowning(Strat):
         self.number_opponent_cooperations_in_response_to_d = 0
 
     def action(self, player: Player):
-        round_number = len(player.opponent.memory) + 1
+        round_number = len(player.memory) + 1
 
         if round_number == 1:
             return 1
@@ -455,12 +452,12 @@ class Stratdowning(Strat):
         # being a response to a cooperation. See docstring for more
         # information.
         alpha = self.number_opponent_cooperations_in_response_to_c / (
-            player.automemory.count(0) + 1
+            player.opponent.memory.count(0) + 1
         )
         # Adding 2 to defections on the assumption that the first two
         # moves are defections, which may not be true in a noisy match
         beta = self.number_opponent_cooperations_in_response_to_d / max(
-            player.automemory.count(1), 2
+            player.opponent.memory.count(1), 2
         )
 
         R, P, S, T = 3, 1, 0, 5

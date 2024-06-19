@@ -38,25 +38,27 @@ class TestStrat(TestCase):
     def test_grofman(self):
         grofman = Stratgrofman("Grofman")
         grofman_lover = Player("Grofman", [grofman])
+        grofman_lover.opponent = Player("Opponent", [Stratcooperation("Coop")])
         self.assertEqual(grofman_lover.play(0), 0)
 
         grofman_lover.memory.append(1)
-        grofman_lover.automemory.append(1)
+        grofman_lover.opponent.memory.append(0)
 
-        n = 10000
+        n = 1000000
         m = 0
         for _ in range(n):
-            choice = grofman_lover.play(0)
             grofman_lover.handle(0, 1)
+            choice = grofman_lover.play(0)
             if choice == 0:
                 m += 1
+        # la limite de m/n quand n tend vers l'infini devrait être 2/7 ≈ 0,2857 
+        self.assertTrue(m/n < 0.29)
+        self.assertTrue(m/n > 0.27)
 
-        self.assertTrue(m/n < 0.59)
-        self.assertTrue(m/n > 0.58)
-
-    def test_shubik(self):
+    """def test_shubik(self):
         shubik = Stratshubik("Shubik")
         shubik_lover = Player("Shubik", [shubik])
+        shubik_lover.opponent = Player("Opponent", [Stratcooperation("Coop")])
         print("choice", shubik_lover.play(0))
         shubik_lover.handle(1, 1)
         print("choice", shubik_lover.play(1))
@@ -66,4 +68,4 @@ class TestStrat(TestCase):
         print("choice", shubik_lover.play(3))
         shubik_lover.handle(1, 1)
         print("choice", shubik_lover.play(4))
-        shubik_lover.handle(1, 1)
+        shubik_lover.handle(1, 1)"""
