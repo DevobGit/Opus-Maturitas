@@ -115,11 +115,11 @@ class Stratjoss(Strat):  # joue tit for tat avec 90% de coopération au lieu de 
 
 class Strattullock(Strat):  # Coopère les 11 premiers tours puis coopère 10% de moins que l'adversaire les 10 derniers tours
     def action(self, player: Player):
-        if not len(player.memory) >= 11:
-            if random.randint(0, 10) <= (player.memory[-10:].count(1) / 10) - (player.memory[-10:].count(1) / 100):
-                return 0
-            return 1
-        return 0
+        if len(player.memory) <= 10:
+            return 0
+        if random.randint(0, 100) <= (player.memory[-10:].count(0) * 10) - 10:
+            return 0
+        return 1
 
 
 class Stratgraaskamp(Strat):

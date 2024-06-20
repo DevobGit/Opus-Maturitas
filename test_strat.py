@@ -7,7 +7,8 @@ from player_and_strat import (
     Stratjoss,
     Stratlist,
     Stratgrofman,
-    Stratshubik
+    Stratshubik,
+    Strattullock
 )
 
 from unittest import TestCase
@@ -76,3 +77,17 @@ class TestStrat(TestCase):
         # la limite de m/n quand n tend vers l'infini devrait être 9/10
         self.assertTrue(m/n < 0.95)
         self.assertTrue(m/n > 0.85)
+    
+    def test_tullock(self):
+        tullock_lover = Player("Tullock", [Strattullock("Tullock")])
+        tullock_lover.opponent = Player("Opponent", [Stratcooperation("Coop")])
+        n = 10000
+        match(tullock_lover, self.cooperator, n)
+        # les premiers 11 coups de tullock doivent être des coopérations
+        for i in range(11):
+            self.assertTrue(self.cooperator.memory[i] == 0)
+        # compte le nombre de coopérations de tullock après les 11 premiers coups
+        m = self.cooperator.memory[11:].count(0)
+        # après les 11 premiers coups, tullock devrait coopérer à 90% de chance (dans la situation unique contre coop)
+        self.assertTrue(m/(n-11) < 0.95)
+        self.assertTrue(m/(n-11) > 0.85)
