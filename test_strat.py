@@ -4,6 +4,7 @@ from player_and_strat import (
     Stratcooperation,
     Stratbetrayal,
     Stratitat,
+    Stratjoss,
     Stratlist,
     Stratgrofman,
     Stratshubik
@@ -65,3 +66,13 @@ class TestStrat(TestCase):
             opponent.memory,
             [0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0],
         )
+    
+    def test_joss(self):
+        joss_lover = Player("Joss", [Stratjoss("Joss")])
+        joss_lover.opponent = Player("Opponent", [Stratcooperation("Coop")])
+        n = 10000
+        match(joss_lover, self.cooperator, n)
+        m = self.cooperator.memory.count(0)
+        # la limite de m/n quand n tend vers l'infini devrait être 9/10
+        self.assertTrue(m/n < 0.95)
+        self.assertTrue(m/n > 0.85)
