@@ -92,7 +92,7 @@ players = [
     joss_lover, # tested
     tullock_lover, # tested
     anonymous_lover,  # !
-    all_random,
+    all_random, # tested
 ]
 
 n_players = len(players)

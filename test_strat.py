@@ -3,6 +3,7 @@ from player_and_strat import (
     Player,
     Stratcooperation,
     Stratbetrayal,
+    Stratfeld,
     Stratitat,
     Stratjoss,
     Stratlist,
@@ -102,3 +103,11 @@ class TestStrat(TestCase):
         # la limite de m/n quand n tend vers l'infini devrait être 1/2
         self.assertTrue(m/n < 0.55)
         self.assertTrue(m/n > 0.45)
+    
+    def test_feld(self):
+        feld_lover = Player("Feld", [Stratfeld("Feld")])
+        feld_lover.opponent = Player("Opponent", [Stratcooperation("Coop")])
+        n = 200
+        match(feld_lover, self.cooperator, n)
+        # puisque les chances de coopérer baissent, il y aura plus de coopération la première moitié du match que la deuxième
+        self.assertTrue(self.cooperator.memory[:int(n/2)].count(0) > (self.cooperator.memory[int(n/2):].count(0)))
