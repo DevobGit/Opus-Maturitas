@@ -3,6 +3,7 @@ from player_and_strat import (
     Player,
     Stratcooperation,
     Stratbetrayal,
+    Stratdavis,
     Stratfeld,
     Stratgrudger,
     Stratitat,
@@ -122,4 +123,14 @@ class TestStrat(TestCase):
         self.assertEqual(
             opponent.memory,
             [0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+        )
+    def test_davis(self):
+        davis= Stratdavis("Davis")
+        davis_lover = Player("Davis", [davis])
+        opponent = Player("Opponent", [Stratlist("TestDavis", [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ])])
+        davis_lover.opponent = opponent
+        match(davis_lover, opponent, 20)
+        self.assertEqual(
+            opponent.memory,
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         )

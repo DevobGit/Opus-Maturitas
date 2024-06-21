@@ -85,7 +85,7 @@ players = [
     shubik_lover,  # ! # tested
     stein_and_rapoport_lover,
     grudger_lover, # tested
-    davis_lover,
+    davis_lover, # tested
     graaskamp_lover,
     downing_lover,
     feld_lover,  # ! # tested
