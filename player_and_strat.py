@@ -108,7 +108,7 @@ class Stratgrofman(Strat):  # Si les joueurs ont agit différemment au dernier t
 
 class Stratjoss(Strat):  # joue tit for tat avec 90% de coopération au lieu de 100%
     def action(self, player: Player):
-        if (not player.memory or player.memory[-1] == 0) and random.uniform(0, 1) <= 0.9:
+        if ((not player.memory) or player.memory[-1] == 0) and random.uniform(0, 1) <= 0.9:
             return 0
         return 1
 

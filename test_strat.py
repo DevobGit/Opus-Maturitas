@@ -7,6 +7,7 @@ from player_and_strat import (
     Stratjoss,
     Stratlist,
     Stratgrofman,
+    Stratrandom,
     Stratshubik,
     Strattullock
 )
@@ -91,3 +92,13 @@ class TestStrat(TestCase):
         # après les 11 premiers coups, tullock devrait coopérer à 90% de chance (dans la situation unique contre coop)
         self.assertTrue(m/(n-11) < 0.95)
         self.assertTrue(m/(n-11) > 0.85)
+        
+    def test_random(self):
+        random_lover = Player("Random", [Stratrandom("Random")])
+        random_lover.opponent = Player("Opponent", [Stratcooperation("Coop")])
+        n = 10000
+        match(random_lover, self.cooperator, n)
+        m = self.cooperator.memory.count(0)
+        # la limite de m/n quand n tend vers l'infini devrait être 1/2
+        self.assertTrue(m/n < 0.55)
+        self.assertTrue(m/n > 0.45)

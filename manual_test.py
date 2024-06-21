@@ -78,19 +78,19 @@ leur stratégie.  Fait 5 répétitions du tournoi pour lisser les effets
 aléatoires, tel que dans le premier tournoi d'Axelrod.
 """
 players = [
-    tit_for_tat_lover,
+    tit_for_tat_lover, # tested
     tideman_and_chieruzzi_lover,  # !
     nydegger_lover,
-    grofman_lover,
-    shubik_lover,  # !
+    grofman_lover, # tested
+    shubik_lover,  # ! # tested
     stein_and_rapoport_lover,
     grudger_lover,
     davis_lover,
     graaskamp_lover,
     downing_lover,
     feld_lover,  # !
-    joss_lover,
-    tullock_lover,
+    joss_lover, # tested
+    tullock_lover, # tested
     anonymous_lover,  # !
     all_random,
 ]
