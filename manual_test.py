@@ -84,11 +84,11 @@ players = [
     grofman_lover, # tested
     shubik_lover,  # ! # tested
     stein_and_rapoport_lover,
-    grudger_lover,
+    grudger_lover, # tested
     davis_lover,
     graaskamp_lover,
     downing_lover,
-    feld_lover,  # !
+    feld_lover,  # ! # tested
     joss_lover, # tested
     tullock_lover, # tested
     anonymous_lover,  # !

@@ -4,6 +4,7 @@ from player_and_strat import (
     Stratcooperation,
     Stratbetrayal,
     Stratfeld,
+    Stratgrudger,
     Stratitat,
     Stratjoss,
     Stratlist,
@@ -111,3 +112,14 @@ class TestStrat(TestCase):
         match(feld_lover, self.cooperator, n)
         # puisque les chances de coopérer baissent, il y aura plus de coopération la première moitié du match que la deuxième
         self.assertTrue(self.cooperator.memory[:int(n/2)].count(0) > (self.cooperator.memory[int(n/2):].count(0)))
+    
+    def test_grudger(self):
+        grudger= Stratgrudger("Grudger")
+        grudger_lover = Player("Grudger", [grudger])
+        opponent = Player("Opponent", [Stratlist("TestGrudger", [0, 0, 0, 0, 0, 1, 1, 0, 0, 0])])
+        grudger_lover.opponent = opponent
+        match(grudger_lover, opponent, 10)
+        self.assertEqual(
+            opponent.memory,
+            [0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+        )
