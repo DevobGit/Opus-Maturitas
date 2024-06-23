@@ -37,6 +37,8 @@ class Player():
     def reset_for_new_game(self):
         self.score = 0
         self.memory.clear()
+        for i in self.strategies:
+            i.reset_for_new_game()
 
 
 # Définition des classes stratégies, le nom des classes sera sûrement changé à l'avenir pour correspondre aux noms originaux
@@ -44,6 +46,8 @@ class Strat():  # Classe des stratégie, elle... porte un nom !
     def __init__(self, name: string) -> None:
         self.name = name
         self.player = None
+    def reset_for_new_game(self):
+        pass
 
 
 class Stratcooperation(Strat):  # Coopère
@@ -131,6 +135,10 @@ class Stratgraaskamp(Strat):
         self.opponent_is_random = False
         self.next_random_defection_turn = None
     
+    def reset_for_new_game(self):
+        self.opponent_is_random = False
+        self.next_random_defection_turn = None
+    
     def action(self, player: Player):
         if len(player.memory) < 56:  # Joue tit for tat les 55 premier tours sauf le 50 où il trahi
             if ((not player.memory) or player.memory[-1] == 0) and not len(player.memory) == 50:
@@ -178,6 +186,9 @@ class Stratsteinandrapoport(Strat):
 
         self.alpha = alpha
         self.opponent_is_random = False
+    
+    def reset_for_new_game(self):
+        self.opponent_is_random = False
 
     def action(self, player: Player):
         if not len(player.memory) >= 3:
@@ -219,6 +230,14 @@ class Strattidemanandchieruzzi(Strat):
         self.alzheimer = False
         self.remembered_betrayals = 0
 
+    def reset_for_new_game(self):
+        self.betraying = False
+        self.betraying_turns = 0
+        self.remaining_betrayals = 0
+        self.last_alzheimer = 0
+        self.alzheimer = False
+        self.remembered_betrayals = 0
+
     def decrease_remaining_betrays(self):  # Réduit le compteur de trahisons, cesse de trahir s'il est nul
         if self.betraying:
             self.remaining_betrayals -= 1
@@ -235,6 +254,14 @@ class Strattidemanandchieruzzi(Strat):
         if not player.memory:
             return 0
 
+        """
+        Dans un match de 200 tours, trahi les deux derniers tours. (Comportement en cas
+        de matchs plus longs personnelement interprété, pourra changer plus tard, pour
+        l'instant sans importance.
+        """
+        if len(player.memory) % 199 == 0 or len(player.memory) % 199 == 198:
+            return 1
+        
         if player.memory[-1] == 1:
             self.remembered_betrayals += 1
 
@@ -255,7 +282,7 @@ class Strattidemanandchieruzzi(Strat):
         # Il faut avoir au moins 10 points de plus que l'adversaire pour alzheimer
         if valid_alzheimer:
             valid_points = (player.score - player.opponent.score >= 10)
-            valid_rounds = (current_round % 200 <= -10)
+            valid_rounds = (current_round % 200 <= 190)
             """
             Dans un match de 200 tours, ne lance pas alzheimer s'il reste moins de 10 tours.
             (Comportement en cas de matchs plus longs personnelement interprété, pourra
@@ -313,6 +340,11 @@ class Stratshubik(Strat):
         self.betraying_turns = 0
         self.remaining_betrayals = 0
 
+    def reset_for_new_game(self):
+        self.betraying = False
+        self.betraying_turns = 0
+        self.remaining_betrayals = 0
+
     def decrease_remaining_betrays(self):  # Réduit le compteur de trahisons, cesse de trahir s'il est nul
         if self.betraying:
             self.remaining_betrayals -= 1
@@ -356,6 +388,10 @@ class Stratfeld(Strat):
         self.end_coop_prob = end_coop_prob
         self.rounds_of_decay = rounds_of_decay
         self.coop_prob = start_coop_prob
+    
+    def reset_for_new_game(self):
+        self.coop_prob = self.start_coop_prob 
+    
     """
     Réduction de probabilité de coopération à chaque tour pour respecter le
     taux de dépard, de fin, et le nombre de tours sur lequel le taux baisse
@@ -418,6 +454,10 @@ class Stratdowning(Strat):
     # de https://axelrod.readthedocs.io/en/dev/_modules/axelrod/strategies/axelrod_first.html#FirstByDowning
     def __init__(self, name) -> None:
         super().__init__(name)
+        self.number_opponent_cooperations_in_response_to_c = 0
+        self.number_opponent_cooperations_in_response_to_d = 0
+        
+    def reset_for_new_game(self):
         self.number_opponent_cooperations_in_response_to_c = 0
         self.number_opponent_cooperations_in_response_to_d = 0
 

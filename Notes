@@ -9,3 +9,26 @@ https://axelrod.readthedocs.io/en/dev/tutorials/running_axelrods_first_tournamen
 https://axelrod.readthedocs.io/en/dev/reference/strategy_index.html
 https://www.geeksforgeeks.org/python-removing-first-element-of-list/
 python3 -m unittest
+
+FIRST TOURNAMENT EXPECTED RANKING :
+
+All subsequent strategies are NICE (Aren't the first to betray)
+
+504 Tit For Tat
+500 Tideman & Chieruzzi
+486 Nydegger
+482 Grofman
+481 Shubik
+478 Stein & Rapoport
+473 Friedman (Grudger)
+472 Davis
+
+All subsequent strategies are NASTY (Can be first to betray)
+
+401 Graaskamp
+391 Downing
+328 Feld
+304 Joss
+301 Tullock
+282 Name Withheld (Anonymous)
+275 Random
