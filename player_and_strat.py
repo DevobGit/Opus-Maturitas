@@ -144,9 +144,6 @@ class Stratgraaskamp(Strat):
         self.opponent_is_random = (
             p_value >= self.alpha
         ) or self.opponent_is_random  # Ne fait pas le test si l'adversaire a déjà été considéré comme random
-
-        if self.opponent_is_random:
-            return 1
         # Vérifie si l'adversaire est un "clone" de lui même ou s'il est tit for tat, auquel cas, joue tit for tat
         if (
             all(
@@ -158,14 +155,16 @@ class Stratgraaskamp(Strat):
             if player.memory[-1] == 1:
                 return 1
             return 0
-
+        # trahi si adversaire random
+        if self.opponent_is_random:
+            return 1
         if self.next_random_defection_turn is None:  # Vérifie si le prochain tour aléatoir de trahison a déjà été choisi
-            # Place la prochaine trahison à entre 5 et 15 tours plus loins que le nombre de tours actuel
-            self.next_random_defection_turn = random.randint(5, 15) + len(player.opponent.memory)
+            # Place la prochaine trahison à entre 4 et 14 tours plus loins que le nombre de tours actuel (pour "trahir tout les 5 à 15 tours")
+            self.next_random_defection_turn = random.randint(4, 14) + len(player.opponent.memory)
 
         if len(player.opponent.memory) == self.next_random_defection_turn:  # Vérifie s'il est le tour de trahison
             # Choisi le prochain tour de trahison
-            self.next_random_defection_turn = random.randint(5, 15) + len(
+            self.next_random_defection_turn = random.randint(4, 14) + len(
                 player.opponent.memory
             )
             return 1

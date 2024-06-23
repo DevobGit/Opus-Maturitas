@@ -5,6 +5,7 @@ from player_and_strat import (
     Stratbetrayal,
     Stratdavis,
     Stratfeld,
+    Stratgraaskamp,
     Stratgrudger,
     Stratitat,
     Stratjoss,
@@ -115,7 +116,7 @@ class TestStrat(TestCase):
         self.assertTrue(self.cooperator.memory[:int(n/2)].count(0) > (self.cooperator.memory[int(n/2):].count(0)))
     
     def test_grudger(self):
-        grudger= Stratgrudger("Grudger")
+        grudger = Stratgrudger("Grudger")
         grudger_lover = Player("Grudger", [grudger])
         opponent = Player("Opponent", [Stratlist("TestGrudger", [0, 0, 0, 0, 0, 1, 1, 0, 0, 0])])
         grudger_lover.opponent = opponent
@@ -125,12 +126,147 @@ class TestStrat(TestCase):
             [0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
         )
     def test_davis(self):
-        davis= Stratdavis("Davis")
+        davis = Stratdavis("Davis")
         davis_lover = Player("Davis", [davis])
-        opponent = Player("Opponent", [Stratlist("TestDavis", [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ])])
+        opponent = Player("Opponent", [Stratlist("TestDavis", [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0])])
         davis_lover.opponent = opponent
         match(davis_lover, opponent, 20)
         self.assertEqual(
             opponent.memory,
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         )
+    def test_graaskamp(self):
+        graaskamp = Stratgraaskamp("Graaskamp")
+        graaskamp_lover = Player("Graaskamp", [graaskamp])
+        opponent = Player("Opponent", [Stratlist("TestGraaskamp", [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0])])
+        graaskamp_lover.opponent = opponent
+        match(graaskamp_lover, opponent, 200)
+        #pylint veut utiliser enumerate, mais cela retourne un tuple dont je ne souhaite que le 1er elmt
+        for i in range(len(graaskamp_lover.memory)) :
+            #commence par coopérer
+            if i == 0 :
+                self.assertEqual(
+                opponent.memory[0],
+                0,
+            )
+            # puis joue tit for tat jusqu'au 50e tour inclu
+            elif i < 50 :
+                self.assertEqual(
+                opponent.memory[i],
+                graaskamp_lover.memory[(i-1)],
+            )
+            # trahi au tour 51
+            elif i == 50 :
+                self.assertEqual(
+                opponent.memory[i],
+                1,
+            )
+            # puis joue 5 tours de tit for tat
+            elif i < 56 :
+                self.assertEqual(
+                    opponent.memory[i],
+                    graaskamp_lover.memory[(i-1)],
+                )
+        # si graaskamp ne considère pas son adversaire random, et que son adversaire n'est pas son double
+        # ou tit for tat, graaaskamp trahi tout les 5 à 15 tours, ce qui laisse le rapport de trahisons
+        # par coopération dans l'intervalle [1/15 : 1/5]
+        if graaskamp_lover.chosenstrat.opponent_is_random == False :
+            self.assertTrue((opponent.memory[55:].count(1) / opponent.memory[55:].count(0)) <= (1/5))
+            self.assertTrue((opponent.memory[55:].count(1) / opponent.memory[55:].count(0)) >= (1/15))
+        # testons avec un adversaire consideré random :
+        opponent2 = Player("Opponent2", [Stratlist("TestGraaskamp2", [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0])])
+        graaskamp_lover.reset_for_new_game()
+        graaskamp_lover.opponent = opponent2
+        match(graaskamp_lover, opponent2, 200)
+        for i in range(len(graaskamp_lover.memory)) :
+            #commence par coopérer
+            if i == 0 :
+                self.assertEqual(
+                opponent2.memory[0],
+                0,
+            )
+            # puis joue tit for tat jusqu'au 50e tour inclu
+            elif i < 50 :
+                self.assertEqual(
+                opponent2.memory[i],
+                graaskamp_lover.memory[(i-1)],
+            )
+            # trahi au tour 51
+            elif i == 50 :
+                self.assertEqual(
+                opponent2.memory[i],
+                1,
+            )
+            # puis joue 5 tours de tit for tat
+            elif i < 56 :
+                self.assertEqual(
+                    opponent2.memory[i],
+                    graaskamp_lover.memory[(i-1)],
+                )
+            elif graaskamp_lover.chosenstrat.opponent_is_random == True :
+                self.assertEqual(
+                    opponent2.memory[i],
+                    1,
+                )
+        # testons avec tit for tat
+        opponent3 = self.tit_for_tat_lover
+        opponent3.reset_for_new_game()
+        graaskamp_lover.reset_for_new_game()
+        graaskamp_lover.opponent = opponent3
+        match(graaskamp_lover, opponent3, 200)
+        for i in range(len(graaskamp_lover.memory)) :
+            #commence par coopérer
+            if i == 0 :
+                self.assertEqual(
+                opponent3.memory[0],
+                0,
+            )
+            # puis joue tit for tat jusqu'au 50e tour inclu
+            elif i < 50 :
+                self.assertEqual(
+                opponent3.memory[i],
+                graaskamp_lover.memory[(i-1)],
+            )
+            # trahi au tour 51
+            elif i == 50 :
+                self.assertEqual(
+                opponent3.memory[i],
+                1,
+            )
+            # puis joue tit for tat à jamais
+            else :
+                self.assertEqual(
+                    opponent3.memory[i],
+                    graaskamp_lover.memory[(i-1)],
+                )
+        # testons avec un clone de lui-même
+        opponent4 = Player("Opponent4", [graaskamp])
+        opponent4.reset_for_new_game()
+        graaskamp_lover.reset_for_new_game()
+        graaskamp_lover.opponent = opponent4
+        match(graaskamp_lover, opponent4, 200)
+        for i in range(len(graaskamp_lover.memory)) :
+            #commence par coopérer
+            if i == 0 :
+                self.assertEqual(
+                opponent4.memory[0],
+                0,
+            )
+            # puis joue tit for tat jusqu'au 50e tour inclu
+            elif i < 50 :
+                self.assertEqual(
+                opponent4.memory[i],
+                graaskamp_lover.memory[(i-1)],
+            )
+            # trahi au tour 51
+            elif i == 50 :
+                self.assertEqual(
+                opponent4.memory[i],
+                1,
+            )
+            # puis joue tit for tat à jamais
+            else :
+                self.assertEqual(
+                    opponent4.memory[i],
+                    graaskamp_lover.memory[(i-1)],
+                )
