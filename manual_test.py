@@ -80,7 +80,7 @@ aléatoires, tel que dans le premier tournoi d'Axelrod.
 players = [
     tit_for_tat_lover, # tested
     tideman_and_chieruzzi_lover,  # !
-    nydegger_lover,
+    nydegger_lover, # tested
     grofman_lover, # tested
     shubik_lover,  # ! # tested
     stein_and_rapoport_lover, # tested

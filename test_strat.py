@@ -11,6 +11,7 @@ from player_and_strat import (
     Stratjoss,
     Stratlist,
     Stratgrofman,
+    Stratnydegger,
     Stratrandom,
     Stratshubik,
     Stratsteinandrapoport,
@@ -299,7 +300,6 @@ class TestStrat(TestCase):
         steinandrapoport_lover.opponent = opponent
         match(steinandrapoport_lover, opponent, 200)
         # les 4 premiers coups de Stein and Rapoport doivent être des coopérations
-        print(opponent.memory)
         for i in range(len(steinandrapoport_lover.memory)) :
             #commence par coopérer
             if i < 4 :
@@ -318,3 +318,21 @@ class TestStrat(TestCase):
                 opponent.memory[i],
                 1,
             )
+    def test_nydegger(self):
+        nydegger = Stratnydegger("Nydegger")
+        nydegger_lover = Player("Nydegger", [nydegger])
+        opponent = Player("Opponent", [Stratlist("TestNydegger", [0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])])
+        nydegger_lover.opponent = opponent
+        match(nydegger_lover, opponent, 20)
+        self.assertEqual(
+            opponent.memory,
+            [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        )
+        opponent2 = Player("Opponent2", [Stratlist("TestNydegger2", [1, 0, 1])])
+        nydegger_lover.opponent = opponent2
+        nydegger_lover.reset_for_new_game()
+        match(nydegger_lover, opponent2, 3)
+        self.assertEqual(
+            opponent2.memory,
+            [0, 1, 1],
+        )
