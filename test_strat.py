@@ -15,6 +15,7 @@ from player_and_strat import (
     Stratrandom,
     Stratshubik,
     Stratsteinandrapoport,
+    Strattidemanandchieruzzi,
     Strattullock
 )
 
@@ -335,4 +336,23 @@ class TestStrat(TestCase):
         self.assertEqual(
             opponent2.memory,
             [0, 1, 1],
+        )
+    def test_tidemanandchieruzzi(self):
+        tidemanandchieruzzi = Strattidemanandchieruzzi("Tideman and Chieruzzi")
+        tidemanandchieruzzi_lover = Player("Tideman and Chieruzzi", [tidemanandchieruzzi])
+        opponent = Player("Opponent", [Stratlist("TestTideman and Chieruzzi", [0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0])])
+        tidemanandchieruzzi_lover.opponent = opponent
+        match(tidemanandchieruzzi_lover, opponent, 200)
+        self.assertEqual(
+            opponent.memory[:30],
+            [0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0],
+        )
+        # trahi les deux derniers tours
+        self.assertEqual(
+            opponent.memory[-1],
+            1,
+        )
+        self.assertEqual(
+            opponent.memory[-2],
+            1,
         )

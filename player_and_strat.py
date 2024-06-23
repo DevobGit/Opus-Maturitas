@@ -77,9 +77,9 @@ class Stratlist(Strat):
 
 class Stratitat(Strat):  # Coopère puis repète l'action prècèdente de l'adversaire
     def action(self, player: Player):
-        if not player.memory or player.memory[-1] == 0:
+        if not player.memory :
             return 0
-        return 1
+        return player.memory[-1]
 
 
 class Stratotitat(Strat):  # Trahi uniquement si l'adversaire à trahi deux ou plus fois de suite
@@ -226,7 +226,7 @@ class Strattidemanandchieruzzi(Strat):
         self.betraying_turns = 0
         self.remaining_betrayals = 0
         # Alzheimer fait oublier les précédentes trahisons et recommencer comme au début du match
-        self.last_alzheimer = 0
+        self.last_alzheimer = -20
         self.alzheimer = False
         self.remembered_betrayals = 0
 
@@ -234,7 +234,7 @@ class Strattidemanandchieruzzi(Strat):
         self.betraying = False
         self.betraying_turns = 0
         self.remaining_betrayals = 0
-        self.last_alzheimer = 0
+        self.last_alzheimer = -20
         self.alzheimer = False
         self.remembered_betrayals = 0
 

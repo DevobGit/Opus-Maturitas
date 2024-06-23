@@ -32,3 +32,5 @@ All subsequent strategies are NASTY (Can be first to betray)
 301 Tullock
 282 Name Withheld (Anonymous)
 275 Random
+
+Tideman and Chieruzzi ne sont, contrairement à ce qui est montré dans la vidéo https://www.youtube.com/watch?v=mScpHTIi-kM&ab_channel=Veritasium 10:37, pas NICE, la strat trahi toujours les deux derniers tours, d'après https://axelrod.readthedocs.io/en/dev/_modules/axelrod/strategies/axelrod_first.html#FirstByTidemanAndChieruzzi
