@@ -1,6 +1,7 @@
 from dilemma_definition import match
 from player_and_strat import (
     Player,
+    Stratanonymous,
     Stratcooperation,
     Stratbetrayal,
     Stratdavis,
@@ -356,3 +357,16 @@ class TestStrat(TestCase):
             opponent.memory[-2],
             1,
         )
+    def test_anonymous(self):
+        # Puisque anonymous a à chaque tour un pourcentage de chance de coopération
+        # aléatoire entre 30% et 70%, cette stratégie aléatoire n'est biaisé
+        # ni d'un coté ni de l'autre, et donc les résultats devraient être similaire
+        # à un simple générateur aléatoire 50/50
+        anonymous_lover = Player("Anonymous", [Stratanonymous("Anonymous")])
+        anonymous_lover.opponent = Player("Opponent", [Stratcooperation("Coop")])
+        n = 10000
+        match(anonymous_lover, self.cooperator, n)
+        m = self.cooperator.memory.count(0)
+        # la limite de m/n quand n tend vers l'infini devrait être 1/2
+        self.assertTrue(m/n < 0.55)
+        self.assertTrue(m/n > 0.45)
