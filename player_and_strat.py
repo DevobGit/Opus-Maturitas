@@ -188,10 +188,10 @@ class Stratsteinandrapoport(Strat):
         de matchs plus longs personnelement interprété, pourra changer plus tard, pour
         l'instant sans importance.
         """
-        if len(player.memory) % 199 == 0 or len(player.memory) % 199 == -1:
+        if len(player.memory) % 199 == 0 or len(player.memory) % 199 == 198:
             return 1
 
-        if len(player.memory) % 15 == -1:
+        if len(player.memory) % 15 == 14:
             p_value = chisquare(
                 [
                     player.memory.count(0),

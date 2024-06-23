@@ -83,10 +83,10 @@ players = [
     nydegger_lover,
     grofman_lover, # tested
     shubik_lover,  # ! # tested
-    stein_and_rapoport_lover,
+    stein_and_rapoport_lover, # tested
     grudger_lover, # tested
     davis_lover, # tested
-    graaskamp_lover,
+    graaskamp_lover, # tested
     downing_lover,
     feld_lover,  # ! # tested
     joss_lover, # tested

@@ -13,6 +13,7 @@ from player_and_strat import (
     Stratgrofman,
     Stratrandom,
     Stratshubik,
+    Stratsteinandrapoport,
     Strattullock
 )
 
@@ -270,3 +271,50 @@ class TestStrat(TestCase):
                     opponent4.memory[i],
                     graaskamp_lover.memory[(i-1)],
                 )
+    def test_steinandrapoport(self):
+        steinandrapoport_lover = Player("Tullock", [Stratsteinandrapoport("Steinandrapoport")])
+        steinandrapoport_lover.opponent = Player("Opponent", [Stratcooperation("Coop")])
+        match(steinandrapoport_lover, self.cooperator, 200)
+        # les 4 premiers coups de Stein and Rapoport doivent être des coopérations
+        for i in range(len(steinandrapoport_lover.memory)) :
+            #commence par coopérer
+            if i < 4 :
+                self.assertEqual(
+                self.cooperator.memory[i],
+                0,
+            )
+            elif i < 198 :
+                self.assertEqual(
+                self.cooperator.memory[i],
+                0,
+            )
+            else :
+                self.assertEqual(
+                self.cooperator.memory[i],
+                1,
+            )
+        # testons avec random / une séquence alternante
+        steinandrapoport_lover.reset_for_new_game()
+        opponent = Player("Opponent", [Stratlist("Alternator", [0, 1])])
+        steinandrapoport_lover.opponent = opponent
+        match(steinandrapoport_lover, opponent, 200)
+        # les 4 premiers coups de Stein and Rapoport doivent être des coopérations
+        print(opponent.memory)
+        for i in range(len(steinandrapoport_lover.memory)) :
+            #commence par coopérer
+            if i < 4 :
+                self.assertEqual(
+                opponent.memory[i],
+                0,
+            )
+            # joue tit for that avant le premier test
+            elif i < 15 :
+                self.assertEqual(
+                opponent.memory[i],
+                steinandrapoport_lover.memory[(i-1)],
+            )
+            else :
+                self.assertEqual(
+                opponent.memory[i],
+                1,
+            )
