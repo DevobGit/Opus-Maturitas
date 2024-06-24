@@ -74,7 +74,7 @@ downing_lover = Player("NASTY Downing", [downing])
 """
 Tournoi avec les participants du premier tournoi d'Axelrod, ceux suivis d'un #!
 sont soumis à de possibles erreurs dans l'interprétation du fonctionnement de
-leur stratégie.  Fait 5 répétitions du tournoi pour lisser les effets
+leur stratégie. Fait 5 répétitions du tournoi pour lisser les effets
 aléatoires, tel que dans le premier tournoi d'Axelrod.
 """
 players = [
@@ -96,7 +96,7 @@ players = [
 ]
 
 n_players = len(players)
-n_tournaments = 5
+n_tournaments = 1
 n_rounds = 200
 for _ in range(n_tournaments):
     tournament(players, n_rounds)
