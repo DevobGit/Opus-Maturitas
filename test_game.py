@@ -16,9 +16,9 @@ from unittest import TestCase
 class TestGame(TestCase):
     @classmethod
     def setUp(cls):
-        cls.cooperator = Player("Cooperator", [Stratcooperation("Always Cooperate")])
-        cls.betrayer = Player("Betrayer", [Stratbetrayal("Always Betray")])
-        cls.tit_for_tat_lover = Player("Tit For Tat", [Stratitat("Tit For Tat")])
+        cls.cooperator = Player("Cooperator", [Stratcooperation()])
+        cls.betrayer = Player("Betrayer", [Stratbetrayal()])
+        cls.tit_for_tat_lover = Player("Tit For Tat", [Stratitat()])
 
     def test_dilemma(self):
         self.assertEqual(

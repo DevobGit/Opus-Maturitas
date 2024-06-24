@@ -22,41 +22,28 @@ from player_and_strat import (
     Strattullock
 )
 
-nice_double_change = Stratlist("Nice Double Change", [0, 0, 1, 1])
-mean_change = Stratlist("Mean Change", [1, 0])
-nice_change = Stratlist("Nice Change", [0, 1])
-roll_the_dice = Stratrandom("Roll The Dice")
-always_cooperate = Stratcooperation("Always Cooperate")
-always_betray = Stratbetrayal("Always Betray")
-tit_for_tat = Stratitat("Tit For Tat")
-tit_for_two_tat = Stratotitat("Tit For Two Tat")
-grudger = Stratgrudger("Grudger")
-davis = Stratdavis("Davis")
-grofman = Stratgrofman("Grofman")
-joss = Stratjoss("Joss")
-tullock = Strattullock("Tullock")
-graaskamp = Stratgraaskamp("Graaskamp")
-stein_and_rapoport = Stratsteinandrapoport("Stein and Rapoport")
-tideman_and_chieruzzi = Strattidemanandchieruzzi("Tideman and Chieruzzi")
-shubik = Stratshubik("Shubik")
-feld = Stratfeld("Feld")
-anonymous = Stratanonymous("Anonymous")
-nydegger = Stratnydegger("Nydegger")
-downing = Stratdowning("Downing")
+roll_the_dice = Stratrandom()
+tit_for_tat = Stratitat()
+tit_for_two_tat = Stratotitat()
+grudger = Stratgrudger()
+davis = Stratdavis()
+grofman = Stratgrofman()
+joss = Stratjoss()
+tullock = Strattullock()
+graaskamp = Stratgraaskamp()
+stein_and_rapoport = Stratsteinandrapoport()
+tideman_and_chieruzzi = Strattidemanandchieruzzi()
+shubik = Stratshubik()
+feld = Stratfeld()
+anonymous = Stratanonymous()
+nydegger = Stratnydegger()
+downing = Stratdowning()
 
 # Créer objets joueurs
 
-hoenn = Player("Hoenn", [tit_for_tat, tit_for_two_tat, roll_the_dice])
-hisui = Player("Hisui", [grudger, tit_for_tat])
 davis_lover = Player("NICE Davis", [davis])
 all_random = Player("NASTY Random", [roll_the_dice])
-ruben = Player("Ruben", [mean_change])
-zahibra = Player("Zahibra", [grudger, roll_the_dice])
-juliette = Player("Juliette", [davis, tit_for_tat])
-cooperator = Player("Cooperator", [always_cooperate])
-betrayer = Player("Betrayer", [always_betray])
 tit_for_tat_lover = Player("NICE Tit For Tat", [tit_for_tat])
-alternator = Player("Alternator", [nice_change])
 grudger_lover = Player("NICE Grudger", [grudger])
 grofman_lover = Player("NICE Grofman", [grofman])
 joss_lover = Player("NASTY Joss", [joss])
@@ -96,7 +83,7 @@ players = [
 ]
 
 n_players = len(players)
-n_tournaments = 5
+n_tournaments = 1
 n_rounds = 200
 for _ in range(n_tournaments):
     tournament(players, n_rounds)

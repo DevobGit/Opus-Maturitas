@@ -13,8 +13,8 @@ def prisoner_dilemma(choice1: int, choice2: int):
 
 
 def match(player1: Player, player2: Player, rounds: int):
-    player1.opponent = player2
-    player2.opponent = player1
+    player1.reset_for_new_game(player2)
+    player2.reset_for_new_game(player1)
     for tour in range(rounds):
         choice1 = player1.play(tour)
         choice2 = player2.play(tour)
@@ -29,11 +29,7 @@ def match(player1: Player, player2: Player, rounds: int):
 # Définition des tournois
 def tournament(players: list, rounds: int):
     for i, player1 in enumerate(players):
-        player1.reset_for_new_game()
         player2 = deepcopy(player1)
-        player2.reset_for_new_game()
         match(player1, player2, rounds)
         for player2 in players[i+1:]:
-            player1.reset_for_new_game()
-            player2.reset_for_new_game()
             match(player1, player2, rounds)
