@@ -17,7 +17,8 @@ from player_and_strat import (
     Stratshubik,
     Stratsteinandrapoport,
     Strattidemanandchieruzzi,
-    Strattullock
+    Strattullock,
+    Stratdowning
 )
 
 from unittest import TestCase
@@ -47,19 +48,19 @@ class TestStrat(TestCase):
         )
 
     def test_grofman(self):
-        grofman = Stratgrofman("Grofman")
-        grofman_lover = Player("Grofman", [grofman])
-        grofman_lover.opponent = Player("Opponent", [Stratcooperation("Coop")])
-        self.assertEqual(grofman_lover.play(0), 0)
+        player1 = Player("P1", [Stratgrofman("Grofman")])
+        player2 = Player("P2", [Stratcooperation("Coop")])
+        self.assertEqual(player1.play(0), 0)
+        player1.opponent = player2
 
-        grofman_lover.memory.append(1)
-        grofman_lover.opponent.memory.append(0)
+        player1.memory.append(1)
+        player2.memory.append(0)
 
         n = 1000000
         m = 0
         for _ in range(n):
-            grofman_lover.handle(0, 1)
-            choice = grofman_lover.play(0)
+            player1.handle(0, 1)
+            choice = player1.play(0)
             if choice == 0:
                 m += 1
         # la limite de m/n quand n tend vers l'infini devrait être 2/7 ≈ 0,2857
@@ -77,26 +78,27 @@ class TestStrat(TestCase):
         )
 
     def test_joss(self):
-        joss_lover = Player("Joss", [Stratjoss("Joss")])
-        joss_lover.opponent = Player("Opponent", [Stratcooperation("Coop")])
+        player1 = Player("P1", [Stratjoss("Joss")])
+        player2 = Player("P2", [Stratcooperation("Coop")])
         n = 10000
-        match(joss_lover, self.cooperator, n)
-        m = self.cooperator.memory.count(0)
+        match(player1, player2, n)
+        m = player2.memory.count(0)
         # la limite de m/n quand n tend vers l'infini devrait être 9/10
         self.assertTrue(m/n < 0.95)
         self.assertTrue(m/n > 0.85)
 
     def test_tullock(self):
-        tullock_lover = Player("Tullock", [Strattullock("Tullock")])
-        tullock_lover.opponent = Player("Opponent", [Stratcooperation("Coop")])
+        player1 = Player("P1", [Strattullock("Tullock")])
+        player2 = Player("P2", [Stratcooperation("Coop")])
         n = 10000
-        match(tullock_lover, self.cooperator, n)
+        match(player1, player2, n)
         # les premiers 11 coups de tullock doivent être des coopérations
-        for i in range(11):
-            self.assertTrue(self.cooperator.memory[i] == 0)
+        for i in range(13):
+            self.assertTrue(player2.memory[i] == 0)
         # compte le nombre de coopérations de tullock après les 11 premiers coups
-        m = self.cooperator.memory[11:].count(0)
-        # après les 11 premiers coups, tullock devrait coopérer à 90% de chance (dans la situation unique contre coop)
+        m = player2.memory[11:].count(0)
+        # après les 11 premiers coups, tullock devrait coopérer à 90% de chance
+        # (dans la situation unique contre coop)
         self.assertTrue(m/(n-11) < 0.95)
         self.assertTrue(m/(n-11) > 0.85)
 
@@ -261,17 +263,17 @@ class TestStrat(TestCase):
         self.assertEqual(opponent2.memory, [0, 1, 1])
 
     def test_tidemanandchieruzzi(self):
-        tidemanandchieruzzi = Strattidemanandchieruzzi("Tideman and Chieruzzi")
-        tidemanandchieruzzi_lover = Player("Tideman and Chieruzzi", [tidemanandchieruzzi])
-        opponent = Player("Opponent", [Stratlist("TestTideman and Chieruzzi", [0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0])])
-        match(tidemanandchieruzzi_lover, opponent, 200)
+        tidemanandchieruzzi = Strattidemanandchieruzzi("S2")
+        player1 = Player("P1", [tidemanandchieruzzi])
+        player2 = Player("P2", [Stratlist("S1", [0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0])])
+        match(player1, player2, 200)
         self.assertEqual(
-            opponent.memory[:30],
+            player2.memory[:30],
             [0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0],
         )
         # trahi les deux derniers tours
-        self.assertEqual(opponent.memory[-1], 1)
-        self.assertEqual(opponent.memory[-2], 1)
+        self.assertEqual(player2.memory[-1], 1)
+        self.assertEqual(player2.memory[-2], 1)
 
     def test_anonymous(self):
         # Puisque anonymous a à chaque tour un pourcentage de chance de coopération
@@ -286,3 +288,46 @@ class TestStrat(TestCase):
         # la limite de m/n quand n tend vers l'infini devrait être 1/2
         self.assertTrue(m/n < 0.55)
         self.assertTrue(m/n > 0.45)
+
+    def test_tft_vs_joss(self):
+        player1 = Player("P1", [Stratitat("S1")])
+        player2 = Player("P2", [Stratjoss("S2")])
+        match(player1, player2, 200)
+        print(player1.score, player2.score)
+        print(player1.memory)
+        print(player2.memory)
+
+    def test_tft_vs_grudger(self):
+        player1 = Player("P1", [Stratitat("S1")])
+        player2 = Player("P2", [Stratgrudger("S2")])
+        match(player1, player2, 20)
+        self.assertEqual(player1.memory, player2.memory)
+        self.assertEqual(player1.score, player2.score)
+        self.assertEqual(player1.score, 60)
+
+    def test_nydegger_vs_downing(self):
+        player1 = Player("P1", [Stratnydegger("S1")])
+        player2 = Player("P2", [Stratdowning("S2")])
+        match(player1, player2, 200)
+        ny_plays = player2.memory
+        do_plays = player1.memory
+        self.assertEqual(ny_plays[0], 0)
+        self.assertEqual(do_plays[0], 1)
+
+        self.assertEqual(ny_plays[1], 1)
+        self.assertEqual(do_plays[1], 1)
+
+        self.assertEqual(ny_plays[2], 1)
+        self.assertEqual(do_plays[2], 0)
+
+        self.assertEqual(ny_plays[3], 1)
+        self.assertEqual(do_plays[3], 0)
+
+        self.assertEqual(do_plays[4], 1)
+        self.assertEqual(do_plays[4], 1)
+
+        print("ny plays: ", ny_plays)
+        print("do plays: ", player1.memory)
+
+        self.assertEqual(player2.score, 398)
+        self.assertEqual(player1.score, 158)
