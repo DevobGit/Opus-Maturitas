@@ -27,10 +27,10 @@ from unittest import TestCase
 class TestStrat(TestCase):
     @classmethod
     def setUp(cls):
-        cls.cooperator = Player("Cooperator", [Stratcooperation("Always Cooperate")])
-        cls.betrayer = Player("Betrayer", [Stratbetrayal("Always Betray")])
-        cls.tit_for_tat_lover = Player("Tit For Tat", [Stratitat("Tit For Tat")])
-        cls.control_tit_for_tat_list = Player("Control", [Stratlist("Control List", [0, 0, 1, 1, 0, 1, 0, 1, 1, 1])])
+        cls.cooperator = Player("Cooperator", [Stratcooperation()])
+        cls.betrayer = Player("Betrayer", [Stratbetrayal()])
+        cls.tit_for_tat_lover = Player("Tit For Tat", [Stratitat()])
+        cls.control_tit_for_tat_list = Player("Control", [Stratlist([0, 0, 1, 1, 0, 1, 0, 1, 1, 1])])
 
     def test_always_cooperate(self):
         for n in range(10):
@@ -48,8 +48,8 @@ class TestStrat(TestCase):
         )
 
     def test_grofman(self):
-        player1 = Player("P1", [Stratgrofman("Grofman")])
-        player2 = Player("P2", [Stratcooperation("Coop")])
+        player1 = Player("P1", [Stratgrofman()])
+        player2 = Player("P2", [Stratcooperation()])
         self.assertEqual(player1.play(0), 0)
         player1.opponent = player2
 
@@ -68,9 +68,9 @@ class TestStrat(TestCase):
         self.assertTrue(m/n > 0.27)
 
     def test_shubik(self):
-        shubik = Stratshubik("Shubik")
+        shubik = Stratshubik()
         shubik_lover = Player("Shubik", [shubik])
-        opponent = Player("Opponent", [Stratlist("TestShubik", [0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0])])
+        opponent = Player("Opponent", [Stratlist([0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0])])
         match(shubik_lover, opponent, 20)
         self.assertEqual(
             opponent.memory,
@@ -78,8 +78,8 @@ class TestStrat(TestCase):
         )
 
     def test_joss(self):
-        player1 = Player("P1", [Stratjoss("Joss")])
-        player2 = Player("P2", [Stratcooperation("Coop")])
+        player1 = Player("P1", [Stratjoss()])
+        player2 = Player("P2", [Stratcooperation()])
         n = 10000
         match(player1, player2, n)
         m = player2.memory.count(0)
@@ -88,8 +88,8 @@ class TestStrat(TestCase):
         self.assertTrue(m/n > 0.85)
 
     def test_tullock(self):
-        player1 = Player("P1", [Strattullock("Tullock")])
-        player2 = Player("P2", [Stratcooperation("Coop")])
+        player1 = Player("P1", [Strattullock()])
+        player2 = Player("P2", [Stratcooperation()])
         n = 10000
         match(player1, player2, n)
         # les premiers 11 coups de tullock doivent être des coopérations
@@ -103,8 +103,7 @@ class TestStrat(TestCase):
         self.assertTrue(m/(n-11) > 0.85)
 
     def test_random(self):
-        random_lover = Player("Random", [Stratrandom("Random")])
-        random_lover.opponent = Player("Opponent", [Stratcooperation("Coop")])
+        random_lover = Player("Random", [Stratrandom()])
         n = 10000
         match(random_lover, self.cooperator, n)
         m = self.cooperator.memory.count(0)
@@ -113,17 +112,16 @@ class TestStrat(TestCase):
         self.assertTrue(m/n > 0.45)
 
     def test_feld(self):
-        feld_lover = Player("Feld", [Stratfeld("Feld")])
-        feld_lover.opponent = Player("Opponent", [Stratcooperation("Coop")])
+        feld_lover = Player("Feld", [Stratfeld()])
         n = 200
         match(feld_lover, self.cooperator, n)
         # puisque les chances de coopérer baissent, il y aura plus de coopération la première moitié du match que la deuxième
         self.assertTrue(self.cooperator.memory[:int(n/2)].count(0) > (self.cooperator.memory[int(n/2):].count(0)))
 
     def test_grudger(self):
-        grudger = Stratgrudger("Grudger")
+        grudger = Stratgrudger()
         grudger_lover = Player("Grudger", [grudger])
-        opponent = Player("Opponent", [Stratlist("TestGrudger", [0, 0, 0, 0, 0, 1, 1, 0, 0, 0])])
+        opponent = Player("Opponent", [Stratlist([0, 0, 0, 0, 0, 1, 1, 0, 0, 0])])
         match(grudger_lover, opponent, 10)
         self.assertEqual(
             opponent.memory,
@@ -131,9 +129,9 @@ class TestStrat(TestCase):
         )
 
     def test_davis(self):
-        davis = Stratdavis("Davis")
+        davis = Stratdavis()
         davis_lover = Player("Davis", [davis])
-        opponent = Player("Opponent", [Stratlist("TestDavis", [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])])
+        opponent = Player("Opponent", [Stratlist("Davis", [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0])])
         match(davis_lover, opponent, 20)
         self.assertEqual(
             opponent.memory,
@@ -141,7 +139,7 @@ class TestStrat(TestCase):
         )
 
     def test_graaskamp(self):
-        graaskamp = Stratgraaskamp("Graaskamp")
+        graaskamp = Stratgraaskamp()
         graaskamp_lover = Player("Graaskamp", [graaskamp])
         opponent = Player("Opponent", [Stratlist("TestGraaskamp", [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])])
         match(graaskamp_lover, opponent, 200)
@@ -221,8 +219,7 @@ class TestStrat(TestCase):
                 self.assertEqual(opponent4.memory[i], graaskamp_lover.memory[(i-1)])
 
     def test_steinandrapoport(self):
-        steinandrapoport_lover = Player("Tullock", [Stratsteinandrapoport("Steinandrapoport")])
-        steinandrapoport_lover.opponent = Player("Opponent", [Stratcooperation("Coop")])
+        steinandrapoport_lover = Player("Tullock", [Stratsteinandrapoport()])
         match(steinandrapoport_lover, self.cooperator, 200)
         # les 4 premiers coups de Stein and Rapoport doivent être des
         # coopérations
@@ -250,7 +247,7 @@ class TestStrat(TestCase):
                 self.assertEqual(opponent.memory[i], 1)
 
     def test_nydegger(self):
-        nydegger = Stratnydegger("Nydegger")
+        nydegger = Stratnydegger()
         nydegger_lover = Player("Nydegger", [nydegger])
         opponent = Player("Opponent", [Stratlist("TestNydegger", [0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])])
         match(nydegger_lover, opponent, 20)
@@ -263,7 +260,7 @@ class TestStrat(TestCase):
         self.assertEqual(opponent2.memory, [0, 1, 1])
 
     def test_tidemanandchieruzzi(self):
-        tidemanandchieruzzi = Strattidemanandchieruzzi("S2")
+        tidemanandchieruzzi = Strattidemanandchieruzzi()
         player1 = Player("P1", [tidemanandchieruzzi])
         player2 = Player("P2", [Stratlist("S1", [0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0])])
         match(player1, player2, 200)
@@ -280,8 +277,7 @@ class TestStrat(TestCase):
         # aléatoire entre 30% et 70%, cette stratégie aléatoire n'est biaisé
         # ni d'un coté ni de l'autre, et donc les résultats devraient être similaire
         # à un simple générateur aléatoire 50/50
-        anonymous_lover = Player("Anonymous", [Stratanonymous("Anonymous")])
-        anonymous_lover.opponent = Player("Opponent", [Stratcooperation("Coop")])
+        anonymous_lover = Player("Anonymous", [Stratanonymous()])
         n = 10000
         match(anonymous_lover, self.cooperator, n)
         m = self.cooperator.memory.count(0)

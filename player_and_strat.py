@@ -54,26 +54,32 @@ class Strat():  # Classe des stratégie, elle... porte un nom !
 
 class Stratcooperation(Strat):
     # Coopère
+    def __init__(self) -> None:
+        super().__init__("Always Cooperate")
     def action(self, player: Player):
         return 0
 
 
 class Stratbetrayal(Strat):
     # Trahi
+    def __init__(self) -> None:
+        super().__init__("Always Betray")
     def action(self, player: Player):
         return 1
 
 
 class Stratrandom(Strat):
     # Agit aléatoirement à 50% de coopération
+    def __init__(self) -> None:
+        super().__init__("Random")
     def action(self, player: Player):
         return random.choice([0, 1])
 
 
 class Stratlist(Strat):
     # Suit la liste de coups donné, revient au début lorsque la fin est atteinte
-    def __init__(self, name: string, liste: list) -> None:
-        super().__init__(name)
+    def __init__(self, liste: list) -> None:
+        super().__init__("List")
         self.list = liste
 
     def action(self, tour: int):
@@ -82,6 +88,9 @@ class Stratlist(Strat):
 
 class Stratitat(Strat):
     # Coopère puis repète l'action prècèdente de l'adversaire
+    def __init__(self) -> None:
+        super().__init__("Tit For Tat")
+        
     def action(self, player: Player):
         if not player.memory:
             return 0
@@ -90,6 +99,8 @@ class Stratitat(Strat):
 
 class Stratotitat(Strat):
     # Trahi uniquement si l'adversaire à trahi deux ou plus fois de suite
+    def __init__(self) -> None:
+        super().__init__("Tit For Two Tats")
     def action(self, player: Player):
         if len(player.memory) >= 2 and player.memory[-1] == 1 and player.memory[-2] == 1:
             return 1
@@ -98,6 +109,8 @@ class Stratotitat(Strat):
 
 class Stratgrudger(Strat):
     # Coopère jusqu'à ce que l'adversaire trahi, ne fait alors plus que trahir
+    def __init__(self) -> None:
+        super().__init__("Grudger")
     def action(self, player: Player):
         if 1 in player.memory:
             return 1
@@ -106,6 +119,8 @@ class Stratgrudger(Strat):
 
 class Stratdavis(Strat):
     # Coopère les 10 premiers tours puis joue grudger
+    def __init__(self) -> None:
+        super().__init__("Davis")
     def action(self, player: Player):
         if len(player.memory) >= 10 and 1 in player.memory:
             return 1
@@ -115,6 +130,9 @@ class Stratdavis(Strat):
 class Stratgrofman(Strat):
     # Si les joueurs ont agit différemment au dernier tour coopére avec 2/7 de
     # probabilité, sinon coopère
+    def __init__(self) -> None:
+        super().__init__("Grofman")
+
     def action(self, player: Player):
         if not player.memory or player.memory[-1] == player.opponent.memory[-1]:
             return 0
@@ -125,6 +143,8 @@ class Stratgrofman(Strat):
 
 class Stratjoss(Strat):
     # joue tit for tat avec 90% de coopération au lieu de 100%
+    def __init__(self) -> None:
+        super().__init__("Joss")
     def action(self, player: Player):
         if (not player.memory or player.memory[-1] == 0) and random.uniform(0, 1) <= 0.9:
             return 0
@@ -134,6 +154,8 @@ class Stratjoss(Strat):
 class Strattullock(Strat):
     # Coopère les 11 premiers tours puis coopère 10% de moins que l'adversaire
     # les 10 derniers tours
+    def __init__(self) -> None:
+        super().__init__("Tullock")
     def action(self, player: Player):
         if len(player.memory) <= 10:
             return 0
@@ -144,13 +166,11 @@ class Strattullock(Strat):
 
 class Stratgraaskamp(Strat):
     # de https://axelrod.readthedocs.io/en/dev/_modules/axelrod/strategies/axelrod_first.html#FirstByGraaskamp
-    def __init__(self, name: string, alpha: float = 0.05) -> None:
-        super().__init__(name)
-
+    def __init__(self, alpha: float = 0.05) -> None:
+        super().__init__("Graaskamp")
         self.alpha = alpha
-        self.opponent_is_random = False
-        self.next_random_defection_turn = None
-
+        self.reset_for_new_game()
+    
     def reset_for_new_game(self):
         self.opponent_is_random = False
         self.next_random_defection_turn = None
@@ -205,11 +225,10 @@ class Stratgraaskamp(Strat):
 
 class Stratsteinandrapoport(Strat):
     # de https://axelrod.readthedocs.io/en/dev/_modules/axelrod/strategies/axelrod_first.html#FirstBySteinAndRapoport
-    def __init__(self, name: string, alpha: float = 0.05) -> None:
-        super().__init__(name)
-
+    def __init__(self, alpha: float = 0.05) -> None:
+        super().__init__("Stein And Rapoport")
         self.alpha = alpha
-        self.opponent_is_random = False
+        self.reset_for_new_game()
 
     def reset_for_new_game(self):
         self.opponent_is_random = False
@@ -243,21 +262,15 @@ class Stratsteinandrapoport(Strat):
 
 class Strattidemanandchieruzzi(Strat):
     # de https://axelrod.readthedocs.io/en/dev/_modules/axelrod/strategies/axelrod_first.html#FirstByTidemanAndChieruzzi
-    def __init__(self, name: string) -> None:
-        super().__init__(name)
-
-        self.betraying = False
-        self.betraying_turns = 0
-        self.remaining_betrayals = 0
-        # Alzheimer fait oublier les précédentes trahisons et recommencer comme au début du match
-        self.last_alzheimer = -20
-        self.alzheimer = False
-        self.remembered_betrayals = 0
+    def __init__(self) -> None:
+        super().__init__("Tideman And Chieruzzi")
+        self.reset_for_new_game()
 
     def reset_for_new_game(self):
         self.betraying = False
         self.betraying_turns = 0
         self.remaining_betrayals = 0
+        # Alzheimer fait oublier les précédentes trahisons et recommencer comme au début du match
         self.last_alzheimer = -20
         self.alzheimer = False
         self.remembered_betrayals = 0
@@ -363,11 +376,9 @@ class Strattidemanandchieruzzi(Strat):
 
 
 class Stratshubik(Strat):
-    def __init__(self, name: string) -> None:
-        super().__init__(name)
-        self.betraying = False
-        self.betraying_turns = 0
-        self.remaining_betrayals = 0
+    def __init__(self) -> None:
+        super().__init__("Shubik")
+        self.reset_for_new_game()
 
     def reset_for_new_game(self):
         self.betraying = False
@@ -408,16 +419,15 @@ class Stratshubik(Strat):
 class Stratfeld(Strat):
     def __init__(
         self,
-        name,
         start_coop_prob: float = 1.0,
         end_coop_prob: float = 0.5,
         rounds_of_decay: int = 200,
     ) -> None:
-        super().__init__(name)
+        super().__init__("Feld")
         self.start_coop_prob = start_coop_prob
         self.end_coop_prob = end_coop_prob
         self.rounds_of_decay = rounds_of_decay
-        self.coop_prob = start_coop_prob
+        self.reset_for_new_game()
 
     def reset_for_new_game(self):
         self.coop_prob = self.start_coop_prob
@@ -447,13 +457,15 @@ class Stratanonymous(Strat):
     Informations sur la stratégie quasi non-existantes, effet connu: la
     probabilité de coopération tombait fréquemment entre 30% et 70%.
     """
+    def __init__(self) -> None:
+        super().__init__("Anonymous")
     def action(self, player: Player):
         r = random.uniform(3, 7)
         return random.choices([0, 1], cum_weights=[r, r + (10 - r)])[0]
 
 
 class Stratnydegger(Strat):
-    def __init__(self, name) -> None:
+    def __init__(self) -> None:
         self.abetray = [
             1, 6, 7, 17, 22, 23, 26, 29, 30, 31, 33, 38, 39, 45, 49, 54, 55,
             58, 61,
@@ -464,7 +476,7 @@ class Stratnydegger(Strat):
             (1,0): 1,
             (1,1): 3
         }
-        super().__init__(name)
+        super().__init__("Nydegger")
 
     def atotal(self, player: Player):
         a = 0
@@ -495,8 +507,8 @@ class Stratnydegger(Strat):
 
 class Stratdowning(Strat):
     # de https://axelrod.readthedocs.io/en/dev/_modules/axelrod/strategies/axelrod_first.html#FirstByDowning
-    def __init__(self, name) -> None:
-        super().__init__(name)
+    def __init__(self) -> None:
+        super().__init__("Downing")
         self.reset_for_new_game()
 
     def reset_for_new_game(self):
