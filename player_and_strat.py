@@ -78,8 +78,8 @@ class Stratrandom(Strat):
 
 class Stratlist(Strat):
     # Suit la liste de coups donné, revient au début lorsque la fin est atteinte
-    def __init__(self, liste: list) -> None:
-        super().__init__("List")
+    def __init__(self, name: str, liste: list) -> None:
+        super().__init__(name)
         self.list = liste
 
     def action(self, tour: int):
@@ -90,7 +90,7 @@ class Stratitat(Strat):
     # Coopère puis repète l'action prècèdente de l'adversaire
     def __init__(self) -> None:
         super().__init__("Tit For Tat")
-        
+
     def action(self, player: Player):
         if not player.memory:
             return 0
