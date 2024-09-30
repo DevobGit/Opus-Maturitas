@@ -1,34 +1,37 @@
-from axelrod import Tournament, Cooperator, Defector, TitForTat, Grudger, Plot
-from evolutive_strat import Evo
+from axelrod import Tournament, Plot
+import matplotlib.pyplot as plt
+import numpy as np
 
-
-playerlist = [
-    Evo([TitForTat(), Defector(), Cooperator(), Grudger()]
-        ,[1, 0, 0, 0]),
-    Evo([TitForTat(), Defector(), Cooperator(), Grudger()]
-        ,[0, 1, 0, 0]),
-    Evo([TitForTat(), Defector(), Cooperator(), Grudger()]
-        ,[0, 0, 1, 0]),
-    Evo([TitForTat(), Defector(), Cooperator(), Grudger()]
-        ,[0, 0, 0, 1])
-    ]
+import matplotlib.ticker as mticker
 
 
 def evolutive_tournament(players: list, steps: int, reproduction_type: int):
-    for _ in range(steps) :
+    # Stocke les infos le 1ere generation
+    generation = [0]
+    strats = {}
+    for player in players :
+        player.normalizeweights()
+        for strat in player.strategies :
+            if not (strat.name in strats):
+                strats[strat.name] = [player.weights[player.strategies.index(strat)]]
+            else :
+                strats[strat.name][0] += player.weights[player.strategies.index(strat)]
+    
+    for g in range(steps) :
+        print(g)
         tournament = Tournament(players)
         results = tournament.play()
 
 
-        plot = Plot(results)
-        p = plot.boxplot()
-        p.show()
+        #plot = Plot(results)
+        #p = plot.boxplot()
+        #p.show()
         
-        print(results.ranking)
+        #print(results.ranking)
         player_weights = []
         for i in results.ranking:
             player_weights.append(players[results.ranking[i]].weights)
-        print(player_weights)
+        #print(player_weights)
         
         best_player = players[results.ranking[0]]
         
@@ -51,5 +54,28 @@ def evolutive_tournament(players: list, steps: int, reproduction_type: int):
             for player in players :
                 player.weights[best_player.weights.index(max(best_player.weights))] = max(best_player.weights)
                 player.mutate()
+    
+        #stocke les infos de la dernière generation
+        generation.append(g+1)
+        for player in players :
+            for strat in player.strategies :
+                if (len(strats[strat.name]) == g + 1):
+                    strats[strat.name].append(player.weights[player.strategies.index(strat)])
+                else :
+                    strats[strat.name][g + 1] += player.weights[player.strategies.index(strat)]
 
-evolutive_tournament(playerlist, 5, 0)
+    fig, ax = plt.subplots()
+    stacks = ax.stackplot(generation, strats.values(),
+                labels=strats.keys(), alpha=0.8)
+    ax.legend(loc='best', reverse=True)
+    ax.set_title('Strategy Population')
+    ax.set_xlabel('Generation')
+    ax.set_ylabel('Cumulated Strategy Weights')
+    # add tick at every 200 million people
+    ax.yaxis.set_minor_locator(mticker.MultipleLocator(.1))
+    
+    hatches=['/', '\\', '|', '-', '+', 'x', 'o', 'O', '.', '*', '/o', '\\|', '|*', '-\\', '+o', 'x*', 'o-', 'O|', 'O.', '*-', 'xx', 'oo', 'OO', '..', '**']
+    for stack, hatch in zip(stacks, hatches):
+        stack.set_hatch(hatch)
+
+    plt.show()    

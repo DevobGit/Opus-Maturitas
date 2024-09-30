@@ -37,13 +37,16 @@ class Evo(Player):
             else :
                 i *= random.uniform(0.8, 1.2)
             new_weights.append(i)
-        """Vérifie qu'il existe au moins 1 élèment non-nul dans la liste en remplaçant dans le cas contraire un poid
-        aléatoire par sa valeur avant la mutation, jusqu'à ce qu'un élèment ne soit plus nul.
-        """
+        # Vérifie qu'il existe au moins 1 élèment
+        # non-nul dans la liste en remplaçant dans
+        # le cas contraire un poid
+        # aléatoire par sa valeur avant la mutation,
+        # jusqu'à ce qu'un élèment ne soit plus nul.
         while new_weights.count(0) == len(new_weights):
             random_weight_to_restore = random.randint(0, len(new_weights) - 1)
             new_weights[random_weight_to_restore] = self.weights[random_weight_to_restore]
         self.weights = new_weights.copy()
+        self.normalizeweights()
 
     def choosestrategy(self):
         self.chosenstrategy = random.choices(
@@ -51,6 +54,13 @@ class Evo(Player):
             weights=self.weights,
             k=1
         )[0]
+
+    def normalizeweights(self):
+        total_of_weights = 0
+        for i in self.weights :
+            total_of_weights += i
+        for i in self.weights :
+            self.weights[self.weights.index(i)] /= total_of_weights
 
     name = "Evo"
     classifier = {

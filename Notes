@@ -37,3 +37,23 @@ Tideman and Chieruzzi ne sont, contrairement à ce qui est montré dans la vidé
 https://www.youtube.com/watch?v=mScpHTIi-kM&ab_channel=Veritasium 10:37, pas
 NICE, la strat trahi toujours les deux derniers tours, d'après
 https://axelrod.readthedocs.io/en/dev/_modules/axelrod/strategies/axelrod_first.html#FirstByTidemanAndChieruzzi
+
+STRATS NE FONCTIONNANT PAS DANS LE TOURNOIS ÉVOLUTIF :
+
+Random
+SecondByGetzler()
+SecondByBlack()
+FirstByGraaskamp()
+FirstByFeld()
+FirstByGrofman()
+SecondByLeyvraz()
+SecondByKluepfel()
+SecondByAppold()
+SecondByHarrington()
+FirstByTullock()
+FirstByAnonymous()
+SecondByCave()
+SecondByChampion()
+SecondByEatherley()
+SecondByTranquilizer()
+SecondByWmAdams()
