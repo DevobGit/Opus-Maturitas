@@ -66,16 +66,16 @@ def evolutive_tournament(players: list, steps: int, reproduction_type: int):
 
     fig, ax = plt.subplots()
     stacks = ax.stackplot(generation, strats.values(),
-                labels=strats.keys(), alpha=0.8)
-    ax.legend(loc='best', reverse=True)
+                labels=strats.keys(),colors=["dimgray", "lightgray", "lightcoral", "red", "tomato", "sienna", "orange", "darkgoldenrod", "gold", "darkkhaki", "olive", "yellow", "lawngreen", "darkgreen", "aquamarine", "lightseagreen", "darkslategray", "cyan", "dodgerblue", "navy", "indigo", "violet", "purple", "magenta", "deeppink"], alpha=0.8)
+    ax.legend(loc=(1.04, 0), reverse=True)
     ax.set_title('Strategy Population')
     ax.set_xlabel('Generation')
     ax.set_ylabel('Cumulated Strategy Weights')
     # add tick at every 200 million people
     ax.yaxis.set_minor_locator(mticker.MultipleLocator(.1))
     
-    hatches=['/', '\\', '|', '-', '+', 'x', 'o', 'O', '.', '*', '/o', '\\|', '|*', '-\\', '+o', 'x*', 'o-', 'O|', 'O.', '*-', 'xx', 'oo', 'OO', '..', '**']
-    for stack, hatch in zip(stacks, hatches):
-        stack.set_hatch(hatch)
+    #hatches=['/', '\\', '|', '-', '+', 'x', 'o', 'O', '.', '*', '/o', '\\|', '|*', '-\\', '+o', 'x*', 'o-', 'O|', 'O.', '*-', 'xx', 'oo', 'OO', '..', '**']
+    #for stack, hatch in zip(stacks, hatches):
+    #    stack.set_hatch(hatch)
 
     plt.show()    
