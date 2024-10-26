@@ -21,10 +21,12 @@ class Evo(Player):
     - Evo
     """
 
-    def __init__(self, strategies: list, weights: list):
+    def __init__(self, strategies: list, weights: list, name: str = "Evo"):
         self.strategies = strategies
         self.weights = weights
         self.chosenstrategy = self.strategies[0]
+        self.own_score = 0
+        self.name = name
         super().__init__()
 
     def mutate(self):
@@ -71,6 +73,17 @@ class Evo(Player):
         "manipulates_source": True,
         "manipulates_state": True,
     }
+    
+    # prit de https://axelrod.readthedocs.io/en/dev/_modules/axelrod/strategies/axelrod_second.html#SecondByGraaskampKatzen
+    # puis modifié pour gérer les opponents de classe Evo
+    def update_score(self, opponent: Player):
+        game = self.match_attributes["game"]
+        if isinstance(opponent, Evo):
+            last_round = (self.chosenstrategy.history[-1], opponent.chosenstrategy.history[-1])
+        else :
+            last_round = (self.chosenstrategy.history[-1], opponent.history[-1])
+        self.own_score += game.score(last_round)[0]
+        print("my score:", self.own_score)
 
     def receive_match_attributes(self):
         for i in self.strategies:
@@ -87,10 +100,13 @@ class Evo(Player):
 
     def strategy(self, opponent: Player) -> Action:
         """
-        Choisi une stratégie au tour 1 et la garde pour le match
+        Choisi une stratégie au tour 1 et la garde pour le match,
+        les autres tours met à jour son score.
         """
-        if len(self.history) == 0:
+        if len(self.chosenstrategy.history) == 0:
             self.choosestrategy()
+        else :
+            self.update_score(opponent)
         answer = self.chosenstrategy.strategy(opponent)
         return answer
     
@@ -102,6 +118,7 @@ class Evo(Player):
         new_player = cls(**self.init_kwargs)
         new_player.match_attributes = copy.copy(self.match_attributes)
         new_player.weights = self.weights
+        new_player.name = self.name
         return new_player
 
     def reset(self):

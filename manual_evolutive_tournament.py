@@ -99,4 +99,4 @@ for i in playerlist:
             i.weights.append(0)
     print(i.weights)
 
-evolutive_tournament(playerlist, 100, 0)
+evolutive_tournament(playerlist, 3, "Remplacement muté")
