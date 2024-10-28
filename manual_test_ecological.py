@@ -10,9 +10,6 @@ stratlist = [
 ]
 
 weightlist = []
-# Pour donner à chaque joueur le même poid à toutes les strats
-#for _ in stratlist :
-#    weightlist.append(1)  
 
 playerlist = [
     Evo(stratlist

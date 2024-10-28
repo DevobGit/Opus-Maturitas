@@ -7,17 +7,9 @@ import matplotlib.ticker as mticker
 
 
 def evolutive_tournament(players: list, steps: int, reproduction_type: str):
-    print("players", players)
     # Stocke les infos de 1ere generation
     generation = [0]
     strats = {}
-    # On veut que first_population soit une liste distincte de player, mais l'on ne fait
-    # pas de deepcopy car l'on souhaite que les players dans la liste soient les mêmes objets
-    first_population = []
-    for player in players :
-        first_population.append(player)
-    print("first_population", first_population)
-    
     
     for player in players :
         player.normalizeweights()
@@ -27,12 +19,8 @@ def evolutive_tournament(players: list, steps: int, reproduction_type: str):
             else :
                 strats[strat.name][0] += player.weights[player.strategies.index(strat)]
     
-    
-    print("first_population", first_population)
-    
     for g in range(steps) :
         print(g)
-        print("players", player)
         tournament = Tournament(players=players, turns=200, repetitions=1)
         results = tournament.play()
         print(results.scores)
@@ -52,19 +40,11 @@ def evolutive_tournament(players: list, steps: int, reproduction_type: str):
         
         if reproduction_type == "Axelrod":
             new_population = []
-            for player in first_population:
-                print("player.own_score", player.own_score)
-                print("results.scores[first_population.index(player)][0]", results.scores[first_population.index(player)][0])
-                if player in players:
-                    total_score_among_clones = 0
-                    for used_player in players:
-                        if used_player.name == player.name:
-                            print("used_player.own_score", used_player.own_score)
-                            total_score_among_clones += used_player.own_score
-                    print(total_score_among_clones)
-                    for i in range(total_score_among_clones):
-                        offspring = player.clone()
-                        new_population.append(offspring)
+            for player in players:
+                print("results.scores[players.index(player)][0]", results.scores[players.index(player)][0])
+                for i in range(results.scores[players.index(player)][0]):
+                    offspring = player.clone()
+                    new_population.append(offspring)
             print("new_population", new_population)
             players = copy.deepcopy(new_population)
         elif reproduction_type == "Remplacement non-muté":
@@ -108,7 +88,7 @@ def evolutive_tournament(players: list, steps: int, reproduction_type: str):
     ax.set_xlabel('Generation')
     ax.set_ylabel('Cumulated Strategy Weights')
     # add tick at every 200 million people
-    ax.yaxis.set_minor_locator(mticker.MultipleLocator(.1))
+    #ax.yaxis.set_minor_locator(mticker.MultipleLocator(.1))
     
     #hatches=['/', '\\', '|', '-', '+', 'x', 'o', 'O', '.', '*', '/o', '\\|', '|*', '-\\', '+o', 'x*', 'o-', 'O|', 'O.', '*-', 'xx', 'oo', 'OO', '..', '**']
     #for stack, hatch in zip(stacks, hatches):
