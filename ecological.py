@@ -33,7 +33,7 @@ def evolutive_tournament(players: list, steps: int, reproduction_type: str):
     for g in range(steps) :
         print(g)
         print("players", player)
-        tournament = Tournament(players=players, turns=200)
+        tournament = Tournament(players=players, turns=200, repetitions=1)
         results = tournament.play()
         print(results.scores)
 
@@ -54,6 +54,7 @@ def evolutive_tournament(players: list, steps: int, reproduction_type: str):
             new_population = []
             for player in first_population:
                 print("player.own_score", player.own_score)
+                print("results.scores[first_population.index(player)][0]", results.scores[first_population.index(player)][0])
                 if player in players:
                     total_score_among_clones = 0
                     for used_player in players:
