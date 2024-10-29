@@ -9,6 +9,7 @@ Sources donnant les stratégies du premier tournoi d'Axelrod, le manque de déta
 https://axelrod.readthedocs.io/en/dev/tutorials/running_axelrods_first_tournament/index.html
 https://axelrod.readthedocs.io/en/dev/reference/strategy_index.html
 https://www.geeksforgeeks.org/python-removing-first-element-of-list/
+https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 python3 -m unittest
 
 FIRST TOURNAMENT EXPECTED RANKING :

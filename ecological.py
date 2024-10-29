@@ -23,8 +23,6 @@ def evolutive_tournament(players: list, steps: int, reproduction_type: str):
         print(g)
         tournament = Tournament(players=players, turns=200, repetitions=1)
         results = tournament.play()
-        print(results.scores)
-
 
         #plot = Plot(results)
         #p = plot.boxplot()
@@ -41,17 +39,15 @@ def evolutive_tournament(players: list, steps: int, reproduction_type: str):
         if reproduction_type == "Axelrod":
             new_population = []
             for player in players:
-                print("results.scores[players.index(player)][0]", results.scores[players.index(player)][0])
                 for i in range(results.scores[players.index(player)][0]):
                     offspring = player.clone()
                     new_population.append(offspring)
-            print("new_population", new_population)
             players = copy.deepcopy(new_population)
-        elif reproduction_type == "Remplacement non-muté":
+        elif reproduction_type == "Remplacement_non_muté":
             offspring = best_player.clone()
             del players[results.ranking[-1]]
             players.append(offspring)
-        elif reproduction_type == "Remplacement muté":
+        elif reproduction_type == "Remplacement_muté":
             offspring = best_player.clone()
             offspring.mutate()
             del players[results.ranking[-1]]

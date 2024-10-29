@@ -1,6 +1,9 @@
 from axelrod import Cooperator, Defector, TitForTat, Grudger, TitFor2Tats, FirstByDavis, FirstByDowning, FirstByJoss, FirstByNydegger, FirstByShubik, FirstBySteinAndRapoport, FirstByTidemanAndChieruzzi, SecondByBorufsen, SecondByColbert, SecondByGladstein, SecondByGraaskampKatzen, SecondByGrofman, SecondByMikkelson, SecondByRichardHufford, SecondByRowsam, SecondByTester, SecondByTidemanAndChieruzzi, SecondByWeiner, SecondByWhite, SecondByYamachi
 from ecological import evolutive_tournament
 from evolutive_strat import Evo
+from results_texter import information_text
+import copy
+import random
 
 stratlist = [
     Cooperator(),
@@ -99,4 +102,16 @@ for i in playerlist:
             i.weights.append(0)
     print(i.weights)
 
-evolutive_tournament(playerlist, 3, "Remplacement muté")
+saved_players = copy.deepcopy(playerlist)
+
+# Types possibles sont "Axelrod", "Remplacement_non_muté", "Remplacement_muté", "Moyenne", et "Héritage."
+TOURNAMENT_TYPE = "Remplacement_muté"
+
+random_seed = None
+
+random.seed(random_seed)
+
+evolutive_tournament(playerlist, 3, TOURNAMENT_TYPE)
+
+information_text(TOURNAMENT_TYPE, 2, saved_players, playerlist, seed=random_seed, special_notes="Tournoi créé dans l'unique but de vérifier la fonction écrivant ce fichier d'infos supplémentaires.")
+print("OK")

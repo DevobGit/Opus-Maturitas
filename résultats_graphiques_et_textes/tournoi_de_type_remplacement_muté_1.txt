@@ -1,0 +1,47 @@
+Remplacement_muté_1
+
+Graine aléatoire : 1
+
+Joueurs de départ :
+
+Joueur : Evo1
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger]
+Poids : [0.25, 0.25, 0.25, 0.25]
+
+Joueur : Evo2
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger]
+Poids : [0.25, 0.25, 0.25, 0.25]
+
+Joueur : Evo3
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger]
+Poids : [0.25, 0.25, 0.25, 0.25]
+
+Joueur : Evo4
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger]
+Poids : [0.25, 0.25, 0.25, 0.25]
+
+Joueurs Finaux :
+
+Joueur : Evo2
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger]
+Poids : [0.11852243891829925, 0.09512787816775067, 0.7087902352406923, 0.07755944767325774]
+
+Joueur : Evo2
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger]
+Poids : [0.1284177902824054, 0.14499470405299578, 0.6189130838449323, 0.10767442181966656]
+
+Joueur : Evo2
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger]
+Poids : [0.09825585010703909, 0.1321508838373722, 0.6763677043358798, 0.09322556171970896]
+
+Joueur : Evo2
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger]
+Poids : [0.0, 0.199563336647311, 0.800436663352689, 0]
+
+Type Remplacement_muté :
+À chaque nouvelle génération G, le joueur ayant gagné le moins de
+points en génération G-1 est remplacé par une version de celui qui en a gagné le plus en génération G-1
+dont les poids ont subit une mutation aléatoire.
+
+Notes particulières : 
+Tournoi créé dans l'unique but de vérifier la fonction écrivant ce fichier d'infos supplémentaires.
