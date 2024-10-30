@@ -1,5 +1,4 @@
 import random
-import string
 from scipy.stats import chisquare
 from math import sqrt
 
@@ -44,7 +43,7 @@ class Player():
 # Définition des classes stratégies, le nom des classes sera sûrement changé à
 # l'avenir pour correspondre aux noms originaux
 class Strat():  # Classe des stratégie, elle... porte un nom !
-    def __init__(self, name: string) -> None:
+    def __init__(self, name: str) -> None:
         self.name = name
         self.player = None
 
