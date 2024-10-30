@@ -18,12 +18,12 @@ def evolutive_tournament(players: list, steps: int, reproduction_type: str):
                 strats[strat.name] = [player.weights[player.strategies.index(strat)]]
             else :
                 strats[strat.name][0] += player.weights[player.strategies.index(strat)]
-    
+    #cool = []
     for g in range(steps) :
         print(g)
         tournament = Tournament(players=players, turns=200, repetitions=1)
         results = tournament.play()
-
+        #cool.append(results.normalised_scores)
         #plot = Plot(results)
         #p = plot.boxplot()
         #p.show()
@@ -89,5 +89,5 @@ def evolutive_tournament(players: list, steps: int, reproduction_type: str):
     #hatches=['/', '\\', '|', '-', '+', 'x', 'o', 'O', '.', '*', '/o', '\\|', '|*', '-\\', '+o', 'x*', 'o-', 'O|', 'O.', '*-', 'xx', 'oo', 'OO', '..', '**']
     #for stack, hatch in zip(stacks, hatches):
     #    stack.set_hatch(hatch)
-
+    #print(cool)
     plt.show()    

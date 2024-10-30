@@ -16,17 +16,17 @@ weightlist = []
 
 playerlist = [
     Evo(stratlist
-        ,[0.25,0.25,0.25,0.25],
-        "Evo1"),
+        ,[1,0,0,0],
+        "Cooperator"),
     Evo(stratlist
-        ,[0.25,0.25,0.25,0.25],
-        "Evo2"),
+        ,[0,1,0,0],
+        "Defector"),
     Evo(stratlist
-        ,[0.25,0.25,0.25,0.25],
-        "Evo3"),
+        ,[0,0,1,0],
+        "TitForTat"),
     Evo(stratlist
-        ,[0.25,0.25,0.25,0.25],
-        "Evo4")
+        ,[0,0,0,1],
+        "Grudger")
     ]
 
 print("playerlist", playerlist)
@@ -34,13 +34,13 @@ print("playerlist", playerlist)
 saved_players = copy.deepcopy(playerlist)
 
 # Types possibles sont "Axelrod", "Remplacement_non_muté", "Remplacement_muté", "Moyenne", et "Héritage."
-TOURNAMENT_TYPE = "Remplacement_muté"
+TOURNAMENT_TYPE = "Axelrod"
 
-random_seed = 10
+random_seed = None
 
 random.seed(random_seed)
 
-evolutive_tournament(playerlist, 200, TOURNAMENT_TYPE)
+evolutive_tournament(playerlist, 4, TOURNAMENT_TYPE)
 
-information_text(TOURNAMENT_TYPE, 2, saved_players, playerlist, seed=random_seed, special_notes="Tournoi créé dans l'unique but de vérifier la fonction écrivant ce fichier d'infos supplémentaires.")
+information_text(TOURNAMENT_TYPE, 1, saved_players, playerlist, seed=random_seed, special_notes="Type 'Axelrod' modifié. Utilise les scores normés à la place des scores.\nles scores normés correspondent aux scores divisés par le nombre d'adversaires\net de tours joués.")
 print("OK")

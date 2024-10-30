@@ -1,0 +1,63 @@
+Axelrod_1
+
+Graine aléatoire : None
+
+Joueurs de départ :
+
+Joueur : Cooperator
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger]
+Poids : [1, 0, 0, 0]
+
+Joueur : Defector
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger]
+Poids : [0, 1, 0, 0]
+
+Joueur : TitForTat
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger]
+Poids : [0, 0, 1, 0]
+
+Joueur : Grudger
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger]
+Poids : [0, 0, 0, 1]
+
+Joueurs Finaux :
+
+Joueur : Cooperator
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger]
+Poids : [1.0, 0.0, 0, 0]
+
+Joueur : Defector
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger]
+Poids : [0.0, 1.0, 0, 0]
+
+Joueur : TitForTat
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger]
+Poids : [0.0, 0, 1.0, 0]
+
+Joueur : Grudger
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger]
+Poids : [0.0, 0, 0, 1.0]
+
+Type Axelrod :
+Le nombre de joueurs de type T dans la population au début de la génération G
+est égal au nombre total de points gagnés par les joueurs de type T dans la génération précédente G-1.
+
+Notes particulières : 
+Type 'Axelrod' modifié. Utilise les scores normés à la place des scores.
+les scores normés correspondent aux scores divisés par le nombre d'adversaires
+et de tours joués.
+
+Scores Normés par génération (fin G1, fin G2, fin G3, fin G4) :
+
+[
+    [[2.0], [2.3466666666666667], [2.3316666666666666], [2.3316666666666666]
+    ], [
+        [2.142857142857143], [2.142857142857143], [2.1542857142857144], [2.1542857142857144], [2.4271428571428575], [2.4271428571428575], [2.4271428571428575], [2.4271428571428575]
+        ], [
+            [2.2], [2.2], [2.2], [2.2], [2.0773333333333333], [2.0773333333333333], [2.0773333333333333], [2.0773333333333333], [2.465333333333333], [2.465333333333333], [2.465333333333333], [2.465333333333333], [2.465333333333333], [2.465333333333333], [2.465333333333333], [2.465333333333333]
+            ], [
+                [2.225806451612903], [2.225806451612903], [2.225806451612903], [2.225806451612903], [2.225806451612903], [2.225806451612903], [2.225806451612903], [2.225806451612903], [2.0425806451612902], [2.0425806451612902], [2.0425806451612902], [2.0425806451612902], [2.0425806451612902], [2.0425806451612902], [2.0425806451612902], [2.0425806451612902], [2.48258064516129], [2.48258064516129], [2.48258064516129], [2.48258064516129], [2.48258064516129], [2.48258064516129], [2.48258064516129], [2.48258064516129], [2.48258064516129], [2.48258064516129], [2.48258064516129], [2.48258064516129], [2.48258064516129], [2.48258064516129], [2.48258064516129], [2.48258064516129]
+            ]
+            ]
+
+Les poids normés sont arrondis à 2, et donc chaque population ne fait que doubler de génération en génération.
