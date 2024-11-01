@@ -42,5 +42,5 @@ random.seed(random_seed)
 
 evolutive_tournament(playerlist, 4, TOURNAMENT_TYPE)
 
-information_text(TOURNAMENT_TYPE, 1, saved_players, playerlist, seed=random_seed, special_notes="Type 'Axelrod' modifié. Utilise les scores normés à la place des scores.\nles scores normés correspondent aux scores divisés par le nombre d'adversaires\net de tours joués.")
+information_text(TOURNAMENT_TYPE, 2, saved_players, playerlist, seed=random_seed, special_notes="Type 'Axelrod' modifié. Utilise les scores normés à la place des scores.\nles scores normés correspondent aux scores divisés par le nombre d'adversaires\net de tours joués.")
 print("OK")

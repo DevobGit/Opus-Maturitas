@@ -35,8 +35,8 @@ stratlist = [
 
 weightlist = []
 # Pour donner à chaque joueur le même poid à toutes les strats
-#for _ in stratlist :
-#    weightlist.append(1)  
+for _ in stratlist :
+    weightlist.append(1)  
 
 playerlist = [
     Evo(stratlist
@@ -92,6 +92,7 @@ playerlist = [
     ]
 
 # Pour que chaque joueur n'ait initialement qu'une strat disponible (différente pour chaque joueur)
+"""
 for i in playerlist:
     for _ in stratlist :
         if len(i.weights) == playerlist.index(i) :
@@ -101,7 +102,7 @@ for i in playerlist:
         else :
             i.weights.append(0)
     print(i.weights)
-
+"""
 saved_players = copy.deepcopy(playerlist)
 
 # Types possibles sont "Axelrod", "Remplacement_non_muté", "Remplacement_muté", "Moyenne", et "Héritage."
@@ -111,7 +112,7 @@ random_seed = None
 
 random.seed(random_seed)
 
-evolutive_tournament(playerlist, 3, TOURNAMENT_TYPE)
+evolutive_tournament(playerlist, 248, TOURNAMENT_TYPE)
 
-information_text(TOURNAMENT_TYPE, 2, saved_players, playerlist, seed=random_seed, special_notes="Tournoi créé dans l'unique but de vérifier la fonction écrivant ce fichier d'infos supplémentaires.")
+information_text(TOURNAMENT_TYPE, 1, saved_players, playerlist, seed=random_seed)
 print("OK")
