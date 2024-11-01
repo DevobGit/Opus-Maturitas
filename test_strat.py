@@ -92,7 +92,7 @@ class TestStrat(TestCase):
         n = 10000
         match(player1, player2, n)
         # les premiers 11 coups de tullock doivent être des coopérations
-        for i in range(13):
+        for i in range(11):
             self.assertTrue(player2.memory[i] == 0)
         # compte le nombre de coopérations de tullock après les 11 premiers coups
         m = player2.memory[11:].count(0)

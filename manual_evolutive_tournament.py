@@ -1,4 +1,4 @@
-from axelrod import Cooperator, Defector, TitForTat, Grudger, TitFor2Tats, FirstByDavis, FirstByDowning, FirstByJoss, FirstByNydegger, FirstByShubik, FirstBySteinAndRapoport, FirstByTidemanAndChieruzzi, SecondByBorufsen, SecondByColbert, SecondByGladstein, SecondByGraaskampKatzen, SecondByGrofman, SecondByMikkelson, SecondByRichardHufford, SecondByRowsam, SecondByTester, SecondByTidemanAndChieruzzi, SecondByWeiner, SecondByWhite, SecondByYamachi, FirstByAnonymous
+from axelrod import Random, TitForTat, FirstByGrofman, Grudger, TitFor2Tats, FirstByDavis, FirstByDowning, FirstByJoss, FirstByNydegger, FirstByShubik, FirstBySteinAndRapoport, FirstByTidemanAndChieruzzi, SecondByBorufsen, SecondByColbert, SecondByGraaskampKatzen, SecondByGrofman, SecondByMikkelson, SecondByRichardHufford, SecondByRowsam, SecondByTester, SecondByTidemanAndChieruzzi, SecondByWeiner, SecondByWhite, SecondByYamachi, FirstByAnonymous, FirstByFeld, FirstByGraaskamp, FirstByTullock
 from ecological import evolutive_tournament
 from evolutive_strat import Evo
 from results_texter import information_text
@@ -6,39 +6,50 @@ import copy
 import random
 
 stratlist = [
-    FirstByAnonymous(),
-    Defector(),
     TitForTat(),
-    Grudger(),
-    TitFor2Tats(),
-    FirstByDavis(),
-    FirstByDowning(),
-    FirstByJoss(),
+    FirstByTidemanAndChieruzzi(),
     FirstByNydegger(),
+    FirstByGrofman(),
     FirstByShubik(),
     FirstBySteinAndRapoport(),
-    FirstByTidemanAndChieruzzi(),
+    Grudger(),
+    FirstByDavis(),
+    FirstByGraaskamp(),
+    FirstByDowning(),
+    FirstByFeld(),
+    FirstByJoss(),
+    FirstByTullock(),
+    FirstByAnonymous(),
+    Random(),
     SecondByBorufsen(),
-    SecondByColbert(),
-    SecondByGladstein(),
     SecondByGraaskampKatzen(),
-    SecondByGrofman(),
-    SecondByMikkelson(),
-    SecondByRichardHufford(),
-    SecondByRowsam(),
-    SecondByTester(),
-    SecondByTidemanAndChieruzzi(),
     SecondByWeiner(),
+    SecondByTidemanAndChieruzzi(),
     SecondByWhite(),
-    SecondByYamachi()
+    SecondByYamachi(),
+    SecondByColbert(),
+    SecondByMikkelson(),
+    SecondByRowsam(),
+    TitFor2Tats(),
+    SecondByGrofman(),
+    SecondByTester(),
+    SecondByRichardHufford(),
+
+
 ]
 
 weightlist = []
 # Pour donner à chaque joueur le même poid à toutes les strats
 for _ in stratlist :
-    weightlist.append(1)  
+    weightlist.append(1)
 
 playerlist = [
+    Evo(stratlist
+        ,weightlist.copy()),
+    Evo(stratlist
+        ,weightlist.copy()),
+    Evo(stratlist
+        ,weightlist.copy()),
     Evo(stratlist
         ,weightlist.copy()),
     Evo(stratlist

@@ -10,7 +10,6 @@ def evolutive_tournament(players: list, steps: int, reproduction_type: str):
     # Stocke les infos de 1ere generation
     generation = [0]
     strats = {}
-    
     for player in players :
         player.normalizeweights()
         for strat in player.strategies :
@@ -28,7 +27,7 @@ def evolutive_tournament(players: list, steps: int, reproduction_type: str):
         #p = plot.boxplot()
         #p.show()
         
-        #print(results.ranking)
+        print(results.ranking)
         player_weights = []
         for i in results.ranking:
             player_weights.append(players[results.ranking[i]].weights)
