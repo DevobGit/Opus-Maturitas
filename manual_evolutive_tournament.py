@@ -1,4 +1,4 @@
-from axelrod import Cooperator, Defector, TitForTat, Grudger, TitFor2Tats, FirstByDavis, FirstByDowning, FirstByJoss, FirstByNydegger, FirstByShubik, FirstBySteinAndRapoport, FirstByTidemanAndChieruzzi, SecondByBorufsen, SecondByColbert, SecondByGladstein, SecondByGraaskampKatzen, SecondByGrofman, SecondByMikkelson, SecondByRichardHufford, SecondByRowsam, SecondByTester, SecondByTidemanAndChieruzzi, SecondByWeiner, SecondByWhite, SecondByYamachi
+from axelrod import Cooperator, Defector, TitForTat, Grudger, TitFor2Tats, FirstByDavis, FirstByDowning, FirstByJoss, FirstByNydegger, FirstByShubik, FirstBySteinAndRapoport, FirstByTidemanAndChieruzzi, SecondByBorufsen, SecondByColbert, SecondByGladstein, SecondByGraaskampKatzen, SecondByGrofman, SecondByMikkelson, SecondByRichardHufford, SecondByRowsam, SecondByTester, SecondByTidemanAndChieruzzi, SecondByWeiner, SecondByWhite, SecondByYamachi, FirstByAnonymous
 from ecological import evolutive_tournament
 from evolutive_strat import Evo
 from results_texter import information_text
@@ -6,7 +6,7 @@ import copy
 import random
 
 stratlist = [
-    Cooperator(),
+    FirstByAnonymous(),
     Defector(),
     TitForTat(),
     Grudger(),
@@ -112,7 +112,7 @@ random_seed = None
 
 random.seed(random_seed)
 
-evolutive_tournament(playerlist, 248, TOURNAMENT_TYPE)
+evolutive_tournament(playerlist, 1, TOURNAMENT_TYPE)
 
 information_text(TOURNAMENT_TYPE, 1, saved_players, playerlist, seed=random_seed)
 print("OK")

@@ -1,8 +1,11 @@
 import copy
 import random
+import warnings
 from axelrod.action import Action
 from axelrod.player import Player
 from axelrod.game import DefaultGame
+from axelrod import _module_random
+from axelrod.random_ import RandomGenerator
 C, D = Action.C, Action.D
 
 
@@ -110,6 +113,19 @@ class Evo(Player):
     def reset(self):
         for i in self.strategies:
             i.reset()
+    
+    def set_seed(self, seed):
+        for i in self.strategies:
+            """Set a random seed for the player's random number generator."""
+            if seed is None:
+                warnings.warn(
+                    "Initializing player with seed from Axelrod module random number generator. "
+                    "Results may not be seed reproducible."
+                )
+                i._seed = _module_random.random_seed_int()
+            else:
+                i._seed = seed
+            i._random = RandomGenerator(seed=i._seed)
 
     def update_history(self, play, coplay):
         self.chosenstrategy.history.append(play, coplay)

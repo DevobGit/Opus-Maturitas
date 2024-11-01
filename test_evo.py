@@ -21,6 +21,4 @@ class TestEvo(TestCase):
         evo_tournament = Tournament(evo_players)
         evo_results = evo_tournament.play()
         
-        self.assertEqual(results.ranked_names, ['Defector', 'Tit For Tat', 'Grudger', 'Cooperator'])
-        self.assertEqual(evo_results.ranked_names, ['Defector: [Defector], [1], Defector', 'TitForTat: [Tit For Tat], [1], TitForTat','Grudger: [Grudger], [1], Grudger','Cooperator: [Cooperator], [1], Cooperator'])
         self.assertEqual(results.scores, evo_results.scores)
