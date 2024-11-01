@@ -1,0 +1,212 @@
+Remplacement_muté_2
+
+Graine aléatoire : None
+
+Joueurs de départ :
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Joueurs Finaux :
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0.0, 0.019148212700846965, 0.0, 0.04070282889983798, 0.0, 0.0, 0.02103500373415674, 0.02664294772672703, 0.0, 0.027126841121110384, 0.0336730169197321, 0.27176588532762547, 0.0, 0, 0.27176588532762547, 0, 0, 0, 0.2283731679821643, 0.016871524387455997, 0.02434218500342516, 0.0, 0.018552500869292603, 0.0]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0, 0.01568414093243087, 0.0, 0, 0.0, 0.0, 0.02496658351023307, 0.0, 0.238509167949659, 0.02633828796264262, 0, 0.0, 0.040832936885090695, 0.031554299234919696, 0.0, 0.0, 0.020763316423110727, 0, 0.0, 0.03658374809386753, 0.3833010972940229, 0.1814664217140229, 0, 0.0]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0.0, 0.015709239880533722, 0, 0.023764156424023606, 0.02683076777702788, 0.0, 0.011565190690715264, 0.014713207861048452, 0.0, 0.018717557010532297, 0, 0.011530177582064888, 0.0, 0.0, 0.11815333696797704, 0.0, 0.25822270400940733, 0.0, 0.021813487403239473, 0.014924707877445383, 0.023661914007059588, 0.16333352693220374, 0.01883732156731409, 0.25822270400940733]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0.0, 0.022252050392727034, 0.0, 0.0, 0.03968468785664131, 0.0, 0.02181881223450951, 0.022195909549506006, 0.022074174036726988, 0.03462291922950173, 0.026423617332334132, 0.0, 0.0, 0.0358838722618814, 0.025235778246186162, 0.018563717818699168, 0.021487203276554435, 0.0321675794118485, 0.03110791839833219, 0.0, 0.02901264495544236, 0.28620182669332467, 0.33126728830578445, 0]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0.0, 0.015522180225932857, 0.0, 0.0, 0.0, 0.0, 0.021115952160506796, 0.0, 0.22906011885427735, 0.03035773349746043, 0.0, 0.0, 0.04582822730803247, 0.03416390871939137, 0.0, 0.0, 0.02242755452735242, 0.0, 0.0, 0, 0.4268439223048738, 0.17468040240217247, 0.0, 0.0]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0.0, 0.00949811565268086, 0.0, 0.0, 0.0, 0.0, 0.011055052948946771, 0.25832869038924966, 0.10346266678956524, 0.016203742628826838, 0.0, 0.0, 0.01860752328137265, 0.014305671792366957, 0.25832869038924966, 0.0, 0.009756905358489113, 0.0, 0, 0.015298710257332551, 0.19824305270219522, 0.08691117780972457, 0.0, 0.0]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.022906406386516816, 0.0, 0.0, 0.0, 0, 0.024279930010614563, 0.0, 0.022038131192141926, 0.03575731693320549, 0.0, 0.0, 0.034847636661478484, 0, 0.024715654518999604, 0.02846643752853604, 0.22005935264509333, 0.2543582174316285, 0.021128730630019382, 0, 0, 0.0187068520536367, 0.03837711657650066, 0.0, 0.0, 0.2543582174316285]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0.0, 0.00587517313683883, 0.0, 0.0, 0.007545174521780855, 0.0, 0.20593233242684958, 0.0038988203126706527, 0, 0.0, 0.0, 0.11429849359851371, 0.0, 0.004035708987772827, 0.005964379097540781, 0.2352051193310405, 0.004346018527075466, 0.0, 0.00326215277098255, 0.0846714026604026, 0.0, 0.10138659789358323, 0.005872433301497738, 0.2177061934334508]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0.0, 0.0, 0.0, 0.0, 0.02302621190200247, 0.0, 0.2065359861667433, 0.0, 0.0, 0.0, 0.32283463173070864, 0.12189277197267248, 0.0, 0.007065221488455188, 0.010297133142342414, 0.009718239639303468, 0, 0.0, 0, 0.10823746545221684, 0.0, 0.18267766850395512, 0.007714670001600112, 0.0]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0.0, 0.014270132101718588, 0.0, 0.024411745914442066, 0.025256202065746938, 0.0, 0.013509352176339931, 0.015865585353105012, 0, 0.018993793473956935, 0, 0.013398612913943345, 0.0, 0, 0.12542274758783223, 0.0, 0.2585620011743005, 0.0, 0.02369854515406174, 0.016433479606125685, 0.02333071143626318, 0.16695980368651503, 0.016182831103437618, 0.24370445625221107]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0, 0.3297938630569582, 0.0, 0, 0.011889423752141378, 0.0, 0.1742942528229394, 0.0, 0.0062714088125188725, 0.0038584939820927103, 0.21707242944478972, 0.08954674494257032, 0.0, 0, 0.006982196811515599, 0.0, 0.002926576210111693, 0.0038659119357060145, 0.002859680981560751, 0.07469329055632319, 0.0, 0.07006113745241523, 0.005884589238357149, 0.0]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0.0, 0.0, 0.0, 0.0, 0.01572020750769614, 0.0, 0.15683122988180778, 0, 0.0, 0.0, 0.18917132302589865, 0.08701707409030672, 0.32506838078784, 0.004797223631326632, 0, 0.007006879657904725, 0.004349536599364866, 0.0, 0.003241431587000548, 0.08317425206873713, 0.0, 0.12362246116211661, 0, 0.0]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0.0, 0.021831456926081544, 0.0, 0.022122317207757536, 0.029125191055436928, 0.0, 0.015610119486251578, 0.013748026535478125, 0.01719415198364657, 0.02010130369842615, 0.01610073547085317, 0.0, 0.0, 0, 0.01637155277331701, 0, 0.015580220708142321, 0.019526331798621576, 0.022795280928211443, 0.2551402415132095, 0.021532041108121416, 0.21524174704001128, 0.022839040253224287, 0.2551402415132095]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0.0, 0.019936095035958053, 0.0, 0, 0.0348290651054605, 0.0, 0.023141034108472, 0.021503882647582778, 0.01910582382750141, 0.03940180621701306, 0.02362208082094546, 0.0, 0, 0.034160735619064006, 0.02583460594806654, 0.020243829454898325, 0.021242320313664267, 0.027849629180261175, 0.03060838199679341, 0.0, 0.0265623330058401, 0.23597505785523448, 0.39598331886324445, 0.0]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0.0, 0.0, 0.0, 0.0, 0.018194335080209355, 0.0, 0.2552170600676577, 0.0, 0.0, 0.0, 0.229553457673217, 0.16194673908254983, 0.0, 0.007818486545317735, 0.011830869261754815, 0.012863900990566574, 0.007513385969699098, 0.0, 0.005310143101329396, 0.11873589258626577, 0, 0.1628115170616896, 0.00820421257974282, 0.0]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0.0, 0.009473843865220663, 0.0, 0.0, 0.0, 0.0, 0.009096917361445201, 0.3066991283033653, 0.09998801002113973, 0.01925951592778091, 0, 0.0, 0.02183725736204714, 0.01730940214066584, 0.23405586656386673, 0.0, 0.010746053000390691, 0.0, 0.0, 0.01589577322594865, 0.16994313692875032, 0.08569509529937895, 0, 0.0]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0.0, 0.017897699401752766, 0.0, 0.0, 0, 0.0, 0.020660498335095777, 0.0, 0.22198286108665302, 0.02351934701885188, 0.0, 0.0, 0.0471340066812471, 0.031089332294195526, 0.0, 0.0, 0.01950601392676953, 0.0, 0.0, 0.031268255037279466, 0.44208322202023537, 0.14485876419791957, 0.0, 0.0]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0, 0.015681033127328853, 0.0, 0, 0.027753035428267528, 0.0, 0.016155904562472415, 0.017373697722494752, 0.016593967956313172, 0.023147128735839555, 0.01899866540390939, 0.36148452049492696, 0.0, 0.028191528209093288, 0, 0.012616824200551225, 0, 0.021895886585590472, 0.01929379553896201, 0.0, 0.020338081186828436, 0.18132540495539054, 0.21915052589203157, 0.0]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0.0, 0.03694347524016571, 0.0, 0.04969494978056388, 0.0559898109812194, 0.0, 0.0371112599444166, 0.028198446943357002, 0.03177492530563454, 0.047607239714864164, 0.03328579359647046, 0.0, 0.0, 0.04124922376035747, 0.036175482114492945, 0.02380690058258151, 0.022910127795646364, 0.052583054638043386, 0.03868646492147665, 0.0, 0.03811776979023826, 0.3806956112615362, 0.04516946362893553, 0.0]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0.0, 0.0, 0.32827405773098994, 0.0, 0, 0, 0.1862104392042367, 0.0, 0, 0.004020651993526825, 0.20921199237331375, 0.0760526000379145, 0.0, 0.0030404238966522494, 0.005039034871374434, 0.0, 0.0028961382657845948, 0.004149280915832446, 0.002352329370978604, 0.0777335691684617, 0.0, 0.0953700204964781, 0.005649461674456095, 0.0]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0.0, 0.0, 0.0, 0, 0.005156607090798198, 0.0, 0.06241113622796805, 0.34061482839288376, 0.0, 0.0, 0.08215514906571067, 0.022733913880638508, 0.08224784101817678, 0.002114825187559657, 0.14659889574664653, 0.0019723471055572697, 0.0012327831587658337, 0.18351431275890143, 0.0013023505955682734, 0.03266625370641764, 0, 0.035278756064407314, 0.0, 0.0]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0.0, 0.006127253933949777, 0.0, 0.0, 0.0, 0.0, 0.0077187642780553855, 0.1946687745404355, 0.07411365751968312, 0.01155313927214553, 0.34778755587020665, 0.0, 0.011544337586806569, 0.009174180727788701, 0.20981821932701067, 0.0, 0.006091214309660254, 0.0, 0.0, 0.010908028997800343, 0.11049487363645766, 0, 0.0, 0.0]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0.0, 0.023174426274345853, 0.0, 0.0, 0.04431218314158356, 0.0, 0.02139452748146124, 0.025066398263379377, 0.022449608316654653, 0.032324348946306494, 0.025979321421707294, 0, 0.0, 0, 0.02573394468519519, 0.018759889988253283, 0.021200338361427578, 0.03569286374705184, 0.029044224052744323, 0.0, 0.031944103777075065, 0.27394153362860074, 0.3689822879142134, 0.0]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0.0, 0, 0.0, 0.0, 0.03994470998958131, 0.0, 0.018025065983207043, 0.021437560539621568, 0.02641247638832959, 0.03248447094689441, 0, 0, 0.0, 0.0, 0.02612066121613851, 0.018828399567899366, 0.01855751797871205, 0.031135899063324105, 0.03416171319580669, 0.0, 0.03039051316690006, 0.33523438039875525, 0.3672666315648301, 0.0]
+
+Joueur : Evo
+Stratégies : [Cooperator, Defector, Tit For Tat, Grudger, Tit For 2 Tats, First by Davis: 10, First by Downing, First by Joss: 0.9, First by Nydegger, First by Shubik, First by Stein and Rapoport: 0.05: (D, D), First by Tideman and Chieruzzi: (D, D), Second by Borufsen, Second by Colbert, Second by Gladstein, Second by GraaskampKatzen, Second by Grofman, Second by Mikkelson, Second by RichardHufford, Second by Rowsam, Second by Tester, Second by Tideman and Chieruzzi, Second by Weiner, Second by White, Second by Yamachi]
+Poids : [0.0, 0.0, 0.0, 0.0, 0.0, 0.023037445773754998, 0.0, 0.2141564804679977, 0.0, 0.0, 0.0, 0.3246001034209731, 0.1246538526570379, 0.0, 0.007031619485982338, 0.008281066898617101, 0.011104376029361367, 0, 0.0, 0.0, 0.10656271234878033, 0.0, 0.17296509514549782, 0.007607247771997274, 0.0]
+
+Type Remplacement_muté :
+À chaque nouvelle génération G, le joueur ayant gagné le moins de
+points en génération G-1 est remplacé par une version de celui qui en a gagné le plus en génération G-1
+dont les poids ont subit une mutation aléatoire.
