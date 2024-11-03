@@ -14,6 +14,7 @@ class Evo(Player):
     A player selects randomly a strategy at its disposal using
     the given weights. It can mutate to change its strategies
     and weights.
+    
     Un joueur qui choisi aléatoirement l'une de ses stratégies à
     l'aide de poids. Il peut muter et changer ses poids. Créé à
     partir de la classe Player de la librairie Axelrod.
