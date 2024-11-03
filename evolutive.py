@@ -61,31 +61,30 @@ def evolutive(players, steps, mutation):
 
 
 
-"""
+if __name__=="__main__":
 
-players = [axl.Cooperator(), axl.Defector(),
-           axl.TitForTat(), axl.Grudger()]
-tournament = axl.Tournament(players=players, turns=200)
-results = tournament.play()
-eco = Betterecosystem(results)
-eco.reproduce(10)
+    players = [axl.Cooperator(), axl.Defector(),
+            axl.TitForTat(), axl.Grudger()]
+    tournament = axl.Tournament(players=players, turns=200)
+    results = tournament.play()
+    eco = Betterecosystem(results)
+    eco.reproduce(10)
 
-"""
 
-"""
-fig, ax = plt.subplots()
-stacks = ax.stackplot(1, eco.population_sizes,
-            colors=["dimgray", "lightgray", "lightcoral", "red", "tomato", "sienna", "orange", "darkgoldenrod", "gold", "darkkhaki", "olive", "yellow", "lawngreen", "darkgreen", "aquamarine", "lightseagreen", "darkslategray", "cyan", "dodgerblue", "navy", "indigo", "violet", "purple", "magenta", "deeppink"], alpha=0.8)
-ax.legend(loc=(1.04, 0), reverse=True)
-ax.set_title('Strategy Population')
-ax.set_xlabel('Generation')
-ax.set_ylabel('Cumulated Strategy Weights')
-"""
 
-"""
+    """
+    fig, ax = plt.subplots()
+    stacks = ax.stackplot(1, eco.population_sizes,
+                colors=["dimgray", "lightgray", "lightcoral", "red", "tomato", "sienna", "orange", "darkgoldenrod", "gold", "darkkhaki", "olive", "yellow", "lawngreen", "darkgreen", "aquamarine", "lightseagreen", "darkslategray", "cyan", "dodgerblue", "navy", "indigo", "violet", "purple", "magenta", "deeppink"], alpha=0.8)
+    ax.legend(loc=(1.04, 0), reverse=True)
+    ax.set_title('Strategy Population')
+    ax.set_xlabel('Generation')
+    ax.set_ylabel('Cumulated Strategy Weights')
+    """
 
-plot = Betterplot(results)
-p = plot.stackplot(eco)
-p.show()
-print(eco.population_sizes)
-"""
+
+
+    plot = Betterplot(results)
+    p = plot.stackplot(eco)
+    p.show()
+    print(eco.population_sizes)
