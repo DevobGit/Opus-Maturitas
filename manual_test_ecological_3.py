@@ -1,5 +1,5 @@
 from axelrod import Cooperator, Defector, TitForTat, Grudger, Tournament, Plot
-from unnormed_ecosystem2 import Iamsleepy
+from ecological_axl import Secondevolutive
 from evolutive_strat import Evo
 import random
 
@@ -31,7 +31,7 @@ print("playerlist", playerlist)
 random.seed(1)
 tournament = Tournament(players=stratlist, turns=200)
 results = tournament.play()
-eco = Iamsleepy(results, mutation= False)
+eco = Secondevolutive(results, mutation= False)
 
 eco.reproduce(20)
 
@@ -49,5 +49,3 @@ plot = Plot(results)
 p = plot.stackplot(eco)
 p.show()
 print(eco.population_sizes)
-
-print("OK")

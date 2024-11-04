@@ -24,7 +24,7 @@ from typing import Callable, List
 from axelrod.result_set import ResultSet
 
 
-class Iamsleepy(object):
+class Secondevolutive(object):
     """An ecosystem based on the payoff matrix from a tournament.
 
     Attributes

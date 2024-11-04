@@ -1,4 +1,4 @@
-from axelrod import Random, TitForTat, FirstByGrofman, Grudger, TitFor2Tats, FirstByDavis, FirstByDowning, FirstByJoss, FirstByNydegger, FirstByShubik, FirstBySteinAndRapoport, FirstByTidemanAndChieruzzi, SecondByBorufsen, SecondByColbert, SecondByGraaskampKatzen, SecondByGrofman, SecondByMikkelson, SecondByRichardHufford, SecondByRowsam, SecondByTester, SecondByTidemanAndChieruzzi, SecondByWeiner, SecondByWhite, SecondByYamachi, FirstByAnonymous, FirstByFeld, FirstByGraaskamp, FirstByTullock
+from axelrod import TitForTat, Grudger, TitFor2Tats, FirstByDavis, FirstByDowning, FirstByNydegger, FirstByShubik, FirstBySteinAndRapoport, FirstByTidemanAndChieruzzi, SecondByBorufsen, SecondByColbert, SecondByGraaskampKatzen, SecondByGrofman, SecondByMikkelson, SecondByRichardHufford, SecondByRowsam, SecondByTester, SecondByTidemanAndChieruzzi, SecondByWeiner, SecondByWhite, FirstByAnonymous, FirstByFeld, FirstByGraaskamp, FirstByTullock, Random, FirstByGrofman, FirstByJoss, SecondByHarrington, SecondByChampion, SecondByCave, SecondByWmAdams, SecondByLeyvraz, SecondByBlack, SecondByEatherley, SecondByGetzler, SecondByKluepfel
 from ecological import evolutive_tournament
 from evolutive_strat import Evo
 from results_texter import information_text
@@ -6,14 +6,36 @@ import copy
 import random
 
 stratlist = [
+    # les 24 premières sont NICE
     TitForTat(),
-    FirstByTidemanAndChieruzzi(),
     FirstByNydegger(),
     FirstByGrofman(),
     FirstByShubik(),
     FirstBySteinAndRapoport(),
     Grudger(),
     FirstByDavis(),
+    SecondByGrofman(),
+    SecondByTidemanAndChieruzzi(),
+    SecondByGraaskampKatzen(),
+    SecondByWeiner(),
+    TitFor2Tats(),
+    SecondByRowsam(),
+    SecondByMikkelson(),
+    SecondByBorufsen(),
+    SecondByWhite(),
+    
+    SecondByChampion(),
+    SecondByWmAdams(),
+    SecondByCave(),
+    SecondByKluepfel(),
+    SecondByGetzler(),
+    SecondByLeyvraz(),
+    SecondByEatherley(),
+    SecondByBlack(),
+    
+    # Les 12 dernières sont NASTY
+    
+    FirstByTidemanAndChieruzzi(),
     FirstByGraaskamp(),
     FirstByDowning(),
     FirstByFeld(),
@@ -21,19 +43,10 @@ stratlist = [
     FirstByTullock(),
     FirstByAnonymous(),
     Random(),
-    SecondByBorufsen(),
-    SecondByGraaskampKatzen(),
-    SecondByWeiner(),
-    SecondByTidemanAndChieruzzi(),
-    SecondByWhite(),
-    SecondByYamachi(),
     SecondByColbert(),
-    SecondByMikkelson(),
-    SecondByRowsam(),
-    TitFor2Tats(),
-    SecondByGrofman(),
     SecondByTester(),
     SecondByRichardHufford(),
+    SecondByHarrington()
 
 
 ]
@@ -44,6 +57,22 @@ for _ in stratlist :
     weightlist.append(1)
 
 playerlist = [
+    Evo(stratlist
+        ,weightlist.copy()),
+    Evo(stratlist
+        ,weightlist.copy()),
+    Evo(stratlist
+        ,weightlist.copy()),
+    Evo(stratlist
+        ,weightlist.copy()),
+    Evo(stratlist
+        ,weightlist.copy()),
+    Evo(stratlist
+        ,weightlist.copy()),
+    Evo(stratlist
+        ,weightlist.copy()),
+    Evo(stratlist
+        ,weightlist.copy()),
     Evo(stratlist
         ,weightlist.copy()),
     Evo(stratlist
@@ -117,13 +146,13 @@ for i in playerlist:
 saved_players = copy.deepcopy(playerlist)
 
 # Types possibles sont "Axelrod", "Remplacement_non_muté", "Remplacement_muté", "Moyenne", et "Héritage."
-TOURNAMENT_TYPE = "Remplacement_muté"
+TOURNAMENT_TYPE = "Moyenne"
 
 random_seed = None
 
 random.seed(random_seed)
 
-evolutive_tournament(playerlist, 1, TOURNAMENT_TYPE)
+evolutive_tournament(playerlist, 248, TOURNAMENT_TYPE)
 
-information_text(TOURNAMENT_TYPE, 1, saved_players, playerlist, seed=random_seed)
+information_text(TOURNAMENT_TYPE, 2, saved_players, playerlist, seed=random_seed)
 print("OK")

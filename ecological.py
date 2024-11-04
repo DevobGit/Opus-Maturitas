@@ -77,7 +77,7 @@ def evolutive_tournament(players: list, steps: int, reproduction_type: str):
 
     fig, ax = plt.subplots()
     stacks = ax.stackplot(generation, strats.values(),
-                labels=strats.keys(),colors=["dimgray", "lightgray", "lightcoral", "red", "tomato", "sienna", "orange", "darkgoldenrod", "gold", "darkkhaki", "olive", "yellow", "lawngreen", "darkgreen", "aquamarine", "lightseagreen", "darkslategray", "cyan", "dodgerblue", "navy", "indigo", "violet", "purple", "magenta", "deeppink"], alpha=0.8)
+                labels=strats.keys(),colors=["#73ff00", "#9aff47", "#bcff85", "#9bff85", "#71ff52", "#2eff00", "#00ff80", "#57ffab", "#8affc4", "#64b58c", "#3bbf7d", "#00b85c", "#00b806", "#60b563", "#8cb560", "#5bb000", "#73ff00", "#9aff47", "#bcff85", "#9bff85", "#71ff52", "#2eff00", "#00ff80", "#57ffab", "#ff0000", "#ff6e6e", "#ff906e", "#ff004c", "#cc003d", "#c44168", "#bd6542", "#f07f51", "#ff4a00", "#cf3c00", "#8c0303", "#8c033c"], alpha=0.8)
     ax.legend(loc=(1.04, 0), reverse=True)
     ax.set_title('Strategy Population')
     ax.set_xlabel('Generation')
