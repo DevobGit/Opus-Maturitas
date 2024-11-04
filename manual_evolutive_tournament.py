@@ -146,13 +146,13 @@ for i in playerlist:
 saved_players = copy.deepcopy(playerlist)
 
 # Types possibles sont "Axelrod", "Remplacement_non_muté", "Remplacement_muté", "Moyenne", et "Héritage."
-TOURNAMENT_TYPE = "Moyenne"
+TOURNAMENT_TYPE = "Remplacement_muté"
 
 random_seed = None
 
-random.seed(random_seed)
+random.seed(6)
 
 evolutive_tournament(playerlist, 248, TOURNAMENT_TYPE)
 
-information_text(TOURNAMENT_TYPE, 2, saved_players, playerlist, seed=random_seed)
+information_text(TOURNAMENT_TYPE, 6, saved_players, playerlist, seed=random_seed)
 print("OK")
