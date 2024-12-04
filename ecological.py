@@ -31,6 +31,7 @@ def evolutive_tournament(players: list, steps: int, reproduction_type: str):
         player_weights = []
         for i in results.ranking:
             player_weights.append(players[results.ranking[i]].weights)
+            players[results.ranking[i]].rank = (i+1)
         #print(player_weights)
         
         best_player = players[results.ranking[0]]
@@ -49,8 +50,22 @@ def evolutive_tournament(players: list, steps: int, reproduction_type: str):
         elif reproduction_type == "Remplacement_muté":
             offspring = best_player.clone()
             offspring.mutate()
+            offspring.generations_mutations.append(g+1)
             del players[results.ranking[-1]]
             players.append(offspring)
+        elif reproduction_type == "Remplacement_muté_x12":
+            for i in range(12):
+                best_player = players[results.ranking[i]]
+                offspring = best_player.clone()
+                offspring.mutate()
+                offspring.generations_mutations.append(g+1)
+                players.append(offspring)
+            players_to_die = []
+            for i in range(12):
+                worst_player = players[results.ranking[-(i+1)]]
+                players_to_die.append(worst_player)
+            for i in players_to_die:
+                players.remove(i)
         elif reproduction_type == "Moyenne":
             for player in players :
                 new_weights = []

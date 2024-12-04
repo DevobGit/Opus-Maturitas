@@ -156,7 +156,7 @@ class Secondevolutive(object):
             # La première population n'est pas une population de stratégie, mais
             # une population de joueurs mono-stratégiques. Cela revient au même
             # pour la première génération, mais par la suite les mutations sur
-            # les joueurs leur fais avoir plusieurs stratégies et il faut faire
+            # les joueurs leur fonts avoir plusieurs stratégies et il faut faire
             # la distinction.
             # Pour avoir la population de chaque stratégies, il
             # faut prendre pour chaque joueur sa liste des poids associés à
@@ -186,7 +186,7 @@ class Secondevolutive(object):
             # conversion de joueur à stratégie codée ci-dessus inutile), mais pas
             # non plus sur les joueurs, car la matrice ne prend on compte que les
             # joueur de 1ere génération avec les choix aléatoire de stratégies à
-            # utiliser qu'ils en fait au premier tournoi, toute mutation et changement
+            # utiliser qu'ils ont fait au premier tournoi, toute mutation et changement
             # dans le choix de stratégie que le joueur ferait plus tard n'est pas prit
             # en compte.
             
@@ -199,7 +199,7 @@ class Secondevolutive(object):
             # vont avoir sur la population totale une légère variation aléatoire des
             # population de stratégies, avec notamment la possibilité de faire réapparaître
             # une stratégie dont la population a été éteinte.
-            # De ce fait, il n'y a pad de besoin d'utiliser les joueurs Evo(),
+            # De ce fait, il n'y a pas de besoin d'utiliser les joueurs Evo(),
             # les joueurs-stratégies de la librairie Axelrod sont parfaitement compatible
             # avec cette forme de tournoi évolutif qui n'est qu'une légère modification
             # du tournoi écologique de la librairie.

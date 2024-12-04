@@ -22,6 +22,8 @@ def information_text(tournament_type: str, file_number: int, start_players : lis
         
         for player in final_players :
             file.write("\n" + "Joueur : " + str(player.name) + "\n")
+            file.write("\n" + "Classement au dernier tournoi : " + str(player.rank) + "\n")
+            file.write("Générations avec mutations " + str(player.generations_mutations) + "\n")
             file.write("Stratégies : " + str(player.strategies) + "\n")
             file.write("Poids : " + str(player.weights) + "\n")
         
@@ -35,6 +37,8 @@ def information_text(tournament_type: str, file_number: int, start_players : lis
             file.write("\n" + "Type Moyenne : À\nchaque nouvelle génération G, chaque joueur change ses poids en la moyenne\nde ses poids avec ceux du joueur ayant gagné le plus de points en génération G-1." + "\n")
         elif tournament_type == "Héritage" :
             file.write("\n" + "Type Héritage : À\nchaque nouvelle génération G, chaque joueur change son poid X en la moyenne\nde son poid avec celui du joueur ayant gagné le plus de points en génération G-1, le poid X étant\nle poid le plus élevé du gagnant, sont trait le plus spécifique" + "\n")
+        elif tournament_type == "Remplacement_muté_x12" :
+            file.write("\n" + "Type Remplacement_muté_x12 :\nÀ chaque nouvelle génération G, les 12 joueurs ayant gagné le moins de\npoints en génération G-1 sont remplacés par des versions des 12 qui en ont gagné le plus en génération G-1\ndont les poids ont subit une mutation aléatoire." + "\n")
         
         if special_notes is not None :
             file.write("\n" + "Notes particulières : " + "\n" + str(special_notes) + "\n")

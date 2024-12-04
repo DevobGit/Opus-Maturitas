@@ -30,17 +30,25 @@ class Evo(Player):
         self.weights = weights
         self.chosenstrategy = self.strategies[0]
         self.name = name
+        self.generations_mutations = []
+        self.rank = 0
         super().__init__()
 
     def mutate(self):
         new_weights = []
         for i in self.weights :
+            
+            # code utilisé pour les 10 premiers graphiques de tournois mutés
+            # et les deux de tournois par moyennes, ce code permettait aux
+            # poids de devenir nuls en passant sous un seuil à 10% de chances
+            
             if i == 0 and random.randint(1, 10) == 1 :
                 i = 0.5
             elif i < 0.1 and random.randint(1, 10) == 1 :
                 i = 0
             else :
                 i *= random.uniform(0.8, 1.2)
+            #i *= random.uniform(0.8, 1.2)
             new_weights.append(i)
         # Vérifie qu'il existe au moins 1 élèment
         # non-nul dans la liste en remplaçant dans
@@ -103,12 +111,13 @@ class Evo(Player):
     def clone(self):
         """Clones the player without history, reapplying configuration
         parameters as necessary. Et réapplique au joueur les effets de mutation."""
-
+        #new_player.weights = copy.copy(self.weights)
         cls = self.__class__
         new_player = cls(**self.init_kwargs)
         new_player.match_attributes = copy.copy(self.match_attributes)
         new_player.weights = self.weights
         new_player.name = self.name
+        new_player.generations_mutations = copy.copy(self.generations_mutations)
         return new_player
 
     def reset(self):
